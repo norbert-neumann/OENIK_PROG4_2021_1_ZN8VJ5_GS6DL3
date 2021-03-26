@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Warcraft.GameControl</name>
+    </assembly>
+    <members>
+        <member name="T:Warcraft.App">
+            <summary>
+            Interaction logic for App.xaml.
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Warcraft.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Warcraft.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:Warcraft.Direction">
+            <summary>
+            Units can move in these directions.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameObject">
+            <summary>
+            P.
+            </summary>
+        </member>
+        <member name="T:Warcraft.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml.
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Warcraft.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.MainWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:Warcraft.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Warcraft.Race">
+            <summary>
+            Race :).
+            </summary>
+        </member>
+    </members>
+</doc>
