@@ -109,7 +109,8 @@
         </member>
         <member name="T:Warcraft.GameObject">
             <summary>
-            P.
+            Abstract game object class: each object that is rendered has to have a position nad
+            the we have to change the positon somehow. This class implements this functionality.
             </summary>
         </member>
         <member name="P:Warcraft.GameObject.X">
