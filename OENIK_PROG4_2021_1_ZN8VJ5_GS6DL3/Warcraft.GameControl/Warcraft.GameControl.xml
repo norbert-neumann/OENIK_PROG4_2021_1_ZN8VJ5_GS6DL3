@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Warcraft.GameControl</name>
+    </assembly>
+    <members>
+        <member name="T:Warcraft.App">
+            <summary>
+            Interaction logic for App.xaml.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameControl.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml.
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameControl.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameControl.MainWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameControl.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameControl.App">
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameControl.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameControl.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+    </members>
+</doc>
