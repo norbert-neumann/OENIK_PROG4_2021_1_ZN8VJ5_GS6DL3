@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.Repository", "Warcraft.Repository\Warcraft.Repository.csproj", "{7C485EB8-B6C4-46A4-867D-5821393F75C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameModel", "Warcraft.GameModel\Warcraft.GameModel.csproj", "{DBDE43D7-3949-4961-9973-D8E9EFD90D3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameLogic", "Warcraft.GameLogic\Warcraft.GameLogic.csproj", "{C4B1628A-8E96-4649-911E-2A45DF644CF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameLogicTests", "Warcraft.GameLogicTests\Warcraft.GameLogicTests.csproj", "{2E5FAD0B-E67C-41F8-908A-6B87ACD836C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameRenderer", "Warcraft.GameRenderer\Warcraft.GameRenderer.csproj", "{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcraft.GameControl", "Warcraft.GameControl\Warcraft.GameControl.csproj", "{9143ADF3-D174-40CF-9B0F-A2F73235E632}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C485EB8-B6C4-46A4-867D-5821393F75C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C485EB8-B6C4-46A4-867D-5821393F75C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C485EB8-B6C4-46A4-867D-5821393F75C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C485EB8-B6C4-46A4-867D-5821393F75C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBDE43D7-3949-4961-9973-D8E9EFD90D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDE43D7-3949-4961-9973-D8E9EFD90D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDE43D7-3949-4961-9973-D8E9EFD90D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDE43D7-3949-4961-9973-D8E9EFD90D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4B1628A-8E96-4649-911E-2A45DF644CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4B1628A-8E96-4649-911E-2A45DF644CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4B1628A-8E96-4649-911E-2A45DF644CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4B1628A-8E96-4649-911E-2A45DF644CF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5FAD0B-E67C-41F8-908A-6B87ACD836C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5FAD0B-E67C-41F8-908A-6B87ACD836C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5FAD0B-E67C-41F8-908A-6B87ACD836C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5FAD0B-E67C-41F8-908A-6B87ACD836C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E57FB25-9404-49F0-A1AA-0CDB8ECAEA88}
+	EndGlobalSection
+EndGlobal
