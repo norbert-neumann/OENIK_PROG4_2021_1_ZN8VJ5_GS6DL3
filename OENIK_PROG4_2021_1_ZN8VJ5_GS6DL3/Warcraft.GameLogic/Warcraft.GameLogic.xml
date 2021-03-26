@@ -4,5 +4,44 @@
         <name>Warcraft.GameLogic</name>
     </assembly>
     <members>
+        <member name="T:Warcraft.IGameLogic">
+            <summary>
+            Bridges the player and the GameModel.
+            </summary>
+        </member>
+        <member name="M:Warcraft.IGameLogic.Build(Warcraft.Building,Warcraft.SelfMovingObject)">
+            <summary>
+            Builds a new building.
+            </summary>
+            <param name="building">Building to build.</param>
+            <param name="builder">Unit to build.</param>
+            <returns>True if the building was successful, false otherwise.</returns>
+        </member>
+        <member name="M:Warcraft.IGameLogic.Train(Warcraft.SelfMovingObject,Warcraft.Building)">
+            <summary>
+            Trains a new unit.
+            </summary>
+            <param name="unit">Unit to train.</param>
+            <param name="barrack">Building where the unit should be trained.</param>
+            <returns>True if the training was successful.</returns>
+        </member>
+        <member name="M:Warcraft.IGameLogic.SelectUnit(Warcraft.SelfMovingObject)">
+            <summary>
+            Selects a unit.
+            </summary>
+            <param name="unit">Unit to select.</param>
+        </member>
+        <member name="M:Warcraft.IGameLogic.SelectBuilding(Warcraft.Building)">
+            <summary>
+            Selects a building.
+            </summary>
+            <param name="building">Building to select.</param>
+        </member>
+        <member name="M:Warcraft.IGameLogic.MoveTo(System.Drawing.Point)">
+            <summary>
+            Moves a unit to a given location.
+            </summary>
+            <param name="targetLocation">Where the unit should move to.</param>
+        </member>
     </members>
 </doc>
