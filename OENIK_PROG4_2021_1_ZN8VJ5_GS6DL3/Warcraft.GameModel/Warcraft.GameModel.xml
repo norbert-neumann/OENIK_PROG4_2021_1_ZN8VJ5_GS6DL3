@@ -50,6 +50,11 @@
             Unit's maximum health.
             </summary>
         </member>
+        <member name="P:Warcraft.CombatObject.Race">
+            <summary>
+            Race of the unit.
+            </summary>
+        </member>
         <member name="M:Warcraft.CombatObject.AcceptDamage(System.Int32)">
             <summary>
             Takes damage and signals if the damage taken was fatal.
@@ -187,11 +192,6 @@
         <member name="P:Warcraft.SelfMovingObject.Target">
             <summary>
             Target location.
-            </summary>
-        </member>
-        <member name="P:Warcraft.SelfMovingObject.Race">
-            <summary>
-            Race of the unit.
             </summary>
         </member>
         <member name="P:Warcraft.SelfMovingObject.Facing">
