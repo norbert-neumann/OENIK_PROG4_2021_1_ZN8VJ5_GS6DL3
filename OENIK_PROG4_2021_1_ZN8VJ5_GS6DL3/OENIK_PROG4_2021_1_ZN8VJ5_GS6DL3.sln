@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameLogicTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameRenderer", "Warcraft.GameRenderer\Warcraft.GameRenderer.csproj", "{A6BAD89C-08CE-41B7-AE18-6CC6262C1DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcraft.GameControl", "Warcraft.GameControl\Warcraft.GameControl.csproj", "{9143ADF3-D174-40CF-9B0F-A2F73235E632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warcraft.GameControl", "Warcraft.GameControl\Warcraft.GameControl.csproj", "{9143ADF3-D174-40CF-9B0F-A2F73235E632}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcraft.Model", "Warcraft.Model\Warcraft.Model.csproj", "{D25B8F84-2C69-4C04-8C1F-606B462E4B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9143ADF3-D174-40CF-9B0F-A2F73235E632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25B8F84-2C69-4C04-8C1F-606B462E4B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25B8F84-2C69-4C04-8C1F-606B462E4B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25B8F84-2C69-4C04-8C1F-606B462E4B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25B8F84-2C69-4C04-8C1F-606B462E4B93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
