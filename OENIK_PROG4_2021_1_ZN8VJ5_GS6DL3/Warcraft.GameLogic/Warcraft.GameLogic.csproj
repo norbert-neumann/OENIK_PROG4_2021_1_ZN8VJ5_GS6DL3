@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Warcraft.GameModel\Warcraft.GameModel.csproj" />
+    <ProjectReference Include="..\Warcraft.Model\Warcraft.Model.csproj" />
   </ItemGroup>
 
 </Project>
