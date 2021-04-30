@@ -86,6 +86,36 @@
         }
 
         /// <summary>
+        /// Game widht.
+        /// </summary>
+        public int GameWidth { get; private set; }
+
+        /// <summary>
+        /// Game height.
+        /// </summary>
+        public int GameHeight { get; private set; }
+
+        /// <summary>
+        /// Amount of gold the player has.
+        /// </summary>
+        public int PlayerGold { get; set; }
+
+        /// <summary>
+        /// Amount of lumber the player has.
+        /// </summary>
+        public int PlayerLumber { get; set; }
+
+        /// <summary>
+        /// Amount of gold the enemy has.
+        /// </summary>
+        public int EnemyGold { get; set; }
+
+        /// <summary>
+        /// Amount of lumber the enemy has.
+        /// </summary>
+        public int EnemyLumber { get; set; }
+
+        /// <summary>
         /// Adds some amount of gold to some1.
         /// </summary>
         /// <param name="to">Add gold to this entity.</param>
@@ -115,11 +145,21 @@
             }
         }
 
+        /// <summary>
+        /// Returns the closest gold mine. Used by routines.
+        /// </summary>
+        /// <param name="unit">Closest gold mine to this unit.</param>
+        /// <returns>Closeset gold mine.</returns>
         public GoldMine GetClosestGoldMine(Unit unit)
         {
             return null;
         }
 
+        /// <summary>
+        /// Returns the closest lumber mine. Used by routines.
+        /// </summary>
+        /// <param name="unit">Closest lumber mine to this unit.</param>
+        /// <returns>Closeset lumber mine.</returns>
         public Mine GetClosestLumberMine(Unit unit)
         {
             return null;
