@@ -11,7 +11,6 @@ namespace Warcraft.Model
         public static Point OrcTownHallPosition = new Point(5, 5);
         public static int GoldUnit = 21;
         public static int LumberUnit = 17;
-        public static int Speed = 3;
         public static int Speed = 2;
         public static int BorderWidth = 10;
         public static double DefaultThreshold = 0.8;
