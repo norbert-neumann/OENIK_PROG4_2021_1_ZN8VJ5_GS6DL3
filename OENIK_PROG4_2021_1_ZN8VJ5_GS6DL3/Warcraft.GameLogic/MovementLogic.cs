@@ -124,7 +124,47 @@
                 this.MoveTowardTarget(unit, Config.Speed, 0);
             }
         }
+
+        private bool ValidateCollision(GameObject collision, Unit unit)
+        {
+            unit.entryPoint = unit.prevPosition;
+
+            if (unit.enemy != null && unit.enemy.Equals(collision))
+            {
+                return false;
             }
+
+            if (this.routines.ContainsKey(unit))
+            {
+                Routine r = this.routines[unit];
+
+                if (r as HarvestLumberRoutine != null)
+                {
+                    if ((r as HarvestLumberRoutine).targetObject.Equals(collision))
+                    {
+                        if (r.Update())
+                        {
+                            this.activeRoutines.Add(r);
+                        }
+
+                        return false;
+                    }
+                }
+                else if (r as GoldMiningRoutine != null)
+                {
+                    if ((r as GoldMiningRoutine).targetObject.Equals(collision))
+                    {
+                        if (r.Update())
+                        {
+                            this.activeRoutines.Add(r);
+                        }
+
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private Point ComputeTrajectory(Point postion, Point target, double threshold)
