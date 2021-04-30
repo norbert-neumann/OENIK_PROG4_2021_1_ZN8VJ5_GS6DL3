@@ -10,6 +10,11 @@
     /// </summary>
     public class HarvestLumberRoutine : Routine
     {
+        /// <summary>
+        /// The current target object (hall or gold mine).
+        /// </summary>
+        public GameObject TargetObject;
+
         // Hall -> TargetA
         // Mine -> TargetB
         private DateTime startTime;
@@ -19,17 +24,12 @@
         /// <summary>
         /// Return gold to this object.
         /// </summary>
-        public Building hall;
+        private Building hall;
 
         /// <summary>
         /// Tree to harvest.
         /// </summary>
-        public CombatObject tree;
-
-        /// <summary>
-        /// The current target object (hall or gold mine).
-        /// </summary>
-        public GameObject targetObject;
+        private CombatObject tree;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HarvestLumberRoutine"/> class.
@@ -44,7 +44,7 @@
             this.waitTime = waitTime;
             this.hall = hall;
             this.tree = tree;
-            this.targetObject = tree;
+            this.TargetObject = tree;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@
             }
             else
             {
-                this.unit.target = this.TargetB;
+                this.unit.Target = this.targetB;
             }
 
             return false;
@@ -76,8 +76,8 @@
         protected override bool ReachedTargetA()
         {
             this.unit.UnitState = UnitStateEnum.Walking;
-            this.unit.target = TargetB;
-            this.targetObject = this.tree;
+            this.unit.Target = this.targetB;
+            this.TargetObject = this.tree;
             return false;
         }
 
@@ -93,10 +93,10 @@
                 if (DateTime.Now - this.startTime >= this.waitTime)
                 {
                     this.unit.UnitState = UnitStateEnum.WalkingWithLumber;
-                    this.unit.target = this.TargetA;
+                    this.unit.Target = this.targetA;
                     this.mining = false;
-                    this.unit.Position = new Point(this.unit.entryPoint.X - (this.unit.hitbox.Width / 1), this.unit.entryPoint.Y - (this.unit.hitbox.Height / 1));
-                    this.targetObject = this.hall;
+                    this.unit.Position = new Point(this.unit.EntryPoint.X - (this.unit.Hitbox.Width / 1), this.unit.EntryPoint.Y - (this.unit.Hitbox.Height / 1));
+                    this.TargetObject = this.hall;
                     return false;
                 }
 
@@ -107,7 +107,7 @@
                 this.startTime = DateTime.Now;
                 this.mining = true;
                 this.unit.UnitState = UnitStateEnum.Fighting;
-                this.unit.target = this.TargetB;
+                this.unit.Target = this.targetB;
                 return true;
             }
         }

@@ -13,6 +13,11 @@
     /// </summary>
     public class GoldMiningRoutine : Routine
     {
+        /// <summary>
+        /// The current target object (hall or gold mine).
+        /// </summary>
+        public GameObject TargetObject;
+
         private DateTime startTime;
         private TimeSpan waitTime;
         private bool mining = false;
@@ -20,17 +25,12 @@
         /// <summary>
         /// Return gold to this object.
         /// </summary>
-        public Building hall;
+        private Building hall;
 
         /// <summary>
         /// Gold mine to mine in.
         /// </summary>
-        public GoldMine mine;
-
-        /// <summary>
-        /// The current target object (hall or gold mine).
-        /// </summary>
-        public GameObject targetObject;
+        private GoldMine mine;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GoldMiningRoutine"/> class.
@@ -43,11 +43,10 @@
             : base(unit, hall.Position, mine.Position)
         {
             this.unit = unit;
-            this.startTime = startTime;
             this.waitTime = waitTime;
             this.hall = hall;
             this.mine = mine;
-            this.targetObject = mine;
+            this.TargetObject = mine;
         }
 
         /// <summary>
@@ -66,7 +65,7 @@
             }
             else
             {
-                this.unit.target = this.TargetB;
+                this.unit.Target = this.targetB;
             }
 
             return false;
@@ -79,8 +78,8 @@
         protected override bool ReachedTargetA()
         {
             this.unit.UnitState = UnitStateEnum.Walking;
-            this.targetObject = this.mine;
-            this.unit.target = this.TargetB;
+            this.TargetObject = this.mine;
+            this.unit.Target = this.targetB;
             return false;
         }
 
@@ -96,13 +95,13 @@
                 if (DateTime.Now - this.startTime >= this.waitTime)
                 {
                     this.unit.UnitState = UnitStateEnum.WalkingWithGold;
-                    this.unit.target = this.TargetA;
+                    this.unit.Target = this.targetA;
                     this.mining = false;
-                    this.unit.Position = new Point(this.unit.entryPoint.X - (this.unit.hitbox.Width / 1), this.unit.entryPoint.Y - (this.unit.hitbox.Height / 1));
-                    this.unit.hiding = false;
-                    this.targetObject = this.hall;
+                    this.unit.Position = new Point(this.unit.EntryPoint.X - (this.unit.Hitbox.Width / 1), this.unit.EntryPoint.Y - (this.unit.Hitbox.Height / 1));
+                    this.unit.Hiding = false;
+                    this.TargetObject = this.hall;
                     this.mine.NumberOfUsers--;
-                    this.unit.animationIndex = 0;
+                    this.unit.AnimationIndex = 0;
                     return false;
                 }
 
@@ -113,7 +112,7 @@
                 this.mine.NumberOfUsers++;
                 this.startTime = DateTime.Now;
                 this.mining = true;
-                this.unit.hiding = true;
+                this.unit.Hiding = true;
                 return true;
             }
         }
