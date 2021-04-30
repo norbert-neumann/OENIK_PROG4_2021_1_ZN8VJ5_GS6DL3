@@ -518,8 +518,8 @@
             <param name="owner">Owner.</param>
             <param name="race">Unit's race.</param>
             <param name="unitType">Unit's type.</param>
-            <param name="X">X pos.</param>
-            <param name="Y">Y pos.</param>
+            <param name="x">X pos.</param>
+            <param name="y">Y pos.</param>
             <param name="width">Hitbox width.</param>
             <param name="height">Hitbox height.</param>
         </member>
