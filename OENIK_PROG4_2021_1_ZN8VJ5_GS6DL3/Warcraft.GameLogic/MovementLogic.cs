@@ -1,62 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using Warcraft.Model;
-
-namespace Warcraft.GameLogic
+﻿namespace Warcraft.GameLogic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using Warcraft.Model;
+
+    /// <summary>
+    /// Deals with everything realted to movement.
+    /// </summary>
     public class MovementLogic
     {
+        /// <summary>
+        /// Game model to operate on.
+        /// </summary>
         public GameModel model;
+
+        /// <summary>
+        /// Ref to pathfinder. If two objects collide movementLogic calls this to find out an alternative path.
+        /// </summary>
         public PathfindingLogic pathfinder;
 
+        /// <summary>
+        /// Dictionary associating the units wtih their potetntial routines.
+        /// </summary>
+        public Dictionary<Unit, Routine> routines = new Dictionary<Unit, Routine>();
+
+        private List<Routine> activeRoutines = new List<Routine>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MovementLogic"/> class.
+        /// </summary>
+        /// <param name="model">Game model to operate on.</param>
+        /// <param name="pathfinder">Pathfinder to operate on.</param>
         public MovementLogic(GameModel model, PathfindingLogic pathfinder)
         {
             this.model = model;
             this.pathfinder = pathfinder;
         }
 
+        /// <summary>
+        /// Update each unit's positions.
+        /// </summary>
         public void UpdatePositions()
         {
             // IDLE and FIGHTING check, REACHED TARGET CHECK
-            foreach (Unit unit in model.playerUnits)
+            foreach (Unit unit in this.model.units)
             {
-                if (unit.UnitState == UnitStateEnum.Fighting)
+                if (unit.UnitState != UnitStateEnum.Fighting && !unit.inIdle && !unit.hiding)
                 {
-                    this.UpdateFacing(unit, ComputeTrajectory(unit.Position, unit.enemy.Position, Config.DefaultThreshold));
-                }
-                else
-                {
-                    this.SetNewTargetIfReached(unit);
+                    this.SetNewTargetIfReached(unit, this.routines);
                     this.MoveTowardTarget(unit, Config.Speed, Config.DefaultThreshold);
                     this.CallPathfinderOnCollision(unit);
                 }
             }
-            foreach (Unit unit in model.enemyUnits)
+
+            List<Routine> routinesToRemove = new List<Routine>();
+
+            foreach (Routine routine in this.activeRoutines)
             {
-                this.SetNewTargetIfReached(unit);
-                this.MoveTowardTarget(unit, Config.Speed, Config.DefaultThreshold);
-                this.CallPathfinderOnCollision(unit);
+                if (!routine.Update())
+                {
+                    routinesToRemove.Add(routine);
+                }
+            }
+
+            foreach (Routine routine in routinesToRemove)
+            {
+                this.activeRoutines.Remove(routine);
             }
         }
 
-        private void SetNewTargetIfReached(Unit unit)
+        private void SetNewTargetIfReached(Unit unit, Dictionary<Unit, Routine> routines)
         {
-            if (PointToPointDistance(unit.Position, unit.target) < 2)
+            if (this.PointToPointDistance(unit.Position, unit.target) < 2)
             {
                 Point newTarget = new Point();
                 if (unit.path.TryDequeue(out newTarget))
                 {
                     unit.target = newTarget;
                 }
-
+                else if (routines.ContainsKey(unit))
+                {
+                    bool putInActiveRoutines = routines[unit].Update();
+                    if (putInActiveRoutines)
+                    {
+                        this.activeRoutines.Add(routines[unit]);
+                    }
+                }
+                else
+                {
+                    unit.inIdle = true;
+                }
             }
         }
 
         private void MoveTowardTarget(Unit unit, int speed, double threshold)
         {
-            Point trajectory = ComputeTrajectory(unit.Position, unit.target, threshold);
+            Point trajectory = this.ComputeTrajectory(unit.Position, unit.target, threshold);
             Point delta = new Point(trajectory.X, trajectory.Y);
 
             this.UpdateFacing(unit, delta);
@@ -66,20 +108,22 @@ namespace Warcraft.GameLogic
 
             unit.prevPosition = unit.Position;
             unit.ChangePosition(delta);
-            // Where should the next line be??
-            //AnimationLogic.IncrementAnimationIndex(unit);
         }
 
         private void CallPathfinderOnCollision(Unit unit)
         {
             GameObject collison = null;
-            if ((collison = FindCollision(unit)) != null)
+            if ((collison = this.FindCollision(unit)) != null && this.ValidateCollision(collison, unit))
             {
-                this.pathfinder.FindPath(unit, collison as Building, ComputeTrajectory(unit.Position, unit.target, Config.DefaultThreshold));
+                this.pathfinder.FindPath(unit, collison, this.ComputeTrajectory(unit.Position, unit.target, Config.DefaultThreshold));
+
                 // Reset target
                 unit.ResetTarget();
+
                 // Movetorawrds with 0 threshhold
-                MoveTowardTarget(unit, Config.Speed, 0);
+                this.MoveTowardTarget(unit, Config.Speed, 0);
+            }
+        }
             }
         }
 
@@ -93,6 +137,8 @@ namespace Warcraft.GameLogic
             dy /= normalizationTerm;
 
             Point trajectory = new Point(0, 0);
+
+            double distance = this.PointToPointDistance(postion, target);
 
             if (Math.Abs(dx) > threshold)
             {
@@ -122,26 +168,36 @@ namespace Warcraft.GameLogic
 
         private GameObject FindCollision(Unit unit)
         {
-            foreach (Building building in model.playerBuildings)
+            foreach (Building building in this.model.buildings)
             {
                 if (unit.IsPositionInHitbox(building))
                 {
                     return building;
                 }
             }
-            foreach (Building building in model.enemyBuildings)
+
+            foreach (GoldMine mine in this.model.goldMines)
             {
-                if (unit.IsPositionInHitbox(building))
+                if (unit.IsPositionInHitbox(mine))
                 {
-                    return building;
+                    return mine;
                 }
             }
+
+            foreach (CombatObject tree in this.model.lumberMines)
+            {
+                if (unit.IsPositionInHitbox(tree))
+                {
+                    return tree;
+                }
+            }
+
             return null;
         }
 
-        private double PointToPointDistance(Point A, Point B)
+        private double PointToPointDistance(Point a, Point b)
         {
-            return Math.Sqrt(Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2));
+            return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
     }
 }
