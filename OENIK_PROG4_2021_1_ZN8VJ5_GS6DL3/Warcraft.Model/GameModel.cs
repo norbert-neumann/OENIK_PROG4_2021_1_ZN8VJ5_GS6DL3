@@ -10,69 +10,46 @@
     /// </summary>
     public class GameModel
     {
-        public int GameWidth { get; private set; }
-        public int GameHeight { get; private set; }
-
-        /// <summary>
-        /// Amount of gold the player has.
-        /// </summary>
-        public int PlayerGold { get; set; }
-
-        /// <summary>
-        /// Amount of lumber the player has.
-        /// </summary>
-        public int PlayerLumber { get; set; }
-
-        /// <summary>
-        /// Amount of gold the enemy has.
-        /// </summary>
-        public int EnemyGold { get; set; }
-
-        /// <summary>
-        /// Amount of lumber the enemy has.
-        /// </summary>
-        public int EnemyLumber { get; set; }
-
         /// <summary>
         /// List containg ALL units.
         /// </summary>
-        public List<Unit> units = new List<Unit>();
+        public List<Unit> Units = new List<Unit>();
 
         /// <summary>
         /// List containg ALL buildings.
         /// </summary>
-        public List<Building> buildings = new List<Building>();
+        public List<Building> Buildings = new List<Building>();
 
         /// <summary>
         /// List containing all gold mines.
         /// </summary>
-        public List<GoldMine> goldMines = new List<GoldMine>();
+        public List<GoldMine> GoldMines = new List<GoldMine>();
 
         /// <summary>
         /// List containg ALL lumber mines..
         /// </summary>
-        public List<CombatObject> lumberMines = new List<CombatObject>();
+        public List<CombatObject> LumberMines = new List<CombatObject>();
 
         /// <summary>
         /// After a unit's HP is below 0 the unit should be removed.
         /// We can't directly remove it form 'units' bcs we iterate over it with a foreach.
         /// </summary>
-        public List<Unit> unitsToRemove = new List<Unit>();
+        public List<Unit> UnitsToRemove = new List<Unit>();
 
         /// <summary>
         /// Same as above but with buildings.
         /// </summary>
-        public List<Building> buildingsToRemove = new List<Building>();
+        public List<Building> BuildingsToRemove = new List<Building>();
 
         /// <summary>
         /// Same as above but with trees.
         /// </summary>
-        public List<CombatObject> treesToRemove = new List<CombatObject>();
+        public List<CombatObject> TreesToRemove = new List<CombatObject>();
 
         /// <summary>
         /// Same as above but with gold mines.
         /// </summary>
-        public List<GoldMine> goldMinesToRemove = new List<GoldMine>();
+        public List<GoldMine> GoldMinesToRemove = new List<GoldMine>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameModel"/> class.
