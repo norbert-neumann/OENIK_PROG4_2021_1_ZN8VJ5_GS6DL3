@@ -10,15 +10,14 @@
     /// </summary>
     public class PatrolRoutine : Routine
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PatrolRoutine"/> class.
         /// </summary>
         /// <param name="unit">Unit to operate on.</param>
-        /// <param name="TargetA">A.</param>
-        /// <param name="TargetB">B.</param>
-        public PatrolRoutine(Unit unit, Point TargetA, Point TargetB)
-            : base(unit, TargetA, TargetB)
+        /// <param name="targetA">A.</param>
+        /// <param name="targetB">B.</param>
+        public PatrolRoutine(Unit unit, Point targetA, Point targetB)
+            : base(unit, targetA, targetB)
         {
         }
 
@@ -28,17 +27,17 @@
         /// <returns>Returns true if the routine is active.</returns>
         public override bool Update()
         {
-            if (this.PointToPointDistance(this.unit.Position, this.TargetA) <= 3)
+            if (this.PointToPointDistance(this.unit.Position, this.targetA) <= 3)
             {
                 return this.ReachedTargetA();
             }
-            else if (this.PointToPointDistance(this.unit.Position, this.TargetB) <= 3)
+            else if (this.PointToPointDistance(this.unit.Position, this.targetB) <= 3)
             {
                 return this.ReachedTargetB();
             }
             else
             {
-                this.unit.path.Enqueue(this.TargetB);
+                this.unit.Path.Enqueue(this.targetB);
             }
 
             return false;
@@ -50,7 +49,7 @@
         /// <returns>Always false.</returns>
         protected override bool ReachedTargetA()
         {
-            this.unit.path.Enqueue(this.TargetB);
+            this.unit.Path.Enqueue(this.targetB);
             return false;
         }
 
@@ -60,7 +59,7 @@
         /// <returns>Always false.</returns>
         protected override bool ReachedTargetB()
         {
-            this.unit.path.Enqueue(this.TargetA);
+            this.unit.Path.Enqueue(this.targetA);
             return false;
         }
     }

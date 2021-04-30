@@ -18,12 +18,12 @@
         /// <summary>
         /// Point A to move to.
         /// </summary>
-        protected Point TargetA;
+        protected Point targetA;
 
         /// <summary>
         /// Point B to move to.
         /// </summary>
-        protected Point TargetB;
+        protected Point targetB;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Routine"/> class.
@@ -34,8 +34,8 @@
         protected Routine(Unit unit, Point targetA, Point targetB)
         {
             this.unit = unit;
-            this.TargetA = targetA;
-            this.TargetB = targetB;
+            this.targetA = targetA;
+            this.targetB = targetB;
         }
 
         /// <summary>
@@ -59,12 +59,12 @@
         /// <summary>
         /// Computes to euclidean distance between to points.
         /// </summary>
-        /// <param name="A">Point A.</param>
-        /// <param name="B">Point B.</param>
+        /// <param name="a">Point A.</param>
+        /// <param name="b">Point B.</param>
         /// <returns>A-B distance.</returns>
-        protected double PointToPointDistance(Point A, Point B)
+        protected double PointToPointDistance(Point a, Point b)
         {
-            return Math.Sqrt(Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2));
+            return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
     }
 }
