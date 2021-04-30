@@ -14,7 +14,7 @@ namespace Warcraft.Model
         public static int Speed = 2;
         public static int BorderWidth = 10;
         public static double DefaultThreshold = 0.8;
-        public static double AggroRange = 50;
+        public static double AggroRange = 100;
         public static double DistanceThreshold = 5;
 
         public static string AsString(UnitStateEnum state)
