@@ -6,6 +6,8 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    // NOT USED.
+
     /// <summary>
     /// Represents an active mine. The difference between this and it's parent, is that this mine can tell if it's currently being used.
     /// </summary>
