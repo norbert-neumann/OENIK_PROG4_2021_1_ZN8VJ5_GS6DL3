@@ -12,6 +12,7 @@ namespace Warcraft.Model
         public static int GoldUnit = 21;
         public static int LumberUnit = 17;
         public static int Speed = 3;
+        public static int Speed = 2;
         public static int BorderWidth = 10;
         public static double DefaultThreshold = 0.8;
         public static double AggroRange = 50;
