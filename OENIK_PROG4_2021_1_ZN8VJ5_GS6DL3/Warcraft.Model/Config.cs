@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-
-namespace Warcraft.Model
+﻿namespace Warcraft.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Text;
+
+    /// <summary>
+    /// Static class containg configurable constants.
+    /// Most fileds will be moved to a specific logic class so I wont document these yet.
+    /// </summary>
     public static class Config
     {
         public static Point HumanTownHallPosition = new Point(5, 5);
