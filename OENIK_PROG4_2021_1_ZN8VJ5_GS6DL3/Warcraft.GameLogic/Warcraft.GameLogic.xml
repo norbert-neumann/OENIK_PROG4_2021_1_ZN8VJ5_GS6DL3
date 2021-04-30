@@ -4,5 +4,372 @@
         <name>Warcraft.GameLogic</name>
     </assembly>
     <members>
+        <member name="T:Warcraft.GameLogic.AnimationLogic">
+            <summary>
+            This logic deals with animationString and animationIndex.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.AnimationLogic.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.AnimationLogic"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.AnimationLogic.IncrementAnimationIndex(Warcraft.Model.Unit)">
+            <summary>
+            Increments and resets the animation index.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.AnimationLogic.ResetAnimationIndex(Warcraft.Model.Unit)">
+            <summary>
+            Resets a unit's animation index.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.AnimationLogic.SetAnimationString(Warcraft.Model.Unit)">
+            <summary>
+            Sets a unit's animationString.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.AnimationLogic.UpdateSprites">
+            <summary>
+            Sets the animationString for all units.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.BuildingFactory">
+            <summary>
+            Creates and adds a new building to the game model.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.BuildingFactory.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.BuildingFactory"/> class.
+            </summary>
+            <param name="model">Model to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.BuildingFactory.Create(System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates a specific building described by some parameters.
+            </summary>
+            <param name="description">Type and over of the building.</param>
+            <param name="x">X pos.</param>
+            <param name="y">Y pos.</param>
+            <returns>The newly created buolding.</returns>
+        </member>
+        <member name="T:Warcraft.GameLogic.CombatLogic">
+            <summary>
+            Deals with everything realted to combat.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.CombatLogic.model">
+            <summary>
+            Game model to operate on.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.CombatLogic.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.CombatLogic"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.CombatLogic.SetTarget">
+            <summary>
+            Check if agressive object reached it's enemy. If not set target. If yes flip UnitStateEnum.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.CoreLogic">
+            <summary>
+            Encapsulates and calls each task specific logic.
+            The Controller also calls this logic's methods.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.CombatLogic,Warcraft.GameLogic.MovementLogic,Warcraft.GameLogic.AnimationLogic,Warcraft.GameLogic.PathfindingLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.CoreLogic"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+            <param name="combatLogic">Combat logic instance.</param>
+            <param name="movementLogic">Movement logic instance.</param>
+            <param name="animationLogic">Animatin logic instance.</param>
+            <param name="pathfindingLogic">Pathfinding logic instance.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.Step">
+            <summary>
+            One step of the game.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.UpdateAnimation">
+            <summary>
+            Updates each unit's sprite.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.GoldMiningRoutine">
+            <summary>
+            Moves to gold mine, mines, then returns home.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.GoldMiningRoutine.hall">
+            <summary>
+            Return gold to this object.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.GoldMiningRoutine.mine">
+            <summary>
+            Gold mine to mine in.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.GoldMiningRoutine.targetObject">
+            <summary>
+            The current target object (hall or gold mine).
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.GoldMine)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.GoldMiningRoutine"/> class.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+            <param name="waitTime">Number of seconds to mine.</param>
+            <param name="hall">Hall.</param>
+            <param name="mine">Gold mine.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.Update">
+            <summary>
+            Updates the unit's state and target.
+            </summary>
+            <returns>Returns true if the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.ReachedTargetA">
+            <summary>
+            Commands the unit to mine.
+            </summary>
+            <returns>False always.</returns>
+        </member>
+        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.ReachedTargetB">
+            <summary>
+            Checks if the mining is over or not. If it's over commands the unit to hall.
+            Else kepps minig.
+            </summary>
+            <returns>True if the unit is minig.</returns>
+        </member>
+        <member name="T:Warcraft.GameLogic.MineFactory">
+            <summary>
+            Creates a mine based on a description.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.MineFactory.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.MineFactory"/> class.
+            </summary>
+            <param name="model">Game model to operaete on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.MineFactory.Create(System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates a mine based on a description.
+            </summary>
+            <param name="description">What mine to create.</param>
+            <param name="x">X pos.</param>
+            <param name="y">Y pos.</param>
+            <returns>The newly created game object.</returns>
+        </member>
+        <member name="T:Warcraft.GameLogic.MovementLogic">
+            <summary>
+            Deals with everything realted to movement.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.MovementLogic.model">
+            <summary>
+            Game model to operate on.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.MovementLogic.pathfinder">
+            <summary>
+            Ref to pathfinder. If two objects collide movementLogic calls this to find out an alternative path.
+            </summary>
+        </member>
+        <member name="F:Warcraft.GameLogic.MovementLogic.routines">
+            <summary>
+            Dictionary associating the units wtih their potetntial routines.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.MovementLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.PathfindingLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.MovementLogic"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+            <param name="pathfinder">Pathfinder to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.MovementLogic.UpdatePositions">
+            <summary>
+            Update each unit's positions.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.PathfindingLogic">
+            <summary>
+            Finds a path around a specific collision and a unit.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.PathfindingLogic.FindPath(Warcraft.Model.Unit,Warcraft.Model.GameObject,System.Drawing.Point)">
+            <summary>
+            Finds a path.
+            </summary>
+            <param name="unit">Unit to find a path for.</param>
+            <param name="collison">Unit collides with this gameObject.</param>
+            <param name="trajectory">The units trajectory.</param>
+        </member>
+        <member name="T:Warcraft.GameLogic.UnitFactory">
+            <summary>
+            Creates a specific unit.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.UnitFactory.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.UnitFactory"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.UnitFactory.Create(System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates a specific unit based on the following params.
+            </summary>
+            <param name="description">Tpye and owner of the unit.</param>
+            <param name="x">X pos.</param>
+            <param name="y">Y pos.</param>
+            <returns>The newly created unit.</returns>
+        </member>
+        <member name="T:Warcraft.Model.HarvestLumberRoutine">
+            <summary>
+            Controls a unit to move to a tree, harvest it, then return to Hall.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.HarvestLumberRoutine.hall">
+            <summary>
+            Return gold to this object.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.HarvestLumberRoutine.tree">
+            <summary>
+            Tree to harvest.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.HarvestLumberRoutine.targetObject">
+            <summary>
+            The current target object (hall or gold mine).
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.HarvestLumberRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.CombatObject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.HarvestLumberRoutine"/> class.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+            <param name="waitTime">Number of seconds to mine.</param>
+            <param name="hall">Hall.</param>
+            <param name="tree">Treee.</param>
+        </member>
+        <member name="M:Warcraft.Model.HarvestLumberRoutine.Update">
+            <summary>
+            Updates the unit's state and target.
+            </summary>
+            <returns>Returns true if the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.Model.HarvestLumberRoutine.ReachedTargetA">
+            <summary>
+            Commands the unit to mine.
+            </summary>
+            <returns>False always.</returns>
+        </member>
+        <member name="M:Warcraft.Model.HarvestLumberRoutine.ReachedTargetB">
+            <summary>
+            Checks if the mining is over or not. If it's over commands the unit to hall.
+            Else kepps minig.
+            </summary>
+            <returns>True if the unit is minig.</returns>
+        </member>
+        <member name="T:Warcraft.Model.PatrolRoutine">
+            <summary>
+            Moves a unit from A to B.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.PatrolRoutine.#ctor(Warcraft.Model.Unit,System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.PatrolRoutine"/> class.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+            <param name="TargetA">A.</param>
+            <param name="TargetB">B.</param>
+        </member>
+        <member name="M:Warcraft.Model.PatrolRoutine.Update">
+            <summary>
+            Updates the unit's state and target.
+            </summary>
+            <returns>Returns true if the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.Model.PatrolRoutine.ReachedTargetA">
+            <summary>
+            Commands the unit to the other point.
+            </summary>
+            <returns>Always false.</returns>
+        </member>
+        <member name="M:Warcraft.Model.PatrolRoutine.ReachedTargetB">
+            <summary>
+            Commands the unit to the other point.
+            </summary>
+            <returns>Always false.</returns>
+        </member>
+        <member name="T:Warcraft.Model.Routine">
+            <summary>
+            Abstract routine class.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Routine.unit">
+            <summary>
+            Unit to operate on.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Routine.TargetA">
+            <summary>
+            Point A to move to.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Routine.TargetB">
+            <summary>
+            Point B to move to.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.Routine.#ctor(Warcraft.Model.Unit,System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.Routine"/> class.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+            <param name="targetA">Point A to move to.</param>
+            <param name="targetB">Point B to move to.</param>
+        </member>
+        <member name="M:Warcraft.Model.Routine.Update">
+            <summary>
+            Updates the unit's state and target.
+            </summary>
+            <returns>Returns true if the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.Model.Routine.ReachedTargetA">
+            <summary>
+            Logic that will run if the unit has reached A.
+            </summary>
+            <returns>Bool indicating whether the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.Model.Routine.ReachedTargetB">
+            <summary>
+            Logic that will run if the unit has reached B.
+            </summary>
+            <returns>Bool indicating whether the routine is active.</returns>
+        </member>
+        <member name="M:Warcraft.Model.Routine.PointToPointDistance(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Computes to euclidean distance between to points.
+            </summary>
+            <param name="A">Point A.</param>
+            <param name="B">Point B.</param>
+            <returns>A-B distance.</returns>
+        </member>
     </members>
 </doc>
