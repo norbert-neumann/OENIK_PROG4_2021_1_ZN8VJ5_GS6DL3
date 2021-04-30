@@ -40,7 +40,7 @@
         /// <param name="h">Height of the hitbox.</param>
         public CombatObject(int x, int y, int w, int h)
         {
-            this.hitbox = new System.Drawing.Rectangle(x, y, w, h);
+            this.Hitbox = new System.Drawing.Rectangle(x, y, w, h);
         }
 
         /// <summary>

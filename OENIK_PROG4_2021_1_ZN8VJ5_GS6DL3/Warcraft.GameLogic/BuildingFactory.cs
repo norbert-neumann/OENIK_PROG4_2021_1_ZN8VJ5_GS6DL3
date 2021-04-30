@@ -76,7 +76,7 @@
 
             Building building = new Building(owner, buildingType, race, x, y, width, height);
 
-            this.model.buildings.Add(building);
+            this.model.Buildings.Add(building);
 
             return building;
         }

@@ -56,30 +56,30 @@
 
         private void Remove()
         {
-            foreach (Unit unit in this.model.unitsToRemove)
+            foreach (Unit unit in this.model.UnitsToRemove)
             {
-                this.model.units.Remove(unit);
+                this.model.Units.Remove(unit);
             }
 
-            foreach (Building b in this.model.buildingsToRemove)
+            foreach (Building b in this.model.BuildingsToRemove)
             {
-                this.model.buildings.Remove(b);
+                this.model.Buildings.Remove(b);
             }
 
-            foreach (CombatObject t in this.model.treesToRemove)
+            foreach (CombatObject t in this.model.TreesToRemove)
             {
-                this.model.lumberMines.Remove(t);
+                this.model.LumberMines.Remove(t);
             }
 
-            foreach (GoldMine m in this.model.goldMinesToRemove)
+            foreach (GoldMine m in this.model.GoldMinesToRemove)
             {
-                this.model.goldMines.Remove(m);
+                this.model.GoldMines.Remove(m);
             }
 
-            this.model.unitsToRemove.Clear();
-            this.model.buildingsToRemove.Clear();
-            this.model.treesToRemove.Clear();
-            this.model.goldMinesToRemove.Clear();
+            this.model.UnitsToRemove.Clear();
+            this.model.BuildingsToRemove.Clear();
+            this.model.TreesToRemove.Clear();
+            this.model.GoldMinesToRemove.Clear();
         }
     }
 }

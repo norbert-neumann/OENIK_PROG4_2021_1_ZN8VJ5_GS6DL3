@@ -12,14 +12,14 @@
     public class Building : CombatObject
     {
         /// <summary>
-        /// Building type.
-        /// </summary>
-        public BuildingEnum type;
-
-        /// <summary>
         /// This string tells the renderer what to display.
         /// </summary>
-        public string animationString;
+        public string AnimationString;
+
+        /// <summary>
+        /// Building type.
+        /// </summary>
+        private BuildingEnum type;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Building"/> class.
@@ -31,7 +31,8 @@
         /// <param name="y">Y position of building.</param>
         /// <param name="width">Width of the building's hitbox.</param>
         /// <param name="height">Height of the building's hitbox.</param>
-        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height) : base(x, y, width, height)
+        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height)
+            : base(x, y, width, height)
         {
             this.Owner = owner;
             this.type = type;
@@ -39,9 +40,10 @@
 
             switch (race)
             {
-                case RaceEnum.Human: animationString += "H";
+                case RaceEnum.Human: this.AnimationString += "H";
                     break;
-                case RaceEnum.Orc: animationString += "O";
+                case RaceEnum.Orc:
+                    this.AnimationString += "O";
                     break;
                 default:
                     break;
@@ -49,11 +51,14 @@
 
             switch (type)
             {
-                case BuildingEnum.Hall: animationString += "H";
+                case BuildingEnum.Hall:
+                    this.AnimationString += "H";
                     break;
-                case BuildingEnum.Farm: animationString += "F";
+                case BuildingEnum.Farm:
+                    this.AnimationString += "F";
                     break;
-                case BuildingEnum.Barracks: animationString += "B";
+                case BuildingEnum.Barracks:
+                    this.AnimationString += "B";
                     break;
                 default:
                     break;
@@ -79,7 +84,7 @@
         /// <summary>
         /// Returns the state string that is used for getting the proper sprite.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The building's state string.</returns>
         public string StateString()
         {
             StringBuilder sb = new StringBuilder();
@@ -96,7 +101,7 @@
                     break;
             }
 
-            switch (type)
+            switch (this.type)
             {
                 case BuildingEnum.Hall:
                     sb.Append("H");

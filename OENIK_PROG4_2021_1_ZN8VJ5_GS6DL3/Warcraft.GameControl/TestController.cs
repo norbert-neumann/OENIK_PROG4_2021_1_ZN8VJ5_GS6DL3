@@ -48,20 +48,20 @@
 
 
             Unit human = new Unit(OwnerEnum.PLAYER, RaceEnum.Human, UnitTypeEnum.Peasant, 600, 600, (int)(30 * Config.Zoom), (int)(30 * Config.Zoom));
-            human.path = new Queue<System.Drawing.Point>();
-            human.target = new System.Drawing.Point(10, 10);
+            human.Path = new Queue<System.Drawing.Point>();
+            human.Target = new System.Drawing.Point(10, 10);
 
             GoldMine mine = new GoldMine(150, 150, 140, 140, 500);
 
             Building hall = factory.Create("player human hall", 600, 400);
-            model.goldMines.Add(mine);
+            model.GoldMines.Add(mine);
 
-            movementLogic.routines.Add(human, new GoldMiningRoutine(human, TimeSpan.FromSeconds(2), hall, mine));
+            movementLogic.Routines.Add(human, new GoldMiningRoutine(human, TimeSpan.FromSeconds(2), hall, mine));
             //logic.routines.Add(human, new GoldMiningRoutine(human, TimeSpan.FromSeconds(2), new System.Drawing.Point(100, 100), new System.Drawing.Point(300, 300)));
 
 
 
-            model.units.Add(human);
+            model.Units.Add(human);
 
             Window win = Window.GetWindow(this);
             if (win != null)

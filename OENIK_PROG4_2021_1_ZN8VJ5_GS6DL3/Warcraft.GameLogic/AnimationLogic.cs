@@ -27,8 +27,8 @@
         /// <param name="unit">Unit to operate on.</param>
         public static void IncrementAnimationIndex(Unit unit)
         {
-            unit.animationIndex++;
-            if (unit.animationIndex > (unit.UnitState == UnitStateEnum.WalkingWithGold ? 3 : 4))
+            unit.AnimationIndex++;
+            if (unit.AnimationIndex > (unit.UnitState == UnitStateEnum.WalkingWithGold ? 3 : 4))
             {
                 ResetAnimationIndex(unit);
             }
@@ -40,7 +40,7 @@
         /// <param name="unit">Unit to operate on.</param>
         public static void ResetAnimationIndex(Unit unit)
         {
-            unit.animationIndex = 0;
+            unit.AnimationIndex = 0;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
         public static void SetAnimationString(Unit unit)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(unit.animationString.Substring(0, 2)); // Race and type is always the same
+            sb.Append(unit.AnimationString.Substring(0, 2)); // Race and type is always the same
 
             switch (unit.UnitState)
             {
@@ -70,7 +70,7 @@
                     break;
             }
 
-            switch (unit.facing)
+            switch (unit.Facing)
             {
                 case DirectionEnum.North:
                     sb.Append("N");
@@ -100,9 +100,9 @@
                     break;
             }
 
-            sb.Append(unit.animationIndex.ToString());
+            sb.Append(unit.AnimationIndex.ToString());
 
-            unit.animationString = sb.ToString();
+            unit.AnimationString = sb.ToString();
         }
 
         /// <summary>
@@ -110,15 +110,15 @@
         /// </summary>
         public void UpdateSprites()
         {
-            foreach (Unit unit in this.model.units)
+            foreach (Unit unit in this.model.Units)
             {
                 // Check if changed is true should be here
-                if (!unit.inIdle)
+                if (!unit.InIdle)
                 {
                     SetAnimationString(unit);
                     AnimationLogic.IncrementAnimationIndex(unit);
                 }
             }
-        } 
+        }
     }
 }

@@ -46,7 +46,7 @@
                 height = (int)(height * Config.Zoom);
 
                 GoldMine goldMine = new GoldMine(x, y, width, height, int.Parse(components[1]));
-                this.model.goldMines.Add(goldMine);
+                this.model.GoldMines.Add(goldMine);
 
                 return goldMine;
             }
@@ -59,7 +59,7 @@
                 height = (int)(height * Config.Zoom);
 
                 CombatObject tree = new CombatObject(x, y, width, height);
-                this.model.lumberMines.Add(tree);
+                this.model.LumberMines.Add(tree);
 
                 return tree;
             }

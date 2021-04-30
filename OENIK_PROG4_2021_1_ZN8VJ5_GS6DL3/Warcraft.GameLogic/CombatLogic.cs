@@ -14,7 +14,7 @@
         /// <summary>
         /// Game model to operate on.
         /// </summary>
-        public GameModel model;
+        private GameModel model;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CombatLogic"/> class.
@@ -30,32 +30,32 @@
         /// </summary>
         public void SetTarget()
         {
-            foreach (Unit unit in this.model.units)
+            foreach (Unit unit in this.model.Units)
             {
-                if (unit.enemy != null)
+                if (unit.Enemy != null)
                 {
-                    if ((unit.enemy as Building) != null)
+                    if ((unit.Enemy as Building) != null)
                     {
-                        if (unit.IsPositionInHitbox(unit.enemy))
+                        if (unit.IsPositionInHitbox(unit.Enemy))
                         {
                             this.AttackEnemyBuilding(unit);
                         }
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.target = unit.enemy.Position;
+                            unit.Target = unit.Enemy.Position;
                         }
                     }
                     else
                     {
-                        if (unit.Distance(unit.enemy) <= unit.range)
+                        if (unit.Distance(unit.Enemy) <= unit.Range)
                         {
                             this.AttackEnemyUnit(unit);
                         }
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.target = unit.enemy.Position;
+                            unit.Target = unit.Enemy.Position;
                         }
                     }
                 }
@@ -64,9 +64,9 @@
                     CombatObject enemy = this.FindEnemyInRange(unit);
                     if (enemy != null)
                     {
-                        unit.enemy = enemy;
-                        unit.target = enemy.Position;
-                        unit.inIdle = false;
+                        unit.Enemy = enemy;
+                        unit.Target = enemy.Position;
+                        unit.InIdle = false;
                     }
                 }
             }
@@ -75,9 +75,9 @@
         private void AttackEnemyUnit(Unit unit)
         {
             unit.UnitState = UnitStateEnum.Fighting;
-            if (unit.enemy.AcceptDamage(unit.attack))
+            if (unit.Enemy.AcceptDamage(unit.Attack))
             {
-                this.model.unitsToRemove.Add(unit.enemy as Unit);
+                this.model.UnitsToRemove.Add(unit.Enemy as Unit);
                 this.ResetUnit(unit);
             }
         }
@@ -85,31 +85,31 @@
         private void AttackEnemyBuilding(Unit unit)
         {
             unit.UnitState = UnitStateEnum.Fighting;
-            if (unit.enemy.AcceptDamage(unit.attack))
+            if (unit.Enemy.AcceptDamage(unit.Attack))
             {
-                this.model.buildingsToRemove.Add(unit.enemy as Building);
+                this.model.BuildingsToRemove.Add(unit.Enemy as Building);
                 this.ResetUnit(unit);
             }
         }
 
         private void ResetUnit(Unit unit)
         {
-            unit.enemy = null;
+            unit.Enemy = null;
             unit.UnitState = UnitStateEnum.Walking;
         }
 
         private void HarvestLumber(Unit unit)
         {
             unit.UnitState = UnitStateEnum.Fighting;
-            if (unit.enemy.AcceptDamage(unit.attack))
+            if (unit.Enemy.AcceptDamage(unit.Attack))
             {
-                this.model.treesToRemove.Add(unit.enemy as CombatObject);
+                this.model.TreesToRemove.Add(unit.Enemy as CombatObject);
             }
         }
 
         private CombatObject FindEnemyInRange(Unit self)
         {
-            foreach (Unit other in this.model.units)
+            foreach (Unit other in this.model.Units)
             {
                 if (self.Owner != other.Owner && self.Distance(other) <= Config.AggroRange)
                 {
@@ -117,7 +117,7 @@
                 }
             }
 
-            foreach (Building buildng in this.model.buildings)
+            foreach (Building buildng in this.model.Buildings)
             {
                 if (self.Owner != buildng.Owner && self.Distance(buildng) <= Config.AggroRange)
                 {

@@ -105,62 +105,62 @@
             dg.Children.Add(this.background);
 
             // Gold Mines
-            foreach (GoldMine mine in this.model.goldMines)
+            foreach (GoldMine mine in this.model.GoldMines)
             {
-                GeometryDrawing geometry = this.mineToGeometry[mine.animationString];
-                geometry.Geometry.Transform = new TranslateTransform(mine.hitbox.X, mine.hitbox.Y);
+                GeometryDrawing geometry = this.mineToGeometry[mine.AnimationString];
+                geometry.Geometry.Transform = new TranslateTransform(mine.Hitbox.X, mine.Hitbox.Y);
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
                 GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
-                    new RectangleGeometry(new Rect(mine.hitbox.X, mine.hitbox.Y, mine.hitbox.Width, mine.hitbox.Height)));
+                    new RectangleGeometry(new Rect(mine.Hitbox.X, mine.Hitbox.Y, mine.Hitbox.Width, mine.Hitbox.Height)));
                 dg.Children.Add(hitboxGeometry);
             }
 
             // Trees
-            foreach (CombatObject tree in this.model.lumberMines)
+            foreach (CombatObject tree in this.model.LumberMines)
             {
-                this.treeGeometry.Geometry.Transform = new TranslateTransform(tree.hitbox.X, tree.hitbox.Y);
+                this.treeGeometry.Geometry.Transform = new TranslateTransform(tree.Hitbox.X, tree.Hitbox.Y);
                 dg.Children.Add(this.treeGeometry);
 
                 // Draw hitboxes
                 GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
-                    new RectangleGeometry(new Rect(tree.hitbox.X, tree.hitbox.Y, tree.hitbox.Width, tree.hitbox.Height)));
+                    new RectangleGeometry(new Rect(tree.Hitbox.X, tree.Hitbox.Y, tree.Hitbox.Width, tree.Hitbox.Height)));
                 dg.Children.Add(hitboxGeometry);
             }
 
             // Buildings
-            foreach (Building building in this.model.buildings)
+            foreach (Building building in this.model.Buildings)
             {
-                GeometryDrawing geometry = this.buildingToGeometry[building.animationString];
-                geometry.Geometry.Transform = new TranslateTransform(building.hitbox.X, building.hitbox.Y);
+                GeometryDrawing geometry = this.buildingToGeometry[building.AnimationString];
+                geometry.Geometry.Transform = new TranslateTransform(building.Hitbox.X, building.Hitbox.Y);
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
                 GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
-                    new RectangleGeometry(new Rect(building.hitbox.X, building.hitbox.Y, building.hitbox.Width, building.hitbox.Height)));
+                    new RectangleGeometry(new Rect(building.Hitbox.X, building.Hitbox.Y, building.Hitbox.Width, building.Hitbox.Height)));
                 dg.Children.Add(hitboxGeometry);
             }
 
             // Units
-            foreach (Unit unit in this.model.units)
+            foreach (Unit unit in this.model.Units)
             {
-                if (!unit.hiding)
+                if (!unit.Hiding)
                 {
-                    GeometryDrawing geometry = this.stateToGeometry[unit.animationString];
-                    Point offset = new Point(unit.hitbox.Width / 3, unit.hitbox.Height);
-                    if (this.positionOffset.ContainsKey(unit.animationString))
+                    GeometryDrawing geometry = this.stateToGeometry[unit.AnimationString];
+                    Point offset = new Point(unit.Hitbox.Width / 3, unit.Hitbox.Height);
+                    if (this.positionOffset.ContainsKey(unit.AnimationString))
                     {
-                        offset = this.positionOffset[unit.animationString];
+                        offset = this.positionOffset[unit.AnimationString];
                     }
 
-                    geometry.Geometry.Transform = new TranslateTransform(unit.hitbox.X + (unit.hitbox.Width / 3) - offset.X, unit.hitbox.Y + unit.hitbox.Height - offset.Y);
+                    geometry.Geometry.Transform = new TranslateTransform(unit.Hitbox.X + (unit.Hitbox.Width / 3) - offset.X, unit.Hitbox.Y + unit.Hitbox.Height - offset.Y);
                     dg.Children.Add(geometry);
                 }
             }

@@ -74,7 +74,7 @@
 
             Unit unit = new Unit(owner, race, unitType, x, y, width, height);
 
-            this.model.units.Add(unit);
+            this.model.Units.Add(unit);
 
             return unit;
         }

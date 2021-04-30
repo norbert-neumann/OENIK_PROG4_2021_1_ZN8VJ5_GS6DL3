@@ -13,19 +13,19 @@
     public class MovementLogic
     {
         /// <summary>
+        /// Dictionary associating the units wtih their potetntial routines.
+        /// </summary>
+        public Dictionary<Unit, Routine> Routines = new Dictionary<Unit, Routine>();
+
+        /// <summary>
         /// Game model to operate on.
         /// </summary>
-        public GameModel model;
+        private GameModel model;
 
         /// <summary>
         /// Ref to pathfinder. If two objects collide movementLogic calls this to find out an alternative path.
         /// </summary>
-        public PathfindingLogic pathfinder;
-
-        /// <summary>
-        /// Dictionary associating the units wtih their potetntial routines.
-        /// </summary>
-        public Dictionary<Unit, Routine> routines = new Dictionary<Unit, Routine>();
+        private PathfindingLogic pathfinder;
 
         private List<Routine> activeRoutines = new List<Routine>();
 
@@ -46,11 +46,11 @@
         public void UpdatePositions()
         {
             // IDLE and FIGHTING check, REACHED TARGET CHECK
-            foreach (Unit unit in this.model.units)
+            foreach (Unit unit in this.model.Units)
             {
-                if (unit.UnitState != UnitStateEnum.Fighting && !unit.inIdle && !unit.hiding)
+                if (unit.UnitState != UnitStateEnum.Fighting && !unit.InIdle && !unit.Hiding)
                 {
-                    this.SetNewTargetIfReached(unit, this.routines);
+                    this.SetNewTargetIfReached(unit, this.Routines);
                     this.MoveTowardTarget(unit, Config.Speed, Config.DefaultThreshold);
                     this.CallPathfinderOnCollision(unit);
                 }
@@ -74,12 +74,12 @@
 
         private void SetNewTargetIfReached(Unit unit, Dictionary<Unit, Routine> routines)
         {
-            if (this.PointToPointDistance(unit.Position, unit.target) < 2)
+            if (this.PointToPointDistance(unit.Position, unit.Target) < 2)
             {
-                Point newTarget = new Point();
-                if (unit.path.TryDequeue(out newTarget))
+                Point newTarget = new Point(0, 0);
+                if (unit.Path.TryDequeue(out newTarget))
                 {
-                    unit.target = newTarget;
+                    unit.Target = newTarget;
                 }
                 else if (routines.ContainsKey(unit))
                 {
@@ -91,14 +91,14 @@
                 }
                 else
                 {
-                    unit.inIdle = true;
+                    unit.InIdle = true;
                 }
             }
         }
 
         private void MoveTowardTarget(Unit unit, int speed, double threshold)
         {
-            Point trajectory = this.ComputeTrajectory(unit.Position, unit.target, threshold);
+            Point trajectory = this.ComputeTrajectory(unit.Position, unit.Target, threshold);
             Point delta = new Point(trajectory.X, trajectory.Y);
 
             this.UpdateFacing(unit, delta);
@@ -106,7 +106,7 @@
             delta.X *= speed;
             delta.Y *= speed;
 
-            unit.prevPosition = unit.Position;
+            unit.PrevPosition = unit.Position;
             unit.ChangePosition(delta);
         }
 
@@ -115,7 +115,7 @@
             GameObject collison = null;
             if ((collison = this.FindCollision(unit)) != null && this.ValidateCollision(collison, unit))
             {
-                this.pathfinder.FindPath(unit, collison, this.ComputeTrajectory(unit.Position, unit.target, Config.DefaultThreshold));
+                this.pathfinder.FindPath(unit, collison, this.ComputeTrajectory(unit.Position, unit.Target, Config.DefaultThreshold));
 
                 // Reset target
                 unit.ResetTarget();
@@ -127,20 +127,20 @@
 
         private bool ValidateCollision(GameObject collision, Unit unit)
         {
-            unit.entryPoint = unit.prevPosition;
+            unit.EntryPoint = unit.PrevPosition;
 
-            if (unit.enemy != null && unit.enemy.Equals(collision))
+            if (unit.Enemy != null && unit.Enemy.Equals(collision))
             {
                 return false;
             }
 
-            if (this.routines.ContainsKey(unit))
+            if (this.Routines.ContainsKey(unit))
             {
-                Routine r = this.routines[unit];
+                Routine r = this.Routines[unit];
 
                 if (r as HarvestLumberRoutine != null)
                 {
-                    if ((r as HarvestLumberRoutine).targetObject.Equals(collision))
+                    if ((r as HarvestLumberRoutine).TargetObject.Equals(collision))
                     {
                         if (r.Update())
                         {
@@ -152,7 +152,7 @@
                 }
                 else if (r as GoldMiningRoutine != null)
                 {
-                    if ((r as GoldMiningRoutine).targetObject.Equals(collision))
+                    if ((r as GoldMiningRoutine).TargetObject.Equals(collision))
                     {
                         if (r.Update())
                         {
@@ -195,20 +195,20 @@
 
         private void UpdateFacing(Unit unit, Point delta)
         {
-            if (delta == new Point(0, 0)) unit.facing = DirectionEnum.South;
-            else if (delta == new Point(0, -1)) unit.facing = DirectionEnum.North;
-            else if (delta == new Point(0, 1)) unit.facing = DirectionEnum.South;
-            else if (delta == new Point(1, 0)) unit.facing = DirectionEnum.East;
-            else if (delta == new Point(-1, 0)) unit.facing = DirectionEnum.West;
-            else if (delta == new Point(1, -1)) unit.facing = DirectionEnum.NorthEast;
-            else if (delta == new Point(1, 1)) unit.facing = DirectionEnum.SouthEast;
-            else if (delta == new Point(-1, 1)) unit.facing = DirectionEnum.SouthWest;
-            else if (delta == new Point(-1, -1)) unit.facing = DirectionEnum.NorthWest;
+            if (delta == new Point(0, 0)) unit.Facing = DirectionEnum.South;
+            else if (delta == new Point(0, -1)) unit.Facing = DirectionEnum.North;
+            else if (delta == new Point(0, 1)) unit.Facing = DirectionEnum.South;
+            else if (delta == new Point(1, 0)) unit.Facing = DirectionEnum.East;
+            else if (delta == new Point(-1, 0)) unit.Facing = DirectionEnum.West;
+            else if (delta == new Point(1, -1)) unit.Facing = DirectionEnum.NorthEast;
+            else if (delta == new Point(1, 1)) unit.Facing = DirectionEnum.SouthEast;
+            else if (delta == new Point(-1, 1)) unit.Facing = DirectionEnum.SouthWest;
+            else if (delta == new Point(-1, -1)) unit.Facing = DirectionEnum.NorthWest;
         }
 
         private GameObject FindCollision(Unit unit)
         {
-            foreach (Building building in this.model.buildings)
+            foreach (Building building in this.model.Buildings)
             {
                 if (unit.IsPositionInHitbox(building))
                 {
@@ -216,7 +216,7 @@
                 }
             }
 
-            foreach (GoldMine mine in this.model.goldMines)
+            foreach (GoldMine mine in this.model.GoldMines)
             {
                 if (unit.IsPositionInHitbox(mine))
                 {
@@ -224,7 +224,7 @@
                 }
             }
 
-            foreach (CombatObject tree in this.model.lumberMines)
+            foreach (CombatObject tree in this.model.LumberMines)
             {
                 if (unit.IsPositionInHitbox(tree))
                 {

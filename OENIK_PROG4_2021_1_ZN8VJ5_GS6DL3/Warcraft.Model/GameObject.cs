@@ -18,7 +18,7 @@
         /// <summary>
         /// Object used for collison detection.
         /// </summary>
-        public Rectangle hitbox;
+        public Rectangle Hitbox;
 
         /// <summary>
         /// Position of the game object. This marks the center of the hitbox so we need to write the getter and setter accordingly.
@@ -27,13 +27,13 @@
         {
             get
             {
-                return new Point(this.hitbox.X + (this.hitbox.Width / 2), this.hitbox.Y + (this.hitbox.Height / 2));
+                return new Point(this.Hitbox.X + (this.Hitbox.Width / 2), this.Hitbox.Y + (this.Hitbox.Height / 2));
             }
 
             set
             {
                 Point newPos = (Point)value;
-                this.hitbox = new Rectangle(newPos.X + (this.hitbox.Width / 2), newPos.Y + (this.hitbox.Height / 2), this.hitbox.Width, this.hitbox.Height);
+                this.Hitbox = new Rectangle(newPos.X + (this.Hitbox.Width / 2), newPos.Y + (this.Hitbox.Height / 2), this.Hitbox.Width, this.Hitbox.Height);
             }
         }
 
@@ -52,9 +52,8 @@
         /// <param name="delta">Point stroring the XY displacements.</param>
         public void ChangePosition(Point delta)
         {
-            this.hitbox.Offset(delta);
+            this.Hitbox.Offset(delta);
         }
-
 
         /// <summary>
         /// Measures the distance between this and an other gameobject.
@@ -73,7 +72,7 @@
         /// <returns>True if the objects collide.</returns>
         public bool Collides(GameObject other)
         {
-            return this.hitbox.IntersectsWith(other.hitbox);
+            return this.Hitbox.IntersectsWith(other.Hitbox);
         }
 
         /// <summary>
@@ -83,8 +82,8 @@
         /// <returns>True if this object's position is inside of an other hitbox.</returns>
         public bool IsPositionInHitbox(GameObject other)
         {
-            return this.Position.X >= other.hitbox.X && this.Position.X <= other.hitbox.Right &&
-                this.Position.Y >= other.hitbox.Y && this.Position.Y <= other.hitbox.Bottom;
+            return this.Position.X >= other.Hitbox.X && this.Position.X <= other.Hitbox.Right &&
+                this.Position.Y >= other.Hitbox.Y && this.Position.Y <= other.Hitbox.Bottom;
         }
     }
 }
