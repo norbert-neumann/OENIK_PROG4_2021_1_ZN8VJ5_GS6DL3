@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Warcraft.Model;
-
-namespace Warcraft.GameLogic
+﻿namespace Warcraft.GameLogic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Warcraft.Model;
+
+    /// <summary>
+    /// This logic deals with animationString and animationIndex.
+    /// </summary>
     public class AnimationLogic
     {
         private GameModel model;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AnimationLogic"/> class.
+        /// </summary>
+        /// <param name="model">Game model to operate on.</param>
         public AnimationLogic(GameModel model)
         {
             this.model = model;
         }
 
-        public void UpdateSprites()
-        {
-            foreach (Unit unit in model.playerUnits)
-            {
-                // Check if changed is true should be here
-                SetAnimationString(unit);
-                AnimationLogic.IncrementAnimationIndex(unit);
-            }
-
-            foreach (Unit unit in model.enemyUnits)
-            {
-                // Check if changed is true should be here
-                SetAnimationString(unit);
-                AnimationLogic.IncrementAnimationIndex(unit);
-            }
-        }
-
+        /// <summary>
+        /// Increments and resets the animation index.
+        /// </summary>
+        /// <param name="unit">Unit to operate on.</param>
         public static void IncrementAnimationIndex(Unit unit)
         {
             unit.animationIndex++;
@@ -40,11 +34,19 @@ namespace Warcraft.GameLogic
             }
         }
 
+        /// <summary>
+        /// Resets a unit's animation index.
+        /// </summary>
+        /// <param name="unit">Unit to operate on.</param>
         public static void ResetAnimationIndex(Unit unit)
         {
             unit.animationIndex = 0;
         }
 
+        /// <summary>
+        /// Sets a unit's animationString.
+        /// </summary>
+        /// <param name="unit">Unit to operate on.</param>
         public static void SetAnimationString(Unit unit)
         {
             StringBuilder sb = new StringBuilder();
@@ -102,5 +104,21 @@ namespace Warcraft.GameLogic
 
             unit.animationString = sb.ToString();
         }
+
+        /// <summary>
+        /// Sets the animationString for all units.
+        /// </summary>
+        public void UpdateSprites()
+        {
+            foreach (Unit unit in this.model.units)
+            {
+                // Check if changed is true should be here
+                if (!unit.inIdle)
+                {
+                    SetAnimationString(unit);
+                    AnimationLogic.IncrementAnimationIndex(unit);
+                }
+            }
+        } 
     }
 }
