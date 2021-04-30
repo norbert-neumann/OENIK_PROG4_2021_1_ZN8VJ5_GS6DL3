@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using Warcraft.Model;
-
-namespace Warcraft.GameLogic
+﻿namespace Warcraft.GameLogic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Text;
+    using Warcraft.Model;
+
+    /// <summary>
+    /// Finds a path around a specific collision and a unit.
+    /// </summary>
     public class PathfindingLogic
     {
+        /// <summary>
+        /// Finds a path.
+        /// </summary>
+        /// <param name="unit">Unit to find a path for.</param>
+        /// <param name="collison">Unit collides with this gameObject.</param>
+        /// <param name="trajectory">The units trajectory.</param>
         public void FindPath(Unit unit, GameObject collison, Point trajectory)
         {
             Point UpperLeftBorder = new Point(collison.hitbox.X - Config.BorderWidth, collison.hitbox.Y - Config.BorderWidth);
@@ -15,12 +24,10 @@ namespace Warcraft.GameLogic
             Point BottomLeftBorder = new Point(collison.hitbox.X - Config.BorderWidth, collison.hitbox.Bottom + Config.BorderWidth);
             Point BottomRightBorder = new Point(collison.hitbox.Right + Config.BorderWidth, collison.hitbox.Bottom + Config.BorderWidth);
             Point startPoint = unit.prevPosition;
-            // THIS MIGHT CAUSE BUGS
-            //Point startPoint = unit.Position;
             Point endPoint = new Point(trajectory.X * collison.hitbox.Width, trajectory.Y * collison.hitbox.Height);
             endPoint.X += startPoint.X + 20;
             endPoint.Y += startPoint.Y + 20;
-            endPoint = CalculateEndPoint(unit.target, collison);
+            endPoint = this.CalculateEndPoint(unit.target, collison);
 
             Queue<Point> pathA = new Queue<Point>();
             Queue<Point> pathB = new Queue<Point>();
@@ -35,32 +42,34 @@ namespace Warcraft.GameLogic
             {
                 // Path A: Up + Right + (Down)
                 // Up
-                pathALength += L1Distance(startPoint, UpperLeftBorder);
+                pathALength += this.L1Distance(startPoint, UpperLeftBorder);
                 pathA.Enqueue(UpperLeftBorder);
                 if (UpperLeftBorder.Y != endPoint.Y)
                 {
-                    pathALength += L1Distance(UpperLeftBorder, UpperRightBorder);
+                    pathALength += this.L1Distance(UpperLeftBorder, UpperRightBorder);
                     pathA.Enqueue(UpperRightBorder);
-                    pathALength += L1Distance(UpperRightBorder, endPoint);
+                    pathALength += this.L1Distance(UpperRightBorder, endPoint);
                 }
                 else
                 {
-                    pathALength += L1Distance(UpperLeftBorder, endPoint);
+                    pathALength += this.L1Distance(UpperLeftBorder, endPoint);
                 }
+
                 pathA.Enqueue(endPoint);
 
                 // Path B: Down + Right + (Up)
                 pathB.Enqueue(BottomLeftBorder);
                 if (BottomLeftBorder.X != endPoint.Y)
                 {
-                    pathBLength += L1Distance(BottomLeftBorder, BottomRightBorder);
+                    pathBLength += this.L1Distance(BottomLeftBorder, BottomRightBorder);
                     pathB.Enqueue(BottomRightBorder);
-                    pathBLength += L1Distance(BottomRightBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomRightBorder, endPoint);
                 }
                 else
                 {
-                    pathBLength += L1Distance(BottomLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomLeftBorder, endPoint);
                 }
+
                 pathB.Enqueue(endPoint);
             }
 
@@ -69,32 +78,34 @@ namespace Warcraft.GameLogic
             {
                 // PATH A: Up + Left + Down
                 pathA.Enqueue(UpperRightBorder);
-                pathALength += L1Distance(startPoint, UpperRightBorder);
+                pathALength += this.L1Distance(startPoint, UpperRightBorder);
                 if (UpperRightBorder.X != endPoint.X)
                 {
-                    pathALength += L1Distance(UpperRightBorder, UpperLeftBorder);
+                    pathALength += this.L1Distance(UpperRightBorder, UpperLeftBorder);
                     pathA.Enqueue(UpperLeftBorder);
-                    pathALength += L1Distance(UpperLeftBorder, endPoint);
+                    pathALength += this.L1Distance(UpperLeftBorder, endPoint);
                 }
                 else
                 {
-                    pathALength += L1Distance(UpperRightBorder, endPoint);
+                    pathALength += this.L1Distance(UpperRightBorder, endPoint);
                 }
+
                 pathA.Enqueue(endPoint);
 
                 // PATH B: Down + Left + Up
                 pathB.Enqueue(BottomRightBorder);
-                pathBLength += L1Distance(startPoint, BottomRightBorder);
+                pathBLength += this.L1Distance(startPoint, BottomRightBorder);
                 if (BottomRightBorder.X != endPoint.X)
                 {
-                    pathBLength += L1Distance(BottomRightBorder, BottomLeftBorder);
+                    pathBLength += this.L1Distance(BottomRightBorder, BottomLeftBorder);
                     pathB.Enqueue(BottomLeftBorder);
-                    pathBLength += L1Distance(BottomLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomLeftBorder, endPoint);
                 }
                 else
                 {
-                    pathBLength += L1Distance(BottomRightBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomRightBorder, endPoint);
                 }
+
                 pathB.Enqueue(endPoint);
             }
 
@@ -103,32 +114,34 @@ namespace Warcraft.GameLogic
             {
                 // PATH A: Right + Down + Left
                 pathA.Enqueue(UpperRightBorder);
-                pathALength += L1Distance(startPoint, UpperRightBorder);
+                pathALength += this.L1Distance(startPoint, UpperRightBorder);
                 if (UpperRightBorder.X != endPoint.X)
                 {
-                    pathALength += L1Distance(UpperRightBorder, BottomRightBorder);
+                    pathALength += this.L1Distance(UpperRightBorder, BottomRightBorder);
                     pathA.Enqueue(BottomRightBorder);
-                    pathALength += L1Distance(BottomRightBorder, endPoint);
+                    pathALength += this.L1Distance(BottomRightBorder, endPoint);
                 }
                 else
                 {
-                    pathALength += L1Distance(UpperRightBorder, endPoint);
+                    pathALength += this.L1Distance(UpperRightBorder, endPoint);
                 }
+
                 pathA.Enqueue(endPoint);
 
                 // PATH B: Left + Down + Right
                 pathB.Enqueue(UpperLeftBorder);
-                pathBLength += L1Distance(startPoint, UpperLeftBorder);
+                pathBLength += this.L1Distance(startPoint, UpperLeftBorder);
                 if (UpperLeftBorder.X != endPoint.X)
                 {
-                    pathBLength += L1Distance(BottomLeftBorder, UpperLeftBorder);
+                    pathBLength += this.L1Distance(BottomLeftBorder, UpperLeftBorder);
                     pathB.Enqueue(BottomLeftBorder);
-                    pathBLength += L1Distance(BottomLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomLeftBorder, endPoint);
                 }
                 else
                 {
-                    pathBLength += L1Distance(UpperLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(UpperLeftBorder, endPoint);
                 }
+
                 pathB.Enqueue(endPoint);
             }
 
@@ -137,32 +150,34 @@ namespace Warcraft.GameLogic
             {
                 // PATH A: Right + Up + Left
                 pathA.Enqueue(BottomRightBorder);
-                pathALength += L1Distance(startPoint, BottomRightBorder);
+                pathALength += this.L1Distance(startPoint, BottomRightBorder);
                 if (BottomRightBorder.X != endPoint.X)
                 {
-                    pathALength += L1Distance(UpperRightBorder, BottomRightBorder);
+                    pathALength += this.L1Distance(UpperRightBorder, BottomRightBorder);
                     pathA.Enqueue(UpperRightBorder);
-                    pathALength += L1Distance(UpperRightBorder, endPoint);
+                    pathALength += this.L1Distance(UpperRightBorder, endPoint);
                 }
                 else
                 {
-                    pathALength += L1Distance(BottomRightBorder, endPoint);
+                    pathALength += this.L1Distance(BottomRightBorder, endPoint);
                 }
+
                 pathA.Enqueue(endPoint);
 
                 // PATH B: Left + Up + Right
                 pathB.Enqueue(BottomLeftBorder);
-                pathBLength += L1Distance(startPoint, BottomLeftBorder);
+                pathBLength += this.L1Distance(startPoint, BottomLeftBorder);
                 if (BottomLeftBorder.X != endPoint.X)
                 {
-                    pathBLength += L1Distance(BottomLeftBorder, UpperLeftBorder);
+                    pathBLength += this.L1Distance(BottomLeftBorder, UpperLeftBorder);
                     pathB.Enqueue(UpperLeftBorder);
-                    pathBLength += L1Distance(UpperLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(UpperLeftBorder, endPoint);
                 }
                 else
                 {
-                    pathBLength += L1Distance(BottomLeftBorder, endPoint);
+                    pathBLength += this.L1Distance(BottomLeftBorder, endPoint);
                 }
+
                 pathB.Enqueue(endPoint);
             }
 
@@ -184,10 +199,10 @@ namespace Warcraft.GameLogic
             Point BottomLeftBorder = new Point(collison.hitbox.X - Config.BorderWidth, collison.hitbox.Bottom + Config.BorderWidth);
             Point BottomRightBorder = new Point(collison.hitbox.Right + Config.BorderWidth, collison.hitbox.Bottom + Config.BorderWidth);
 
-            double UpperLeftDistance = L1Distance(UpperLeftBorder, target);
-            double UpperRightDistance = L1Distance(UpperRightBorder, target);
-            double BottomLeftDistance = L1Distance(BottomLeftBorder, target);
-            double BottomRightDistance = L1Distance(BottomRightBorder, target);
+            double UpperLeftDistance = this.L1Distance(UpperLeftBorder, target);
+            double UpperRightDistance = this.L1Distance(UpperRightBorder, target);
+            double BottomLeftDistance = this.L1Distance(BottomLeftBorder, target);
+            double BottomRightDistance = this.L1Distance(BottomRightBorder, target);
 
             double min = Math.Min(Math.Min(UpperLeftDistance, UpperRightDistance), Math.Min(BottomLeftDistance, BottomRightDistance));
 
@@ -197,6 +212,7 @@ namespace Warcraft.GameLogic
                 {
                     endPoint.X = collison.hitbox.Left - Config.BorderWidth;
                 }
+
                 if (Math.Abs(endPoint.Y - UpperLeftBorder.Y) >= Math.Abs(endPoint.X - UpperLeftBorder.X))
                 {
                     endPoint.Y = collison.hitbox.Top - Config.BorderWidth;
@@ -208,6 +224,7 @@ namespace Warcraft.GameLogic
                 {
                     endPoint.X = collison.hitbox.Right + Config.BorderWidth;
                 }
+
                 if (Math.Abs(endPoint.Y - UpperLeftBorder.Y) >= Math.Abs(endPoint.X - UpperLeftBorder.X))
                 {
                     endPoint.Y = collison.hitbox.Top - Config.BorderWidth;
@@ -219,6 +236,7 @@ namespace Warcraft.GameLogic
                 {
                     endPoint.X = collison.hitbox.Left - Config.BorderWidth;
                 }
+
                 if (Math.Abs(endPoint.Y - UpperLeftBorder.Y) >= Math.Abs(endPoint.X - UpperLeftBorder.X))
                 {
                     endPoint.Y = collison.hitbox.Bottom + Config.BorderWidth;
@@ -230,6 +248,7 @@ namespace Warcraft.GameLogic
                 {
                     endPoint.X = collison.hitbox.Right + Config.BorderWidth;
                 }
+
                 if (Math.Abs(endPoint.Y - UpperLeftBorder.Y) >= Math.Abs(endPoint.X - UpperLeftBorder.X))
                 {
                     endPoint.Y = collison.hitbox.Bottom + Config.BorderWidth;
