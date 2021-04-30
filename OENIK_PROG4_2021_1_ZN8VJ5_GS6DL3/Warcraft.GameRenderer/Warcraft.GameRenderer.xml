@@ -4,5 +4,22 @@
         <name>Warcraft.GameRenderer</name>
     </assembly>
     <members>
+        <member name="T:Warcraft.Renderer.TestRenderer">
+            <summary>
+            Game scene renderer.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Renderer.TestRenderer.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Renderer.TestRenderer"/> class.
+            </summary>
+            <param name="model">Gamemodel to operate on.</param>
+        </member>
+        <member name="M:Warcraft.Renderer.TestRenderer.BuildDrawing">
+            <summary>
+            Builds the game state: backround - mines - buildings - units.
+            </summary>
+            <returns>Drawing group containing the elements above.</returns>
+        </member>
     </members>
 </doc>

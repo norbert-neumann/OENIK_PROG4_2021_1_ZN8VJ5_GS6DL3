@@ -19,4 +19,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Warcraft.GameLogic\Warcraft.GameLogic.csproj" />
+    <ProjectReference Include="..\Warcraft.GameRenderer\Warcraft.GameRenderer.csproj" />
+    <ProjectReference Include="..\Warcraft.Model\Warcraft.Model.csproj" />
+  </ItemGroup>
+
 </Project>
