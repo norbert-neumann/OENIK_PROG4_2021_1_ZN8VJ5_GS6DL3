@@ -110,6 +110,11 @@
             Moves to gold mine, mines, then returns home.
             </summary>
         </member>
+        <member name="F:Warcraft.GameLogic.GoldMiningRoutine.TargetObject">
+            <summary>
+            The current target object (hall or gold mine).
+            </summary>
+        </member>
         <member name="F:Warcraft.GameLogic.GoldMiningRoutine.hall">
             <summary>
             Return gold to this object.
@@ -118,11 +123,6 @@
         <member name="F:Warcraft.GameLogic.GoldMiningRoutine.mine">
             <summary>
             Gold mine to mine in.
-            </summary>
-        </member>
-        <member name="F:Warcraft.GameLogic.GoldMiningRoutine.targetObject">
-            <summary>
-            The current target object (hall or gold mine).
             </summary>
         </member>
         <member name="M:Warcraft.GameLogic.GoldMiningRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.GoldMine)">
@@ -178,6 +178,11 @@
             Deals with everything realted to movement.
             </summary>
         </member>
+        <member name="F:Warcraft.GameLogic.MovementLogic.Routines">
+            <summary>
+            Dictionary associating the units wtih their potetntial routines.
+            </summary>
+        </member>
         <member name="F:Warcraft.GameLogic.MovementLogic.model">
             <summary>
             Game model to operate on.
@@ -186,11 +191,6 @@
         <member name="F:Warcraft.GameLogic.MovementLogic.pathfinder">
             <summary>
             Ref to pathfinder. If two objects collide movementLogic calls this to find out an alternative path.
-            </summary>
-        </member>
-        <member name="F:Warcraft.GameLogic.MovementLogic.routines">
-            <summary>
-            Dictionary associating the units wtih their potetntial routines.
             </summary>
         </member>
         <member name="M:Warcraft.GameLogic.MovementLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.PathfindingLogic)">
@@ -243,6 +243,11 @@
             Controls a unit to move to a tree, harvest it, then return to Hall.
             </summary>
         </member>
+        <member name="F:Warcraft.Model.HarvestLumberRoutine.TargetObject">
+            <summary>
+            The current target object (hall or gold mine).
+            </summary>
+        </member>
         <member name="F:Warcraft.Model.HarvestLumberRoutine.hall">
             <summary>
             Return gold to this object.
@@ -251,11 +256,6 @@
         <member name="F:Warcraft.Model.HarvestLumberRoutine.tree">
             <summary>
             Tree to harvest.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.HarvestLumberRoutine.targetObject">
-            <summary>
-            The current target object (hall or gold mine).
             </summary>
         </member>
         <member name="M:Warcraft.Model.HarvestLumberRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.CombatObject)">
@@ -296,8 +296,8 @@
             Initializes a new instance of the <see cref="T:Warcraft.Model.PatrolRoutine"/> class.
             </summary>
             <param name="unit">Unit to operate on.</param>
-            <param name="TargetA">A.</param>
-            <param name="TargetB">B.</param>
+            <param name="targetA">A.</param>
+            <param name="targetB">B.</param>
         </member>
         <member name="M:Warcraft.Model.PatrolRoutine.Update">
             <summary>
@@ -327,12 +327,12 @@
             Unit to operate on.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Routine.TargetA">
+        <member name="F:Warcraft.Model.Routine.targetA">
             <summary>
             Point A to move to.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Routine.TargetB">
+        <member name="F:Warcraft.Model.Routine.targetB">
             <summary>
             Point B to move to.
             </summary>
@@ -367,8 +367,8 @@
             <summary>
             Computes to euclidean distance between to points.
             </summary>
-            <param name="A">Point A.</param>
-            <param name="B">Point B.</param>
+            <param name="a">Point A.</param>
+            <param name="b">Point B.</param>
             <returns>A-B distance.</returns>
         </member>
     </members>

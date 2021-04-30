@@ -19,14 +19,14 @@
             Represents a building. Some unit can repair buildings nad heal them. This class extends CombatObject with this functionality.
             </summary>
         </member>
+        <member name="F:Warcraft.Model.Building.AnimationString">
+            <summary>
+            This string tells the renderer what to display.
+            </summary>
+        </member>
         <member name="F:Warcraft.Model.Building.type">
             <summary>
             Building type.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.Building.animationString">
-            <summary>
-            This string tells the renderer what to display.
             </summary>
         </member>
         <member name="M:Warcraft.Model.Building.#ctor(Warcraft.Model.OwnerEnum,Warcraft.Model.BuildingEnum,Warcraft.Model.RaceEnum,System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -51,7 +51,7 @@
             <summary>
             Returns the state string that is used for getting the proper sprite.
             </summary>
-            <returns></returns>
+            <returns>The building's state string.</returns>
         </member>
         <member name="T:Warcraft.Model.BuildingEnum">
             <summary>
@@ -175,6 +175,64 @@
             Storing a game state.
             </summary>
         </member>
+        <member name="F:Warcraft.Model.GameModel.Units">
+            <summary>
+            List containg ALL units.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.Buildings">
+            <summary>
+            List containg ALL buildings.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.GoldMines">
+            <summary>
+            List containing all gold mines.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.LumberMines">
+            <summary>
+            List containg ALL lumber mines..
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.UnitsToRemove">
+            <summary>
+            After a unit's HP is below 0 the unit should be removed.
+            We can't directly remove it form 'units' bcs we iterate over it with a foreach.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.BuildingsToRemove">
+            <summary>
+            Same as above but with buildings.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.TreesToRemove">
+            <summary>
+            Same as above but with trees.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.GoldMinesToRemove">
+            <summary>
+            Same as above but with gold mines.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.GameModel.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.GameModel"/> class.
+            </summary>
+            <param name="width">Width of hte game.</param>
+            <param name="height">Height of the game.</param>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.GameWidth">
+            <summary>
+            Game widht.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.GameHeight">
+            <summary>
+            Game height.
+            </summary>
+        </member>
         <member name="P:Warcraft.Model.GameModel.PlayerGold">
             <summary>
             Amount of gold the player has.
@@ -195,54 +253,6 @@
             Amount of lumber the enemy has.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.GameModel.units">
-            <summary>
-            List containg ALL units.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.buildings">
-            <summary>
-            List containg ALL buildings.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.goldMines">
-            <summary>
-            List containing all gold mines.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.lumberMines">
-            <summary>
-            List containg ALL lumber mines..
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.unitsToRemove">
-            <summary>
-            After a unit's HP is below 0 the unit should be removed.
-            We can't directly remove it form 'units' bcs we iterate over it with a foreach.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.buildingsToRemove">
-            <summary>
-            Same as above but with buildings.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.treesToRemove">
-            <summary>
-            Same as above but with trees.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.goldMinesToRemove">
-            <summary>
-            Same as above but with gold mines.
-            </summary>
-        </member>
-        <member name="M:Warcraft.Model.GameModel.#ctor(System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Warcraft.Model.GameModel"/> class.
-            </summary>
-            <param name="width">Width of hte game.</param>
-            <param name="height">Height of the game.</param>
-        </member>
         <member name="M:Warcraft.Model.GameModel.AddGold(Warcraft.Model.OwnerEnum,System.Int32)">
             <summary>
             Adds some amount of gold to some1.
@@ -257,13 +267,27 @@
             <param name="to">Add lumber to this entity.</param>
             <param name="amount">Amount of lumbner added.</param>
         </member>
+        <member name="M:Warcraft.Model.GameModel.GetClosestGoldMine(Warcraft.Model.Unit)">
+            <summary>
+            Returns the closest gold mine. Used by routines.
+            </summary>
+            <param name="unit">Closest gold mine to this unit.</param>
+            <returns>Closeset gold mine.</returns>
+        </member>
+        <member name="M:Warcraft.Model.GameModel.GetClosestLumberMine(Warcraft.Model.Unit)">
+            <summary>
+            Returns the closest lumber mine. Used by routines.
+            </summary>
+            <param name="unit">Closest lumber mine to this unit.</param>
+            <returns>Closeset lumber mine.</returns>
+        </member>
         <member name="T:Warcraft.Model.GameObject">
             <summary>
             Abstract game object class: each object that is rendered has to have a position and a way to detect collisons and
             we have to change the positon somehow. This class implements this functionality.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.GameObject.hitbox">
+        <member name="F:Warcraft.Model.GameObject.Hitbox">
             <summary>
             Object used for collison detection.
             </summary>
@@ -312,29 +336,14 @@
             Units can take from the mine.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.GoldMine.BaseCapacity">
-            <summary>
-            Starting capacity of the mine.
-            </summary>
-        </member>
-        <member name="P:Warcraft.Model.GoldMine.CurrentCapacity">
-            <summary>
-            Current capacity of the mine.
-            </summary>
-        </member>
         <member name="F:Warcraft.Model.GoldMine.NumberOfUsers">
             <summary>
             Number of units using this mine.
             </summary>
         </member>
-        <member name="P:Warcraft.Model.GoldMine.animationString">
+        <member name="F:Warcraft.Model.GoldMine.baseCapacity">
             <summary>
-            String telling the renderer which sprite to display.
-            </summary>
-        </member>
-        <member name="P:Warcraft.Model.GoldMine.IsEmpty">
-            <summary>
-            Determines if the mine is empty.
+            Starting capacity of the mine.
             </summary>
         </member>
         <member name="M:Warcraft.Model.GoldMine.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -345,7 +354,22 @@
             <param name="y">Hitbox Y pos.</param>
             <param name="w">Hitbox width.</param>
             <param name="h">Hitbox's height.</param>
-            <param name="capacity">Mine's capcaity</param>
+            <param name="capacity">Mine's capcaity.</param>
+        </member>
+        <member name="P:Warcraft.Model.GoldMine.IsEmpty">
+            <summary>
+            Determines if the mine is empty.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GoldMine.AnimationString">
+            <summary>
+            String telling the renderer which sprite to display.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GoldMine.CurrentCapacity">
+            <summary>
+            Current capacity of the mine.
+            </summary>
         </member>
         <member name="M:Warcraft.Model.GoldMine.Take(System.Int32)">
             <summary>
@@ -416,12 +440,12 @@
             Peasants, footmans, and knights. Basically every combat object that is not a building or a tree.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.attack">
+        <member name="F:Warcraft.Model.Unit.Attack">
             <summary>
             Unit's attack damage.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.animationIndex">
+        <member name="F:Warcraft.Model.Unit.AnimationIndex">
             <summary>
             Unit's sprite index.
             </summary>
@@ -441,48 +465,48 @@
             Unit's enemy. This field is null if the unit is not in combat.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.path">
+        <member name="F:Warcraft.Model.Unit.Path">
             <summary>
             A list of points that the unit should visit in order.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.target">
+        <member name="F:Warcraft.Model.Unit.Target">
             <summary>
             The current point that the unit is trying to visit.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.prevPosition">
+        <member name="F:Warcraft.Model.Unit.PrevPosition">
             <summary>
             Previoius position of the unit. This is needed in PathfindingLogic.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.range">
+        <member name="F:Warcraft.Model.Unit.Range">
             <summary>
             Every unit attacks an enemy if it is inside of this range.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.facing">
+        <member name="F:Warcraft.Model.Unit.Facing">
             <summary>
             Facing enum, used by the animation logic.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.animationString">
+        <member name="F:Warcraft.Model.Unit.AnimationString">
             <summary>
             This tells the renderer which sprite to display.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.inIdle">
+        <member name="F:Warcraft.Model.Unit.InIdle">
             <summary>
             Bool indicating if the unit is in idle (id does nothing).
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.hiding">
+        <member name="F:Warcraft.Model.Unit.Hiding">
             <summary>
             Bool indicating if the unit is hiding.
             This is true during the unit is mining.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.entryPoint">
+        <member name="F:Warcraft.Model.Unit.EntryPoint">
             <summary>
             This saves the point before the unit enters an other object's hitbox.
             </summary>
