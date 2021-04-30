@@ -17,14 +17,14 @@
         /// </summary>
         /// <param name="game">Game state to save.</param>
         /// <param name="name">File name to save to.</param>
-        void Save(IGameModel game, string name);
+        void Save(string name);
 
         /// <summary>
         /// Loads a given game state.
         /// </summary>
         /// <param name="name">File name where the game is saved.</param>
         /// <returns>The reloaded game state.</returns>
-        IGameModel Load(string name);
+        //IGameModel Load(string name);
 
         /// <summary>
         /// Gives the high scores in a descending order.
