@@ -460,7 +460,7 @@
             Unit's game state.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Unit.enemy">
+        <member name="F:Warcraft.Model.Unit.Enemy">
             <summary>
             Unit's enemy. This field is null if the unit is not in combat.
             </summary>
