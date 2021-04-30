@@ -1,13 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warcraft.Model
+﻿namespace Warcraft.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// Building type.
+    /// </summary>
     public enum BuildingEnum
     {
+        /// <summary>
+        /// Hall.
+        /// </summary>
         Hall,
+
+        /// <summary>
+        /// Farm.
+        /// </summary>
         Farm,
-        Barracks
+
+        /// <summary>
+        /// Barrack.
+        /// </summary>
+        Barracks,
     }
 }

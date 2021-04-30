@@ -2,24 +2,40 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
-    using System.Drawing;
 
     /// <summary>
     /// Represents a building. Some unit can repair buildings nad heal them. This class extends CombatObject with this functionality.
     /// </summary>
     public class Building : CombatObject
     {
+        /// <summary>
+        /// Building type.
+        /// </summary>
         public BuildingEnum type;
+
+        /// <summary>
+        /// This string tells the renderer what to display.
+        /// </summary>
         public string animationString;
 
-        public Building(BuildingEnum type, RaceEnum race, int x, int y, int width, int height)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Building"/> class.
+        /// </summary>
+        /// <param name="owner">Owner of the building.</param>
+        /// <param name="type">Building type.</param>
+        /// <param name="race">Race of which this building belongs to.</param>
+        /// <param name="x">X position of building.</param>
+        /// <param name="y">Y position of building.</param>
+        /// <param name="width">Width of the building's hitbox.</param>
+        /// <param name="height">Height of the building's hitbox.</param>
+        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height) : base(x, y, width, height)
         {
+            this.Owner = owner;
             this.type = type;
             this.Race = race;
-            this.hitbox = new Rectangle(x, y, width, height);
 
             switch (race)
             {
@@ -58,6 +74,12 @@
             }
         }
 
+        // NOT USED.
+
+        /// <summary>
+        /// Returns the state string that is used for getting the proper sprite.
+        /// </summary>
+        /// <returns></returns>
         public string StateString()
         {
             StringBuilder sb = new StringBuilder();

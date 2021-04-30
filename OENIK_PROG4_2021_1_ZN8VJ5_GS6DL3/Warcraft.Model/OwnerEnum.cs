@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warcraft.Model
+﻿namespace Warcraft.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// Enum indicating the unit's owner.
+    /// </summary>
     public enum OwnerEnum
     {
+        /// <summary>
+        /// Player.
+        /// </summary>
         PLAYER,
-        ENEMY
-    };
+
+        /// <summary>
+        /// Enemy.
+        /// </summary>
+        ENEMY,
+    }
 }
