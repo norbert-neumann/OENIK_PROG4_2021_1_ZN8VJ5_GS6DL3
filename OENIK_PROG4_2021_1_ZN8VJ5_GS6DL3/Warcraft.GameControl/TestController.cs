@@ -76,9 +76,17 @@
                 this.animationTimer.Interval = TimeSpan.FromMilliseconds(90);
                 this.animationTimer.Tick += this.AnimationTimer_Tick;
                 this.animationTimer.Start();
+
+                this.PreviewMouseLeftButtonDown += LeftMouseClicled;
             }
 
             this.InvalidateVisual();
+        }
+
+        private void LeftMouseClicled(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            System.Windows.Point mousePos = e.GetPosition(this);
+            this.logic.Select(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
         }
 
         /// <inheritdoc/>
