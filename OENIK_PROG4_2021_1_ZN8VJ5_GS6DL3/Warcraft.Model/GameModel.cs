@@ -8,49 +8,8 @@
     /// <summary>
     /// Storing a game state.
     /// </summary>
-    public class GameModel
+    public class GameModel : IGameModel
     {
-        /// <summary>
-        /// List containg ALL units.
-        /// </summary>
-        public List<Unit> Units = new List<Unit>();
-
-        /// <summary>
-        /// List containg ALL buildings.
-        /// </summary>
-        public List<Building> Buildings = new List<Building>();
-
-        /// <summary>
-        /// List containing all gold mines.
-        /// </summary>
-        public List<GoldMine> GoldMines = new List<GoldMine>();
-
-        /// <summary>
-        /// List containg ALL lumber mines..
-        /// </summary>
-        public List<CombatObject> LumberMines = new List<CombatObject>();
-
-        /// <summary>
-        /// After a unit's HP is below 0 the unit should be removed.
-        /// We can't directly remove it form 'units' bcs we iterate over it with a foreach.
-        /// </summary>
-        public List<Unit> UnitsToRemove = new List<Unit>();
-
-        /// <summary>
-        /// Same as above but with buildings.
-        /// </summary>
-        public List<Building> BuildingsToRemove = new List<Building>();
-
-        /// <summary>
-        /// Same as above but with trees.
-        /// </summary>
-        public List<CombatObject> TreesToRemove = new List<CombatObject>();
-
-        /// <summary>
-        /// Same as above but with gold mines.
-        /// </summary>
-        public List<GoldMine> GoldMinesToRemove = new List<GoldMine>();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GameModel"/> class.
         /// </summary>
@@ -60,17 +19,92 @@
         {
             this.GameWidth = (int)width;
             this.GameHeight = (int)height;
+            this.Units = new List<Unit>();
+            this.Buildings = new List<Building>();
+            this.GoldMines = new List<GoldMine>();
+            this.LumberMines = new List<CombatObject>();
+            this.BuildingsToRemove = new List<Building>();
+            this.UnitsToRemove = new List<Unit>();
+            this.TreesToRemove = new List<CombatObject>();
+            this.GoldMinesToRemove = new List<GoldMine>();
         }
+
+        /// <summary>
+        /// A user action will be executed in this object.
+        /// This can be an enemy, a tree, a building, anything.
+        /// </summary>
+        public GameObject SelectedObject { get; set; }
+
+        /// <summary>
+        /// A user action will be executed by this unit.
+        /// </summary>
+        public Unit SelectedSubject { get; set; }
+
+        /// <summary>
+        /// A user action will be executed on this point.
+        /// </summary>
+        public Point SelectedPoint { get; set; }
+
+        /// <summary>
+        /// Player's Hall building. If this is destroyed (=null) then the game is over.
+        /// </summary>
+        public Building PlayerHall { get; set; }
+
+        /// <summary>
+        /// Enemy's Hall building. If this is destroyed (=null) then the game is over.
+        /// </summary>
+        public Building EnemyHall { get; set; }
+
+        /// <summary>
+        /// List containg ALL units.
+        /// </summary>
+        public List<Unit> Units { get; set; }
+
+        /// <summary>
+        /// List containg ALL buildings.
+        /// </summary>
+        public List<Building> Buildings { get; set; }
+
+        /// <summary>
+        /// List containing all gold mines.
+        /// </summary>
+        public List<GoldMine> GoldMines { get; set; }
+
+        /// <summary>
+        /// List containg ALL lumber mines..
+        /// </summary>
+        public List<CombatObject> LumberMines { get; set; }
+
+        /// <summary>
+        /// After a unit's HP is below 0 the unit should be removed.
+        /// We can't directly remove it form 'units' bcs we iterate over it with a foreach.
+        /// </summary>
+        public List<Unit> UnitsToRemove { get; set; }
+
+        /// <summary>
+        /// Same as above but with buildings.
+        /// </summary>
+        public List<Building> BuildingsToRemove { get; set; }
+
+        /// <summary>
+        /// Same as above but with trees.
+        /// </summary>
+        public List<CombatObject> TreesToRemove { get; set; }
+
+        /// <summary>
+        /// Same as above but with gold mines.
+        /// </summary>
+        public List<GoldMine> GoldMinesToRemove { get; set; }
 
         /// <summary>
         /// Game widht.
         /// </summary>
-        public int GameWidth { get; private set; }
+        public int GameWidth { get;  set; }
 
         /// <summary>
         /// Game height.
         /// </summary>
-        public int GameHeight { get; private set; }
+        public int GameHeight { get; set; }
 
         /// <summary>
         /// Amount of gold the player has.
