@@ -9,7 +9,7 @@
     /// <summary>
     /// Finds a path around a specific collision and a unit.
     /// </summary>
-    public class PathfindingLogic
+    public class PathfindingLogic : IPathfindingLogic
     {
         /// <summary>
         /// Finds a path.
