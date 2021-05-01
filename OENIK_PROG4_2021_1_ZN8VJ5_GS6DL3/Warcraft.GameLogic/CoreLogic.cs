@@ -2,15 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Drawing;
+    using System.Text;
     using Warcraft.Model;
 
     /// <summary>
     /// Encapsulates and calls each task specific logic.
     /// The Controller also calls this logic's methods.
     /// </summary>
-    public class CoreLogic
+    public class CoreLogic : ICoreLogic
     {
         private GameModel model;
         private CombatLogic combatLogic;
@@ -88,6 +88,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void MineGold()
         {
             if (this.ValidateCommand())
@@ -105,6 +106,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void HarvestLumber()
         {
             if (this.ValidateCommand())
@@ -120,6 +122,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void PatrollUnit()
         {
             if (this.ValidateDestintaion())
@@ -134,6 +137,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void SetUnitsEnemy()
         {
             if (this.model.SelectedSubject != null && this.model.SelectedObject as CombatObject != null)
@@ -143,6 +147,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void GoTo()
         {
             if (this.ValidateDestintaion())
