@@ -8,7 +8,7 @@
     /// <summary>
     /// This logic deals with animationString and animationIndex.
     /// </summary>
-    public class AnimationLogic
+    public class AnimationLogic : IAnimationLogic
     {
         private GameModel model;
 
