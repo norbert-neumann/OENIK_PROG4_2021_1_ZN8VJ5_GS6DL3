@@ -10,7 +10,7 @@
     /// <summary>
     /// Deals with everything realted to movement.
     /// </summary>
-    public class MovementLogic
+    public class MovementLogic : IMovementLogic
     {
         /// <summary>
         /// Dictionary associating the units wtih their potetntial routines.
