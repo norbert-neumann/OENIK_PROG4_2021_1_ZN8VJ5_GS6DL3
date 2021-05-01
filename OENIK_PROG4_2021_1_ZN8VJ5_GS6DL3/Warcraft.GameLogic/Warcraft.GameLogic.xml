@@ -105,6 +105,27 @@
             Updates each unit's sprite.
             </summary>
         </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.Select(System.Drawing.Point)">
+            <summary>
+            Selects an Object, Subject, or a Point depoending on the cursorPos.
+            </summary>
+            <param name="cursorPos">User's cursor position.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.MineGold">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.HarvestLumber">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.PatrollUnit">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.SetUnitsEnemy">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.GoTo">
+            <inheritdoc/>
+        </member>
         <member name="T:Warcraft.GameLogic.GoldMiningRoutine">
             <summary>
             Moves to gold mine, mines, then returns home.
@@ -152,6 +173,107 @@
             Else kepps minig.
             </summary>
             <returns>True if the unit is minig.</returns>
+        </member>
+        <member name="T:Warcraft.GameLogic.IAnimationLogic">
+            <summary>
+            This interface deals with animationString and animationIndex.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.IAnimationLogic.UpdateSprites">
+            <summary>
+            Sets the animationString for all units.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.IAnimationLogic.ResetAnimationIndex(Warcraft.Model.Unit)">
+            <summary>
+            Resets a unit's animation index.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.IAnimationLogic.IncrementAnimationIndex(Warcraft.Model.Unit)">
+            <summary>
+            Increments and resets the animation index.
+            </summary>
+            <param name="unit">Unit to operate on.</param>
+        </member>
+        <member name="T:Warcraft.GameLogic.ICombatLogic">
+            <summary>
+            Deals with everything realted to combat.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICombatLogic.SetTarget">
+            <summary>
+            Check if agressive object reached it's enemy. If not set target. If yes flip UnitStateEnum.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.ICoreLogic">
+            <summary>
+            Contaions all funcitonalities that the CoreLogic should have.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.Step">
+            <summary>
+            One step of the game.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.UpdateAnimation">
+            <summary>
+            Updates each unit's sprite.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.Select(System.Drawing.Point)">
+            <summary>
+            Selects an Object, Subject, or a Point depoending on the cursorPos.
+            </summary>
+            <param name="cursorPos">User's cursor position.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.MineGold">
+            <summary>
+            Commands the SelectedSubject to mine gold at the SelectedObject.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.HarvestLumber">
+            <summary>
+            Commands the SelectedSubject to harvest lumber at the SelectedObject.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.PatrollUnit">
+            <summary>
+            Commands the SelectedSubject to paroll between the current posoiton and the SelectedPoint.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.SetUnitsEnemy">
+            <summary>
+            Commands the SelectedSubject to attack the SelectedSubject.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.ICoreLogic.GoTo">
+            <summary>
+            Commands the SelectedSubject to move to the SelectedPoint.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.IMovementLogic">
+            <summary>
+            Deals with everything realted to movement.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.IMovementLogic.UpdatePositions">
+            <summary>
+            Update each unit's positions.
+            </summary>
+        </member>
+        <member name="T:Warcraft.GameLogic.IPathfindingLogic">
+            <summary>
+            Finds a path around a specific collision and a unit.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.IPathfindingLogic.FindPath(Warcraft.Model.Unit,Warcraft.Model.GameObject,System.Drawing.Point)">
+            <summary>
+            Finds a path.
+            </summary>
+            <param name="unit">Unit to find a path for.</param>
+            <param name="collison">Unit collides with this gameObject.</param>
+            <param name="trajectory">The units trajectory.</param>
         </member>
         <member name="T:Warcraft.GameLogic.MineFactory">
             <summary>

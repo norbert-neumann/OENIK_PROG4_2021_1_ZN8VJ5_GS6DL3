@@ -175,53 +175,79 @@
             Storing a game state.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.GameModel.Units">
-            <summary>
-            List containg ALL units.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.Buildings">
-            <summary>
-            List containg ALL buildings.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.GoldMines">
-            <summary>
-            List containing all gold mines.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.LumberMines">
-            <summary>
-            List containg ALL lumber mines..
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.UnitsToRemove">
-            <summary>
-            After a unit's HP is below 0 the unit should be removed.
-            We can't directly remove it form 'units' bcs we iterate over it with a foreach.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.BuildingsToRemove">
-            <summary>
-            Same as above but with buildings.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.TreesToRemove">
-            <summary>
-            Same as above but with trees.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.GameModel.GoldMinesToRemove">
-            <summary>
-            Same as above but with gold mines.
-            </summary>
-        </member>
         <member name="M:Warcraft.Model.GameModel.#ctor(System.Double,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.Model.GameModel"/> class.
             </summary>
             <param name="width">Width of hte game.</param>
             <param name="height">Height of the game.</param>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.SelectedObject">
+            <summary>
+            A user action will be executed in this object.
+            This can be an enemy, a tree, a building, anything.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.SelectedSubject">
+            <summary>
+            A user action will be executed by this unit.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.SelectedPoint">
+            <summary>
+            A user action will be executed on this point.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.PlayerHall">
+            <summary>
+            Player's Hall building. If this is destroyed (=null) then the game is over.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.EnemyHall">
+            <summary>
+            Enemy's Hall building. If this is destroyed (=null) then the game is over.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.Units">
+            <summary>
+            List containg ALL units.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.Buildings">
+            <summary>
+            List containg ALL buildings.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.GoldMines">
+            <summary>
+            List containing all gold mines.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.LumberMines">
+            <summary>
+            List containg ALL lumber mines..
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.UnitsToRemove">
+            <summary>
+            After a unit's HP is below 0 the unit should be removed.
+            We can't directly remove it form 'units' bcs we iterate over it with a foreach.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.BuildingsToRemove">
+            <summary>
+            Same as above but with buildings.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.TreesToRemove">
+            <summary>
+            Same as above but with trees.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.GoldMinesToRemove">
+            <summary>
+            Same as above but with gold mines.
+            </summary>
         </member>
         <member name="P:Warcraft.Model.GameModel.GameWidth">
             <summary>
@@ -377,6 +403,129 @@
             </summary>
             <param name="amount">Amount of resources taken.</param>
             <returns>The amount of resources acutally taken.</returns>
+        </member>
+        <member name="T:Warcraft.Model.IGameModel">
+            <summary>
+            This have the necessary props to store a game state.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.SelectedObject">
+            <summary>
+            A user action will be executed in this object.
+            This can be an enemy, a tree, a building, anything.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.SelectedSubject">
+            <summary>
+            A user action will be executed by this unit.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.SelectedPoint">
+            <summary>
+            A user action will be executed on this point.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.PlayerHall">
+            <summary>
+            Player's Hall building. If this is destroyed (=null) then the game is over.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.EnemyHall">
+            <summary>
+            Enemy's Hall building. If this is destroyed (=null) then the game is over.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.Units">
+            <summary>
+            List containg ALL units.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.Buildings">
+            <summary>
+            List containg ALL buildings.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.GoldMines">
+            <summary>
+            List containing all gold mines.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.LumberMines">
+            <summary>
+            List containg ALL lumber mines..
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.UnitsToRemove">
+            <summary>
+            After a unit's HP is below 0 the unit should be removed.
+            We can't directly remove it form 'units' bcs we iterate over it with a foreach.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.BuildingsToRemove">
+            <summary>
+            Same as above but with buildings.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.TreesToRemove">
+            <summary>
+            Same as above but with trees.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.GoldMinesToRemove">
+            <summary>
+            Same as above but with gold mines.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.GameWidth">
+            <summary>
+            Game widht.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.GameHeight">
+            <summary>
+            Game height.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.PlayerGold">
+            <summary>
+            Amount of gold the player has.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.PlayerLumber">
+            <summary>
+            Amount of lumber the player has.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.EnemyGold">
+            <summary>
+            Amount of gold the enemy has.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.EnemyLumber">
+            <summary>
+            Amount of lumber the enemy has.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.IGameModel.AddGold(Warcraft.Model.OwnerEnum,System.Int32)">
+            <summary>
+            Adds some amount of gold to some1.
+            </summary>
+            <param name="to">Add gold to this entity.</param>
+            <param name="amount">Amount of gold added.</param>
+        </member>
+        <member name="M:Warcraft.Model.IGameModel.AddLumber(Warcraft.Model.OwnerEnum,System.Int32)">
+            <summary>
+            Adds some amount of lumber to some1.
+            </summary>
+            <param name="to">Add lumber to this entity.</param>
+            <param name="amount">Amount of lumbner added.</param>
+        </member>
+        <member name="M:Warcraft.Model.IGameModel.GetClosestLumberMine(Warcraft.Model.Unit)">
+            <summary>
+            Returns the closest lumber mine. Used by routines.
+            </summary>
+            <param name="unit">Closest lumber mine to this unit.</param>
+            <returns>Closeset lumber mine.</returns>
         </member>
         <member name="T:Warcraft.Model.Mine">
             <summary>
