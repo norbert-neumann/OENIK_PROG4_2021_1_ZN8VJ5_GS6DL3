@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Drawing;
     using Warcraft.Model;
 
     /// <summary>
@@ -52,6 +53,163 @@
         public void UpdateAnimation()
         {
             this.animationLogic.UpdateSprites();
+        }
+
+        /// <summary>
+        /// Selects an Object, Subject, or a Point depoending on the cursorPos.
+        /// </summary>
+        /// <param name="cursorPos">User's cursor position.</param>
+        public void Select(Point cursorPos)
+        {
+            GameObject clickedObject = this.FindGameObject(cursorPos);
+
+            if (clickedObject != null)
+            {
+                if (clickedObject is Unit)
+                {
+                    Unit clickedUnit = clickedObject as Unit;
+                    if (clickedUnit.Owner == OwnerEnum.PLAYER)
+                    {
+                        this.model.SelectedSubject = clickedUnit;
+                    }
+                    else
+                    {
+                        this.model.SelectedObject = clickedUnit;
+                    }
+                }
+                else
+                {
+                    this.model.SelectedObject = clickedObject;
+                }
+            }
+            else
+            {
+                this.model.SelectedPoint = cursorPos;
+            }
+        }
+
+        public void MineGold()
+        {
+            if (this.ValidateCommand())
+            {
+                this.movementLogic.Routines.Add(
+                    this.model.SelectedSubject,
+                    new GoldMiningRoutine(
+                        this.model.SelectedSubject,
+                        TimeSpan.FromSeconds(3),
+                        this.model.PlayerHall,
+                        this.model.SelectedObject as GoldMine));
+
+                this.model.SelectedSubject.InIdle = false;
+                this.ClearSelections();
+            }
+        }
+
+        public void HarvestLumber()
+        {
+            if (this.ValidateCommand())
+            {
+                this.movementLogic.Routines.Add(
+                    this.model.SelectedSubject,
+                    new HarvestLumberRoutine(
+                        this.model.SelectedSubject,
+                        TimeSpan.FromSeconds(3),
+                        this.model.PlayerHall,
+                        this.model.SelectedObject as CombatObject));
+                this.ClearSelections();
+            }
+        }
+
+        public void PatrollUnit()
+        {
+            if (this.ValidateDestintaion())
+            {
+                this.movementLogic.Routines.Add(
+                    this.model.SelectedSubject,
+                    new PatrolRoutine(
+                        this.model.SelectedSubject,
+                        this.model.SelectedSubject.Position,
+                        this.model.SelectedPoint));
+                this.ClearSelections();
+            }
+        }
+
+        public void SetUnitsEnemy()
+        {
+            if (this.model.SelectedSubject != null && this.model.SelectedObject as CombatObject != null)
+            {
+                this.model.SelectedSubject.Enemy = this.model.SelectedObject as CombatObject;
+                this.ClearSelections();
+            }
+        }
+
+        public void GoTo()
+        {
+            if (this.ValidateDestintaion())
+            {
+                this.model.SelectedSubject.Target = this.model.SelectedPoint;
+                this.ClearSelections();
+            }
+        }
+
+        private void ClearSelections()
+        {
+            this.model.SelectedSubject = null;
+            this.model.SelectedObject = null;
+            this.model.SelectedPoint = new Point(-1, -1);
+        }
+
+        private bool ValidateCommand()
+        {
+            return this.model.SelectedSubject != null && this.model.SelectedObject != null;
+        }
+
+        private bool ValidateDestintaion()
+        {
+            return this.model.SelectedSubject != null && this.model.SelectedPoint != new Point(-1, -1);
+        }
+
+        private GameObject FindGameObject(Point cursorPos)
+        {
+            foreach (Unit unit in this.model.Units)
+            {
+                if (this.PositionInHitbox(cursorPos, unit.Hitbox))
+                {
+                    return unit;
+                }
+            }
+
+            foreach (Building building in this.model.Buildings)
+            {
+                if (this.PositionInHitbox(cursorPos, building.Hitbox))
+                {
+                    return building;
+                }
+            }
+
+            foreach (GoldMine mine in this.model.GoldMines)
+            {
+                if (this.PositionInHitbox(cursorPos, mine.Hitbox))
+                {
+                    return mine;
+                }
+            }
+
+            foreach (CombatObject tree in this.model.LumberMines)
+            {
+                if (this.PositionInHitbox(cursorPos, tree.Hitbox))
+                {
+                    return tree;
+                }
+            }
+
+            return null;
+        }
+
+        private bool PositionInHitbox(Point point, Rectangle hitbox)
+        {
+            return point.X >= hitbox.X && point.X <= hitbox.Right &&
+                point.Y >= hitbox.Y && point.Y <= hitbox.Bottom;
         }
 
         private void Remove()
