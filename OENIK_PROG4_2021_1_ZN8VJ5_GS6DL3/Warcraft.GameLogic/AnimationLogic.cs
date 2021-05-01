@@ -25,7 +25,7 @@
         /// Increments and resets the animation index.
         /// </summary>
         /// <param name="unit">Unit to operate on.</param>
-        public static void IncrementAnimationIndex(Unit unit)
+        public void IncrementAnimationIndex(Unit unit)
         {
             unit.AnimationIndex++;
             if (unit.AnimationIndex > (unit.UnitState == UnitStateEnum.WalkingWithGold ? 3 : 4))
@@ -38,7 +38,7 @@
         /// Resets a unit's animation index.
         /// </summary>
         /// <param name="unit">Unit to operate on.</param>
-        public static void ResetAnimationIndex(Unit unit)
+        public void ResetAnimationIndex(Unit unit)
         {
             unit.AnimationIndex = 0;
         }
@@ -47,7 +47,7 @@
         /// Sets a unit's animationString.
         /// </summary>
         /// <param name="unit">Unit to operate on.</param>
-        public static void SetAnimationString(Unit unit)
+        public void SetAnimationString(Unit unit)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(unit.AnimationString.Substring(0, 2)); // Race and type is always the same
@@ -115,8 +115,8 @@
                 // Check if changed is true should be here
                 if (!unit.InIdle)
                 {
-                    SetAnimationString(unit);
-                    AnimationLogic.IncrementAnimationIndex(unit);
+                    this.SetAnimationString(unit);
+                    this.IncrementAnimationIndex(unit);
                 }
             }
         }
