@@ -9,7 +9,7 @@
     /// <summary>
     /// Deals with everything realted to combat.
     /// </summary>
-    public class CombatLogic
+    public class CombatLogic : ICombatLogic
     {
         /// <summary>
         /// Game model to operate on.
