@@ -95,6 +95,7 @@
             : base(x, y, width, height)
         {
             this.Owner = owner;
+            this.TargetLocked = false;
 
             switch (race)
             {
@@ -131,6 +132,11 @@
             this.AnimationIndex = 0;
             this.AnimationString += "0";
         }
+
+        /// <summary>
+        /// When true the CombatLogic can't modify this unit's target.
+        /// </summary>
+        public bool TargetLocked { get; set; }
 
         /// <summary>
         /// Puts the current target at the end of the Q, and sets the target to the next point.
