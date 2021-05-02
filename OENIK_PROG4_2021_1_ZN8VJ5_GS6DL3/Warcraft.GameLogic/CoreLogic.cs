@@ -154,12 +154,14 @@
         {
             if (this.ValidateDestintaion())
             {
+                this.ResetCurrentCommand();
                 this.movementLogic.Routines.Add(
                     this.model.SelectedSubject,
                     new PatrolRoutine(
                         this.model.SelectedSubject,
                         this.model.SelectedSubject.Position,
                         this.model.SelectedPoint));
+                this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
             }
         }
@@ -169,7 +171,10 @@
         {
             if (this.model.SelectedSubject != null && this.model.SelectedObject as CombatObject != null)
             {
+                this.ResetCurrentCommand();
                 this.model.SelectedSubject.Enemy = this.model.SelectedObject as CombatObject;
+                this.model.SelectedSubject.Target = this.model.SelectedObject.Position;
+                this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
             }
         }
@@ -179,7 +184,9 @@
         {
             if (this.ValidateDestintaion())
             {
+                this.ResetCurrentCommand();
                 this.model.SelectedSubject.Target = this.model.SelectedPoint;
+                this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
             }
         }
@@ -238,6 +245,18 @@
                 this.model.NewBuilding = null;
             }
         }
+
+        private void ResetCurrentCommand()
+        {
+            if (this.movementLogic.Routines.ContainsKey(this.model.SelectedSubject))
+            {
+                this.movementLogic.Routines.Remove(this.model.SelectedSubject);
+                this.model.SelectedSubject.Path.Clear();
+                this.model.SelectedSubject.Target = this.model.SelectedSubject.Position;
+                this.model.SelectedSubject.Enemy = null;
+            }
+        }
+
         private void ClearSelections()
         {
             this.model.SelectedSubject = null;
