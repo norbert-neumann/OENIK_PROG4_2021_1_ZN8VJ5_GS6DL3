@@ -45,6 +45,7 @@
                 amount = this.CurrentCapacity;
                 this.CurrentCapacity = 0;
             }
+
             return amount;
         }
     }
