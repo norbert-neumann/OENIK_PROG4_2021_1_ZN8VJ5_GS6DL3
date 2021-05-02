@@ -39,8 +39,8 @@
 
             if (components[0] == "GOLD")
             {
-                width = 130;
-                height = 120;
+                width = 100;
+                height = 100;
 
                 width = (int)(width * Config.Zoom);
                 height = (int)(height * Config.Zoom);
@@ -52,8 +52,8 @@
             }
             else
             {
-                width = 110;
-                height = 100;
+                width = 80;
+                height = 70;
 
                 width = (int)(width * Config.Zoom);
                 height = (int)(height * Config.Zoom);
