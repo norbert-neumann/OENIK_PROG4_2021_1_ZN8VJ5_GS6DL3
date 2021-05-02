@@ -107,7 +107,7 @@
             // Gold Mines
             foreach (GoldMine mine in this.model.GoldMines)
             {
-                GeometryDrawing geometry = this.mineToGeometry[mine.AnimationString];
+                GeometryDrawing geometry = this.mineToGeometry[mine.AnimationString].Clone();
                 geometry.Geometry.Transform = new TranslateTransform(mine.Hitbox.X, mine.Hitbox.Y);
                 dg.Children.Add(geometry);
 
@@ -122,8 +122,9 @@
             // Trees
             foreach (CombatObject tree in this.model.LumberMines)
             {
-                this.treeGeometry.Geometry.Transform = new TranslateTransform(tree.Hitbox.X, tree.Hitbox.Y);
-                dg.Children.Add(this.treeGeometry);
+                GeometryDrawing geometry = this.treeGeometry.Clone();
+                geometry.Geometry.Transform = new TranslateTransform(tree.Hitbox.X, tree.Hitbox.Y);
+                dg.Children.Add(geometry);
 
                 // Draw hitboxes
                 GeometryDrawing hitboxGeometry = new GeometryDrawing(
@@ -136,7 +137,7 @@
             // Buildings
             foreach (Building building in this.model.Buildings)
             {
-                GeometryDrawing geometry = this.buildingToGeometry[building.AnimationString];
+                GeometryDrawing geometry = this.buildingToGeometry[building.AnimationString].Clone();
                 geometry.Geometry.Transform = new TranslateTransform(building.Hitbox.X, building.Hitbox.Y);
                 dg.Children.Add(geometry);
 
@@ -153,7 +154,7 @@
             {
                 if (!unit.Hiding)
                 {
-                    GeometryDrawing geometry = this.stateToGeometry[unit.AnimationString];
+                    GeometryDrawing geometry = this.stateToGeometry[unit.AnimationString].Clone();
                     Point offset = new Point(unit.Hitbox.Width / 3, unit.Hitbox.Height);
                     if (this.positionOffset.ContainsKey(unit.AnimationString))
                     {
