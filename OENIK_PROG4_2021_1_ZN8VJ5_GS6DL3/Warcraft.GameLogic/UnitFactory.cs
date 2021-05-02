@@ -73,6 +73,9 @@
             height = (int)(height * Config.Zoom);
 
             Unit unit = new Unit(owner, race, unitType, x, y, width, height);
+            unit.InIdle = true;
+            unit.Path = new Queue<System.Drawing.Point>();
+            unit.Target = unit.Position;
 
             this.model.Units.Add(unit);
 
