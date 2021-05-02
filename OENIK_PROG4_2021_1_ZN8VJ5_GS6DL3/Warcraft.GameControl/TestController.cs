@@ -117,6 +117,26 @@
             {
                 this.logic.InitNewBuilding("player human farm", new System.Drawing.Point(100, 100));
             }
+            else if (e.Key == System.Windows.Input.Key.H)
+            {
+                this.logic.HarvestLumber();
+            }
+            else if (e.Key == System.Windows.Input.Key.P)
+            {
+                this.logic.PatrollUnit();
+            }
+            else if (e.Key == System.Windows.Input.Key.M)
+            {
+                this.logic.GoTo();
+            }
+            else if (e.Key == System.Windows.Input.Key.A)
+            {
+                this.logic.SetUnitsEnemy();
+            }
+            else if (e.Key == System.Windows.Input.Key.U)
+            {
+                this.logic.CreateUnit("player human peasant");
+            }
         }
     }
 }
