@@ -150,6 +150,17 @@
             }
         }
 
+        /// <summary>
+        /// Creates a new unit.
+        /// </summary>
+        /// <param name="description">Unit type description.</param>
+        public void CreateUnit(string description)
+        {
+            System.Drawing.Point positon = new Point(this.model.PlayerHall.Hitbox.X, this.model.PlayerHall.Hitbox.Y);
+            positon.Y += this.model.PlayerHall.Hitbox.Height / 2;
+            this.unitFactory.Create(description, positon.X - 25, positon.Y);
+        }
+
         /// <inheritdoc/>
         public void PatrollUnit()
         {
