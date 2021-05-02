@@ -36,7 +36,7 @@
         private void TestLoading(object sender, RoutedEventArgs e)
         {
             this.model = new GameModel(SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight);
-            BuildingFactory factory = new BuildingFactory(this.model);
+            MapBuilder.Build(this.model, (int)SystemParameters.PrimaryScreenWidth, (int)SystemParameters.PrimaryScreenHeight);
 
             this.pathfindingLogic = new PathfindingLogic();
             this.combatLogic = new CombatLogic(this.model);
@@ -44,31 +44,14 @@
             this.animationLogic = new AnimationLogic(this.model);
             this.logic = new CoreLogic(this.model, this.combatLogic, this.movementLogic, this.animationLogic, this.pathfindingLogic);
 
-            this.renderer = new TestRenderer(model);
-
-
-            Unit human = new Unit(OwnerEnum.PLAYER, RaceEnum.Human, UnitTypeEnum.Peasant, 600, 600, (int)(30 * Config.Zoom), (int)(30 * Config.Zoom));
-            human.Path = new Queue<System.Drawing.Point>();
-            human.Target = new System.Drawing.Point(10, 10);
-
-            GoldMine mine = new GoldMine(150, 150, 140, 140, 500);
-
-            Building hall = factory.Create("player human hall", 600, 400);
-            model.GoldMines.Add(mine);
-
-            movementLogic.Routines.Add(human, new GoldMiningRoutine(human, TimeSpan.FromSeconds(2), hall, mine));
-            //logic.routines.Add(human, new GoldMiningRoutine(human, TimeSpan.FromSeconds(2), new System.Drawing.Point(100, 100), new System.Drawing.Point(300, 300)));
-
-
-
-            model.Units.Add(human);
+            this.renderer = new TestRenderer(this.model);
 
             Window win = Window.GetWindow(this);
             if (win != null)
             {
                 win.KeyDown += this.Win_KeyDown;
                 this.timer = new DispatcherTimer();
-                this.timer.Interval = TimeSpan.FromMilliseconds(45);
+                this.timer.Interval = TimeSpan.FromMilliseconds(30);
                 this.timer.Tick += this.TimerTick;
                 this.timer.Start();
 
