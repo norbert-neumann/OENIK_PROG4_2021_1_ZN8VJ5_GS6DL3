@@ -43,7 +43,10 @@
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.Target = unit.Enemy.Position;
+                            if (!unit.TargetLocked)
+                            {
+                                unit.Target = unit.Enemy.Position;
+                            }
                         }
                     }
                     else
@@ -55,7 +58,10 @@
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.Target = unit.Enemy.Position;
+                            if (!unit.TargetLocked)
+                            {
+                                unit.Target = unit.Enemy.Position;
+                            }
                         }
                     }
                 }
