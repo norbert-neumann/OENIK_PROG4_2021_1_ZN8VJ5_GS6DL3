@@ -166,6 +166,35 @@
                 }
             }
 
+            // Selected subject
+            if (this.model.SelectedSubject != null && !this.model.SelectedSubject.Hiding)
+            {
+                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(Brushes.Green, 2),
+                new RectangleGeometry(new Rect(
+                    this.model.SelectedSubject.Hitbox.X,
+                    this.model.SelectedSubject.Hitbox.Y,
+                    this.model.SelectedSubject.Hitbox.Width,
+                    this.model.SelectedSubject.Hitbox.Height)));
+                dg.Children.Add(hitboxGeometry);
+            }
+
+            if (this.model.SelectedObject != null)
+            {
+                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(Brushes.Green, 3),
+                new RectangleGeometry(new Rect(
+                    this.model.SelectedObject.Hitbox.X,
+                    this.model.SelectedObject.Hitbox.Y,
+                    this.model.SelectedObject.Hitbox.Width,
+                    this.model.SelectedObject.Hitbox.Height)));
+                dg.Children.Add(hitboxGeometry);
+            }
+
+            return dg;
+        }
             return dg;
         }
 
