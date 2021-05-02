@@ -29,6 +29,9 @@
             this.GoldMinesToRemove = new List<GoldMine>();
         }
 
+        /// <inheritdoc/>
+        public Building NewBuilding { get; set; }
+
         /// <summary>
         /// A user action will be executed in this object.
         /// This can be an enemy, a tree, a building, anything.

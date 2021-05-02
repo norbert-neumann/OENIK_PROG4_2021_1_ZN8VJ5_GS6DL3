@@ -29,6 +29,11 @@
         Point SelectedPoint { get; set; }
 
         /// <summary>
+        /// New building that will be added to the scene.
+        /// </summary>
+        Building NewBuilding { get; set; }
+
+        /// <summary>
         /// Player's Hall building. If this is destroyed (=null) then the game is over.
         /// </summary>
         Building PlayerHall { get; set; }
