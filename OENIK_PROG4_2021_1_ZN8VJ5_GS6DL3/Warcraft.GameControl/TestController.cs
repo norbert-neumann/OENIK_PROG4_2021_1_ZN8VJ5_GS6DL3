@@ -6,6 +6,8 @@
     using System.Drawing;
     using System.Text;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Threading;
     using Warcraft.GameLogic;
@@ -78,6 +80,12 @@
             if (this.renderer != null)
             {
                 drawingContext.DrawDrawing(renderer.BuildDrawing());
+
+                // Move this check insie BuildDrawing().
+                if (this.model.NewBuilding != null)
+                {
+                    drawingContext.DrawDrawing(renderer.DisplayNewBuilding(this.logic.NewBuildingCollides()));
+                }
             }
         }
 
@@ -90,6 +98,12 @@
         private void TimerTick(object sender, EventArgs e)
         {
             this.logic.Step();
+            if (this.model.NewBuilding != null)
+            {
+                System.Windows.Point mousePos = this.PointToScreen(Mouse.GetPosition(this));
+                this.model.NewBuilding.SetCenterPositon(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
+            }
+
             this.InvalidateVisual();
         }
 
@@ -98,6 +112,10 @@
             if (e.Key == System.Windows.Input.Key.G)
             {
                 this.logic.MineGold();
+            }
+            else if (e.Key == System.Windows.Input.Key.B)
+            {
+                this.logic.InitNewBuilding("player human farm", new System.Drawing.Point(100, 100));
             }
         }
     }
