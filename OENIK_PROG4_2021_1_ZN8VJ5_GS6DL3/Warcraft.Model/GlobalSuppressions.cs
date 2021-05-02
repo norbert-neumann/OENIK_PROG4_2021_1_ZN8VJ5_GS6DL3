@@ -72,3 +72,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.GameModel.TreesToRemove")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.GameModel.Units")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.GameModel.UnitsToRemove")]
+[assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "<Pending>", Scope = "member", Target = "~F:Warcraft.Model.Building.Type")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.IGameModel.NewBuilding")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.Unit.TargetLocked")]
