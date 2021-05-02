@@ -47,6 +47,15 @@
         }
 
         /// <summary>
+        /// Sets the object's position.
+        /// </summary>
+        /// <param name="point">New position.</param>
+        public void SetCenterPositon(Point point)
+        {
+            this.Position = new Point(point.X - (this.Hitbox.Width / 1), point.Y - (this.Hitbox.Height / 1));
+        }
+
+        /// <summary>
         /// Changes the object's position by a given amount.
         /// </summary>
         /// <param name="delta">Point stroring the XY displacements.</param>
