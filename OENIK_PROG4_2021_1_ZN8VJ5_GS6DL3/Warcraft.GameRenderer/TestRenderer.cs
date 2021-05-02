@@ -195,6 +195,28 @@
 
             return dg;
         }
+
+        /// <summary>
+        /// Displays the new building with hitbox.
+        /// Hitbox is red when the new building collides with somehing.
+        /// </summary>
+        /// <param name="collision">Bool indicating collison.</param>
+        /// <returns>Drawing group containing the new building and it's hitbox.</returns>
+        public Drawing DisplayNewBuilding(bool collision)
+        {
+            DrawingGroup dg = new DrawingGroup();
+
+            GeometryDrawing geometry = this.buildingToGeometry[this.model.NewBuilding.AnimationString];
+            geometry.Geometry.Transform = new TranslateTransform(this.model.NewBuilding.Hitbox.X + Config.HitboxExtension, this.model.NewBuilding.Hitbox.Y + Config.HitboxExtension);
+            dg.Children.Add(geometry);
+
+            // Hitbox
+            GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(collision ? Brushes.Red : Brushes.Black, 2),
+                new RectangleGeometry(new Rect(this.model.NewBuilding.Hitbox.X, this.model.NewBuilding.Hitbox.Y, this.model.NewBuilding.Hitbox.Width, this.model.NewBuilding.Hitbox.Height)));
+            dg.Children.Add(hitboxGeometry);
+
             return dg;
         }
 
