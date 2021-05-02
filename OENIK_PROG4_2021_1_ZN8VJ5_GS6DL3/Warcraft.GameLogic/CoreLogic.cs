@@ -60,6 +60,19 @@
         }
 
         /// <summary>
+        /// Inits a new building that will be added to the game scene.
+        /// For now the building has extended hitbox.
+        /// </summary>
+        /// <param name="description">Building type.</param>
+        /// <param name="cursorPos">Cursor position that will mark the building's pos.</param>
+        public void InitNewBuilding(string description, Point cursorPos)
+        {
+            this.model.NewBuilding = this.buildingFactory.Create(description, cursorPos.X, cursorPos.Y, false);
+            this.model.NewBuilding.Hitbox.Width += 2 * Config.HitboxExtension;
+            this.model.NewBuilding.Hitbox.Height += 2 * Config.HitboxExtension;
+        }
+
+        /// <summary>
         /// Selects an Object, Subject, or a Point depoending on the cursorPos.
         /// </summary>
         /// <param name="cursorPos">User's cursor position.</param>
@@ -88,7 +101,14 @@
             }
             else
             {
-                this.model.SelectedPoint = cursorPos;
+                if (this.model.NewBuilding != null)
+                {
+                    this.TryPlaceBuilding();
+                }
+                else
+                {
+                    this.model.SelectedPoint = cursorPos;
+                }
             }
         }
 
@@ -164,6 +184,60 @@
             }
         }
 
+        /// <summary>
+        /// Checks if the new building colledies with somehing. The building can be added to the sceene only if
+        /// it doesn't collide with anything.
+        /// </summary>
+        /// <returns>Bool indicating collision.</returns>
+        public bool NewBuildingCollides()
+        {
+            foreach (Building building in this.model.Buildings)
+            {
+                if (this.model.NewBuilding.Collides(building))
+                {
+                    return true;
+                }
+            }
+
+            foreach (Unit unit in this.model.Units)
+            {
+                if (this.model.NewBuilding.Collides(unit))
+                {
+                    return true;
+                }
+            }
+
+            foreach (GoldMine mine in this.model.GoldMines)
+            {
+                if (this.model.NewBuilding.Collides(mine))
+                {
+                    return true;
+                }
+            }
+
+            foreach (CombatObject tree in this.model.LumberMines)
+            {
+                if (this.model.NewBuilding.Collides(tree))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void TryPlaceBuilding()
+        {
+            if (!this.NewBuildingCollides())
+            {
+                this.model.NewBuilding.Hitbox.X += Config.HitboxExtension;
+                this.model.NewBuilding.Hitbox.Y += Config.HitboxExtension;
+                this.model.NewBuilding.Hitbox.Width -= 2 * Config.HitboxExtension;
+                this.model.NewBuilding.Hitbox.Height -= 2 * Config.HitboxExtension;
+                this.model.Buildings.Add(this.model.NewBuilding);
+                this.model.NewBuilding = null;
+            }
+        }
         private void ClearSelections()
         {
             this.model.SelectedSubject = null;
