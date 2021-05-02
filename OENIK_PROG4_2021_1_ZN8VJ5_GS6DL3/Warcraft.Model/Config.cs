@@ -18,7 +18,7 @@
         public static int Speed = 2;
         public static int BorderWidth = 10;
         public static double DefaultThreshold = 0.8;
-        public static double AggroRange = 100;
+        public static double AggroRange = 20;
         public static double DistanceThreshold = 5;
         public static double Zoom = 1.3;
         public static int HitboxExtension = 20;
