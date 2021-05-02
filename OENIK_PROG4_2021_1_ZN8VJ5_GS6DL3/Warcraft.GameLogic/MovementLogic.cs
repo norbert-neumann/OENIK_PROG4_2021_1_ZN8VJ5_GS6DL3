@@ -195,15 +195,42 @@
 
         private void UpdateFacing(Unit unit, Point delta)
         {
-            if (delta == new Point(0, 0)) unit.Facing = DirectionEnum.South;
-            else if (delta == new Point(0, -1)) unit.Facing = DirectionEnum.North;
-            else if (delta == new Point(0, 1)) unit.Facing = DirectionEnum.South;
-            else if (delta == new Point(1, 0)) unit.Facing = DirectionEnum.East;
-            else if (delta == new Point(-1, 0)) unit.Facing = DirectionEnum.West;
-            else if (delta == new Point(1, -1)) unit.Facing = DirectionEnum.NorthEast;
-            else if (delta == new Point(1, 1)) unit.Facing = DirectionEnum.SouthEast;
-            else if (delta == new Point(-1, 1)) unit.Facing = DirectionEnum.SouthWest;
-            else if (delta == new Point(-1, -1)) unit.Facing = DirectionEnum.NorthWest;
+            if (delta == new Point(0, 0))
+            {
+                unit.Facing = DirectionEnum.South;
+            }
+            else if (delta == new Point(0, -1))
+            {
+                unit.Facing = DirectionEnum.North;
+            }
+            else if (delta == new Point(0, 1))
+            {
+                unit.Facing = DirectionEnum.South;
+            }
+            else if (delta == new Point(1, 0))
+            {
+                unit.Facing = DirectionEnum.East;
+            }
+            else if (delta == new Point(-1, 0))
+            {
+                unit.Facing = DirectionEnum.West;
+            }
+            else if (delta == new Point(1, -1))
+            {
+                unit.Facing = DirectionEnum.NorthEast;
+            }
+            else if (delta == new Point(1, 1))
+            {
+                unit.Facing = DirectionEnum.SouthEast;
+            }
+            else if (delta == new Point(-1, 1))
+            {
+                unit.Facing = DirectionEnum.SouthWest;
+            }
+            else if (delta == new Point(-1, -1))
+            {
+                unit.Facing = DirectionEnum.NorthWest;
+            }
         }
 
         private GameObject FindCollision(Unit unit)
