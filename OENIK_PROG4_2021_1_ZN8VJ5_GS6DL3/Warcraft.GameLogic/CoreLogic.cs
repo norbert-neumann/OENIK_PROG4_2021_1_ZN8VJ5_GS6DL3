@@ -17,6 +17,8 @@
         private MovementLogic movementLogic;
         private AnimationLogic animationLogic;
         private PathfindingLogic pathfindingLogic;
+        private BuildingFactory buildingFactory;
+        private UnitFactory unitFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoreLogic"/> class.
@@ -33,6 +35,8 @@
             this.movementLogic = movementLogic;
             this.animationLogic = animationLogic;
             this.pathfindingLogic = pathfindingLogic;
+            this.buildingFactory = new BuildingFactory(this.model);
+            this.unitFactory = new UnitFactory(this.model);
         }
 
         // Run before rendering
