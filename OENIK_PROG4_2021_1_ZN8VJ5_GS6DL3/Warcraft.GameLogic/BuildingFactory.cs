@@ -30,8 +30,9 @@
         /// <param name="description">Type and over of the building.</param>
         /// <param name="x">X pos.</param>
         /// <param name="y">Y pos.</param>
+        /// <param name="add">Indicaties wheter the building shoud be added to the model right away.</param>
         /// <returns>The newly created buolding.</returns>
-        public Building Create(string description, int x, int y)
+        public Building Create(string description, int x, int y, bool add)
         {
             string[] components = description.ToUpper().Split(' ');
             OwnerEnum owner;
@@ -76,7 +77,10 @@
 
             Building building = new Building(owner, buildingType, race, x, y, width, height);
 
-            this.model.Buildings.Add(building);
+            if (add)
+            {
+                this.model.Buildings.Add(building);
+            }
 
             return building;
         }
