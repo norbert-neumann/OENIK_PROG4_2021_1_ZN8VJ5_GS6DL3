@@ -95,8 +95,9 @@
         /// <inheritdoc/>
         public void MineGold()
         {
-            if (this.ValidateCommand())
+            if (this.ValidateCommand() && this.model.SelectedObject is GoldMine)
             {
+                this.ResetCurrentCommand();
                 this.movementLogic.Routines.Add(
                     this.model.SelectedSubject,
                     new GoldMiningRoutine(
@@ -113,8 +114,10 @@
         /// <inheritdoc/>
         public void HarvestLumber()
         {
-            if (this.ValidateCommand())
+            // TODO
+            if (this.ValidateCommand() && this.model.SelectedObject is CombatObject)
             {
+                this.ResetCurrentCommand();
                 this.movementLogic.Routines.Add(
                     this.model.SelectedSubject,
                     new HarvestLumberRoutine(
