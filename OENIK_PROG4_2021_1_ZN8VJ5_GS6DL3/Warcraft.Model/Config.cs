@@ -21,6 +21,7 @@
         public static double AggroRange = 100;
         public static double DistanceThreshold = 5;
         public static double Zoom = 1.3;
+        public static int HitboxExtension = 20;
 
         public static string AsString(UnitStateEnum state)
         {
