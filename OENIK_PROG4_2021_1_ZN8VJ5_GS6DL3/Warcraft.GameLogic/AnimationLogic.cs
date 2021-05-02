@@ -30,7 +30,7 @@
             unit.AnimationIndex++;
             if (unit.AnimationIndex > (unit.UnitState == UnitStateEnum.WalkingWithGold ? 3 : 4))
             {
-                ResetAnimationIndex(unit);
+                this.ResetAnimationIndex(unit);
             }
         }
 
