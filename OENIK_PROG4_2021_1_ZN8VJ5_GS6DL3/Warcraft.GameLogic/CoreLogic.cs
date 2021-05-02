@@ -145,6 +145,7 @@
                         TimeSpan.FromSeconds(3),
                         this.model.PlayerHall,
                         this.model.SelectedObject as CombatObject));
+                this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
             }
         }
