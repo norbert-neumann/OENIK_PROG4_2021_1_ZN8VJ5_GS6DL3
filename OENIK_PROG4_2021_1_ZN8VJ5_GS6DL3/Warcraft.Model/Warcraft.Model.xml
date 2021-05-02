@@ -24,7 +24,7 @@
             This string tells the renderer what to display.
             </summary>
         </member>
-        <member name="F:Warcraft.Model.Building.type">
+        <member name="F:Warcraft.Model.Building.Type">
             <summary>
             Building type.
             </summary>
@@ -182,6 +182,9 @@
             <param name="width">Width of hte game.</param>
             <param name="height">Height of the game.</param>
         </member>
+        <member name="P:Warcraft.Model.GameModel.NewBuilding">
+            <inheritdoc/>
+        </member>
         <member name="P:Warcraft.Model.GameModel.SelectedObject">
             <summary>
             A user action will be executed in this object.
@@ -329,6 +332,12 @@
             </summary>
             <param name="newPosition">The game object's new position.</param>
         </member>
+        <member name="M:Warcraft.Model.GameObject.SetCenterPositon(System.Drawing.Point)">
+            <summary>
+            Sets the object's position.
+            </summary>
+            <param name="point">New position.</param>
+        </member>
         <member name="M:Warcraft.Model.GameObject.ChangePosition(System.Drawing.Point)">
             <summary>
             Changes the object's position by a given amount.
@@ -423,6 +432,11 @@
         <member name="P:Warcraft.Model.IGameModel.SelectedPoint">
             <summary>
             A user action will be executed on this point.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.NewBuilding">
+            <summary>
+            New building that will be added to the scene.
             </summary>
         </member>
         <member name="P:Warcraft.Model.IGameModel.PlayerHall">

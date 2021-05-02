@@ -21,5 +21,13 @@
             </summary>
             <returns>Drawing group containing the elements above.</returns>
         </member>
+        <member name="M:Warcraft.Renderer.TestRenderer.DisplayNewBuilding(System.Boolean)">
+            <summary>
+            Displays the new building with hitbox.
+            Hitbox is red when the new building collides with somehing.
+            </summary>
+            <param name="collision">Bool indicating collison.</param>
+            <returns>Drawing group containing the new building and it's hitbox.</returns>
+        </member>
     </members>
 </doc>

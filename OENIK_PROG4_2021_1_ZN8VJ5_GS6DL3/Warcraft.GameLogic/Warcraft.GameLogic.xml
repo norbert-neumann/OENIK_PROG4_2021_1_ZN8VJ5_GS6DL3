@@ -49,13 +49,14 @@
             </summary>
             <param name="model">Model to operate on.</param>
         </member>
-        <member name="M:Warcraft.GameLogic.BuildingFactory.Create(System.String,System.Int32,System.Int32)">
+        <member name="M:Warcraft.GameLogic.BuildingFactory.Create(System.String,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Creates a specific building described by some parameters.
             </summary>
             <param name="description">Type and over of the building.</param>
             <param name="x">X pos.</param>
             <param name="y">Y pos.</param>
+            <param name="add">Indicaties wheter the building shoud be added to the model right away.</param>
             <returns>The newly created buolding.</returns>
         </member>
         <member name="T:Warcraft.GameLogic.CombatLogic">
@@ -105,6 +106,14 @@
             Updates each unit's sprite.
             </summary>
         </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.InitNewBuilding(System.String,System.Drawing.Point)">
+            <summary>
+            Inits a new building that will be added to the game scene.
+            For now the building has extended hitbox.
+            </summary>
+            <param name="description">Building type.</param>
+            <param name="cursorPos">Cursor position that will mark the building's pos.</param>
+        </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.Select(System.Drawing.Point)">
             <summary>
             Selects an Object, Subject, or a Point depoending on the cursorPos.
@@ -117,6 +126,12 @@
         <member name="M:Warcraft.GameLogic.CoreLogic.HarvestLumber">
             <inheritdoc/>
         </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.CreateUnit(System.String)">
+            <summary>
+            Creates a new unit.
+            </summary>
+            <param name="description">Unit type description.</param>
+        </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.PatrollUnit">
             <inheritdoc/>
         </member>
@@ -125,6 +140,13 @@
         </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.GoTo">
             <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.GameLogic.CoreLogic.NewBuildingCollides">
+            <summary>
+            Checks if the new building colledies with somehing. The building can be added to the sceene only if
+            it doesn't collide with anything.
+            </summary>
+            <returns>Bool indicating collision.</returns>
         </member>
         <member name="T:Warcraft.GameLogic.GoldMiningRoutine">
             <summary>
@@ -274,6 +296,20 @@
             <param name="unit">Unit to find a path for.</param>
             <param name="collison">Unit collides with this gameObject.</param>
             <param name="trajectory">The units trajectory.</param>
+        </member>
+        <member name="T:Warcraft.GameLogic.MapBuilder">
+            <summary>
+            Inits GameModel based on the screen resolution.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.MapBuilder.Build(Warcraft.Model.GameModel,System.Int32,System.Int32)">
+            <summary>
+            Fills the given gamemodel with harcoded buildings, units, and mines.
+            </summary>
+            <param name="model">GameModel to fill.</param>
+            <param name="screenWidth">Screen widht.</param>
+            <param name="screenHeight">Screen height.</param>
+            <returns>True if the screen's resolution is big enough.</returns>
         </member>
         <member name="T:Warcraft.GameLogic.MineFactory">
             <summary>
