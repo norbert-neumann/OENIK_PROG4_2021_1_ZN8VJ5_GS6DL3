@@ -19,7 +19,7 @@
         /// <summary>
         /// Building type.
         /// </summary>
-        private BuildingEnum type;
+        public BuildingEnum Type;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Building"/> class.
@@ -35,7 +35,7 @@
             : base(x, y, width, height)
         {
             this.Owner = owner;
-            this.type = type;
+            this.Type = type;
             this.Race = race;
 
             switch (race)
@@ -101,7 +101,7 @@
                     break;
             }
 
-            switch (this.type)
+            switch (this.Type)
             {
                 case BuildingEnum.Hall:
                     sb.Append("H");
