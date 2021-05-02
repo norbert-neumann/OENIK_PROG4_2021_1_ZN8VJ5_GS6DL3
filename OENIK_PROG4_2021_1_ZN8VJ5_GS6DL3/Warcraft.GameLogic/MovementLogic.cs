@@ -80,6 +80,7 @@
                 if (unit.Path.TryDequeue(out newTarget))
                 {
                     unit.Target = newTarget;
+                    unit.TargetLocked = false;
                 }
                 else if (routines.ContainsKey(unit))
                 {
@@ -119,6 +120,8 @@
 
                 // Reset target
                 unit.ResetTarget();
+
+                unit.TargetLocked = true;
 
                 // Movetorawrds with 0 threshhold
                 this.MoveTowardTarget(unit, Config.Speed, 0);
