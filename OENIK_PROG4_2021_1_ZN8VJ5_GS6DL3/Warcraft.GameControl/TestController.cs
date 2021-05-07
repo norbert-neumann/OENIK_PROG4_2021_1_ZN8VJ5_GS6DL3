@@ -58,11 +58,14 @@
                 this.timer.Start();
 
                 this.animationTimer = new DispatcherTimer();
-                this.animationTimer.Interval = TimeSpan.FromMilliseconds(90);
+                this.animationTimer.Interval = TimeSpan.FromMilliseconds(70);
                 this.animationTimer.Tick += this.AnimationTimer_Tick;
                 this.animationTimer.Start();
 
-                this.PreviewMouseLeftButtonDown += LeftMouseClicled;
+                this.enemyTimer = new DispatcherTimer();
+                this.enemyTimer.Interval = TimeSpan.FromSeconds(3);
+                this.enemyTimer.Tick += this.EnemyTimer_Tick;
+                this.enemyTimer.Start();
             }
 
             this.InvalidateVisual();
