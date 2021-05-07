@@ -17,14 +17,14 @@
         public RaceEnum Race;
 
         /// <summary>
+        /// Unit's current health.
+        /// </summary>
+        public int Health = 100;
+
+        /// <summary>
         /// Unit's shield.
         /// </summary>
         protected int shield = 0;
-
-        /// <summary>
-        /// Unit's current health.
-        /// </summary>
-        protected int health = 100;
 
         /// <summary>
         /// Unit's maximum health.
