@@ -91,11 +91,19 @@
         /// <param name="y">Y pos.</param>
         /// <param name="width">Hitbox width.</param>
         /// <param name="height">Hitbox height.</param>
-        public Unit(OwnerEnum owner, RaceEnum race, UnitTypeEnum unitType, int x, int y, int width, int height)
+        /// <param name="health">Unit's initial health.</param>
+        /// <param name="shield">Unit's shield.</param>
+        /// <param name="attack">Unit's attack damage.</param>
+        public Unit(OwnerEnum owner, RaceEnum race, UnitTypeEnum unitType, int x, int y, int width, int height, int health, int shield, int attack)
             : base(x, y, width, height)
         {
             this.Owner = owner;
             this.TargetLocked = false;
+
+            this.maxHealth = health;
+            this.Health = health;
+            this.shield = shield;
+            this.Attack = attack;
 
             switch (race)
             {
