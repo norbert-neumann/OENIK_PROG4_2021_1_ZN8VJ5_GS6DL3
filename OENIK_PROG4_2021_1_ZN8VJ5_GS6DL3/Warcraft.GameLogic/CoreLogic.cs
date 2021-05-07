@@ -114,36 +114,45 @@
         /// <param name="cursorPos">User's cursor position.</param>
         public void Select(Point cursorPos)
         {
-            GameObject clickedObject = this.FindGameObject(cursorPos);
+            Icon clickedIcon = this.FindIcon(cursorPos);
 
-            if (clickedObject != null)
+            if (clickedIcon != null)
             {
-                if (clickedObject is Unit)
-                {
-                    Unit clickedUnit = clickedObject as Unit;
-                    if (clickedUnit.Owner == OwnerEnum.PLAYER)
-                    {
-                        this.model.SelectedSubject = clickedUnit;
-                    }
-                    else
-                    {
-                        this.model.SelectedObject = clickedUnit;
-                    }
-                }
-                else
-                {
-                    this.model.SelectedObject = clickedObject;
-                }
+                this.ExecuteCommand(clickedIcon);
             }
             else
             {
-                if (this.model.NewBuilding != null)
+                GameObject clickedObject = this.FindGameObject(cursorPos);
+
+                if (clickedObject != null)
                 {
-                    this.TryPlaceBuilding();
+                    if (clickedObject is Unit)
+                    {
+                        Unit clickedUnit = clickedObject as Unit;
+                        if (clickedUnit.Owner == OwnerEnum.PLAYER)
+                        {
+                            this.model.SelectedSubject = clickedUnit;
+                        }
+                        else
+                        {
+                            this.model.SelectedObject = clickedUnit;
+                        }
+                    }
+                    else
+                    {
+                        this.model.SelectedObject = clickedObject;
+                    }
                 }
                 else
                 {
-                    this.model.SelectedPoint = cursorPos;
+                    if (this.model.NewBuilding != null)
+                    {
+                        this.TryPlaceBuilding();
+                    }
+                    else
+                    {
+                        this.model.SelectedPoint = cursorPos;
+                    }
                 }
             }
         }
