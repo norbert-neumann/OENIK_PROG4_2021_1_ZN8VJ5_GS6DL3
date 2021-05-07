@@ -87,7 +87,8 @@
                 }
             }
 
-            if (this.model.SelectedSubject != null)
+            if (this.model.SelectedObject is Building && (this.model.SelectedObject as Building).Type == BuildingEnum.Hall
+                && (this.model.SelectedObject as Building).Owner == OwnerEnum.PLAYER)
             {
                 if (this.model.PlayerRace == RaceEnum.Human)
                 {
