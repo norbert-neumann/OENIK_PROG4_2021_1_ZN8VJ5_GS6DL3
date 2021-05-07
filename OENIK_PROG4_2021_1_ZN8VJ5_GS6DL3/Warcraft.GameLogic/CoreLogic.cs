@@ -318,6 +318,21 @@
                 this.model.NewBuilding.Hitbox.Width -= 2 * Config.HitboxExtension;
                 this.model.NewBuilding.Hitbox.Height -= 2 * Config.HitboxExtension;
                 this.model.Buildings.Add(this.model.NewBuilding);
+
+                switch (this.model.NewBuilding.Type)
+                {
+                    case BuildingEnum.Farm:
+                        this.unitFactory.IncreaseBaseStats(10, 0, 0);
+                        this.model.AddGold(OwnerEnum.PLAYER, -50);
+                        this.model.AddLumber(OwnerEnum.PLAYER, -100);
+                        break;
+                    case BuildingEnum.Barracks:
+                        this.unitFactory.IncreaseBaseStats(0, 5, 1);
+                        this.model.AddGold(OwnerEnum.PLAYER, -100);
+                        this.model.AddLumber(OwnerEnum.PLAYER, -200);
+                        break;
+                }
+
                 this.model.NewBuilding = null;
             }
         }
