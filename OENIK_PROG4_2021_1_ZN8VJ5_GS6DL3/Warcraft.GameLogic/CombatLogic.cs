@@ -125,13 +125,13 @@
                 }
             }
 
-            /*foreach (Building buildng in this.model.Buildings)
+            foreach (Building buildng in this.model.Buildings)
             {
-                if (self.Owner != buildng.Owner && self.Distance(buildng) <= Config.AggroRange)
+                if (self.Owner != buildng.Owner && self.Distance(buildng) <= Config.AggroRange * 2)
                 {
                     return buildng;
                 }
-            }*/
+            }
 
             return null;
         }
