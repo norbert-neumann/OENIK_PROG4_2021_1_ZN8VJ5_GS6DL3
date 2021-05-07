@@ -13,14 +13,36 @@
     public class UnitFactory
     {
         private GameModel model;
+        private int baseHealth;
+        private int baseShield;
+        private int baseAttack;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitFactory"/> class.
         /// </summary>
         /// <param name="model">Game model to operate on.</param>
-        public UnitFactory(GameModel model)
+        /// <param name="baseHealth">Initial base health.</param>
+        /// <param name="baseShield">Initial base shield.</param>
+        /// <param name="baseAttack">Initial base attack.</param>
+        public UnitFactory(GameModel model, int baseHealth, int baseShield, int baseAttack)
         {
             this.model = model;
+            this.baseHealth = baseHealth;
+            this.baseShield = baseShield;
+            this.baseAttack = baseAttack;
+        }
+
+        /// <summary>
+        /// Increases the base stats.
+        /// </summary>
+        /// <param name="dHealth">Base health delta.</param>
+        /// <param name="dShield">Base shield delta.</param>
+        /// <param name="dAttack">Base attack delta.</param>
+        public void IncreaseBaseStats(int dHealth, int dShield, int dAttack)
+        {
+            this.baseHealth += dHealth;
+            this.baseShield += dShield;
+            this.baseAttack += dAttack;
         }
 
         /// <summary>
@@ -72,10 +94,11 @@
             width = (int)(width * Config.Zoom);
             height = (int)(height * Config.Zoom);
 
-            Unit unit = new Unit(owner, race, unitType, x, y, width, height);
+            Unit unit = new Unit(owner, race, unitType, x, y, width, height, this.baseHealth, this.baseShield, this.baseAttack);
             unit.InIdle = true;
             unit.Path = new Queue<System.Drawing.Point>();
             unit.Target = unit.Position;
+            unit.Health = this.baseHealth;
 
             this.model.Units.Add(unit);
 
