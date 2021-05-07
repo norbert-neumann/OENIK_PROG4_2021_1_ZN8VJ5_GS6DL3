@@ -57,14 +57,14 @@
         /// <summary>
         /// Current capacity of the mine.
         /// </summary>
-        private int CurrentCapacity { get; set; }
+        public int CurrentCapacity { get; set; }
 
         /// <summary>
         /// Takes a certain amount of resorces out of the mine.
         /// </summary>
         /// <param name="amount">Amount of resources taken.</param>
         /// <returns>The amount of resources acutally taken.</returns>
-        public int Take(int amount)
+        public bool Take(int amount)
         {
             if (this.CurrentCapacity >= amount)
             {
@@ -72,11 +72,9 @@
             }
             else
             {
-                amount = this.CurrentCapacity;
                 this.CurrentCapacity = 0;
             }
 
-            return amount;
             return this.CurrentCapacity > 0;
         }
 
