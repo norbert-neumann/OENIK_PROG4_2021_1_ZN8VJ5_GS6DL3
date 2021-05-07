@@ -78,9 +78,34 @@
         /// <param name="cursorPos">Cursor position that will mark the building's pos.</param>
         public void InitNewBuilding(string description, Point cursorPos)
         {
-            this.model.NewBuilding = this.buildingFactory.Create(description, cursorPos.X, cursorPos.Y, false);
-            this.model.NewBuilding.Hitbox.Width += 2 * Config.HitboxExtension;
-            this.model.NewBuilding.Hitbox.Height += 2 * Config.HitboxExtension;
+            if (description.Contains("farm"))
+            {
+                if (this.model.PlayerGold >= 50 && this.model.PlayerLumber >= 100)
+                {
+                    this.model.NewBuilding = this.buildingFactory.Create(description, cursorPos.X, cursorPos.Y, false);
+                    this.model.NewBuilding.Hitbox.Width += 2 * Config.HitboxExtension;
+                    this.model.NewBuilding.Hitbox.Height += 2 * Config.HitboxExtension;
+                }
+                else
+                {
+                    this.model.CommandResult = "Cost: 50g 100l";
+                }
+
+            }
+            else if (description.Contains("barrack"))
+            {
+                if (this.model.PlayerGold >= 100 && this.model.PlayerLumber >= 200)
+                {
+                    this.model.NewBuilding = this.buildingFactory.Create(description, cursorPos.X, cursorPos.Y, false);
+                    this.model.NewBuilding.Hitbox.Width += 2 * Config.HitboxExtension;
+                    this.model.NewBuilding.Hitbox.Height += 2 * Config.HitboxExtension;
+                }
+                else
+                {
+                    this.model.CommandResult = "Cost: 100g 200l";
+                }
+
+            }
         }
 
         /// <summary>
