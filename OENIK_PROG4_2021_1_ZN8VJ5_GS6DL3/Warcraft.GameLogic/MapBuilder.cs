@@ -26,12 +26,11 @@
             model.SelectedPoint = new System.Drawing.Point(-1, -1);
             BuildingFactory buildingFactory = new BuildingFactory(model);
             MineFactory mineFactory = new MineFactory(model);
-            UnitFactory unitFactory = new UnitFactory(model);
+            UnitFactory unitFactory = new UnitFactory(model, 100, 0, 1);
 
             model.EnemyHall = buildingFactory.Create("enemy orc hall", 50, 50, true);
             buildingFactory.Create("enemy orc farm", 50, 450, true);
             buildingFactory.Create("enemy orc barrack", 50, 250, true);
-            Unit u = unitFactory.Create("enemy orc peasant", 0, 0);
 
             int centerMineLevel = (screenHeight / 2) - 0;
 
@@ -52,11 +51,13 @@
                 startPosY += treeSize + (2 * space);
             }
 
-            mineFactory.Create("gold 100", 250, 450);
-            mineFactory.Create("gold 100", screenWidth - 50 + delta - 300, screenHeight - 50 + delta + 10);
+            mineFactory.Create("gold 1600", 250, 450);
+            mineFactory.Create("gold 1000", screenWidth - 50 + delta - 300, screenHeight - 50 + delta + 10);
 
             model.PlayerHall = buildingFactory.Create("player human hall", screenWidth - 50 + delta, screenHeight - 50 + delta, true);
             unitFactory.Create("player human peasant", 700, 700);
+            unitFactory.Create("player human peasant", 700, 750);
+            unitFactory.Create("player human peasant", 700, 800);
 
             return true;
         }
