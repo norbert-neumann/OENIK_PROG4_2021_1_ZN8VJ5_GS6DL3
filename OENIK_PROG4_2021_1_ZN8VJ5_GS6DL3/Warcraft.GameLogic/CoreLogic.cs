@@ -195,15 +195,26 @@
             }
         }
 
+        /// POTENTIAL BUG HERE: chech selected object is null
         /// <summary>
         /// Creates a new unit.
         /// </summary>
         /// <param name="description">Unit type description.</param>
         public void CreateUnit(string description)
         {
-            System.Drawing.Point positon = new Point(this.model.PlayerHall.Hitbox.X, this.model.PlayerHall.Hitbox.Y);
-            positon.Y += this.model.PlayerHall.Hitbox.Height / 2;
-            this.unitFactory.Create(description, positon.X - 25, positon.Y);
+            if (this.model.PlayerGold >= 50 && this.model.PlayerLumber >= 10)
+            {
+                this.model.AddGold(OwnerEnum.PLAYER, -50);
+                this.model.AddLumber(OwnerEnum.PLAYER, -10);
+
+                System.Drawing.Point positon = new Point(this.model.SelectedObject.Hitbox.X, this.model.SelectedObject.Hitbox.Y);
+                positon.Y += this.model.SelectedObject.Hitbox.Height / 2;
+                this.unitFactory.Create(description, positon.X - 25, positon.Y);
+            }
+            else
+            {
+                this.model.CommandResult = "Cost: 50g 10l";
+            }
         }
 
         /// <inheritdoc/>
