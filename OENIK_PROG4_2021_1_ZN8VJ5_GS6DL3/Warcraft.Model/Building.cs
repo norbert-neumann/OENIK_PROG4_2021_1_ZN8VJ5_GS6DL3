@@ -118,5 +118,14 @@
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// This will be shown on the hud.
+        /// </summary>
+        /// <returns>The building's base stats.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Health: {this.Health}/{this.maxHealth} Shield: {this.shield}");
+        }
     }
 }
