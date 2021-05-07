@@ -11,6 +11,10 @@
     public class GameModel : IGameModel
     {
         /// <summary>
+        /// Game time.
+        /// </summary>
+        public Stopwatch GameTime;
+        /// <summary>
         /// Initializes a new instance of the <see cref="GameModel"/> class.
         /// </summary>
         /// <param name="width">Width of hte game.</param>
@@ -27,6 +31,10 @@
             this.UnitsToRemove = new List<Unit>();
             this.TreesToRemove = new List<CombatObject>();
             this.GoldMinesToRemove = new List<GoldMine>();
+            this.GameTime = new Stopwatch();
+
+            this.GameTime.Start();
+            this.BestGameTime = TimeSpan.FromMinutes(10);
         }
 
         /// <inheritdoc/>
