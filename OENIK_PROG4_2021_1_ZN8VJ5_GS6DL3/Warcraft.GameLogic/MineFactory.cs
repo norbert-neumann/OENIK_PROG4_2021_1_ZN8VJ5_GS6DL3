@@ -58,7 +58,7 @@
                 width = (int)(width * Config.Zoom);
                 height = (int)(height * Config.Zoom);
 
-                CombatObject tree = new CombatObject(x, y, width, height);
+                CombatObject tree = new CombatObject(x, y, width, height, 100);
                 this.model.LumberMines.Add(tree);
 
                 return tree;
