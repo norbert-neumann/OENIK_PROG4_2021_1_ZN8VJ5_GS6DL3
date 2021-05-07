@@ -4,6 +4,29 @@
         <name>Warcraft.GameRenderer</name>
     </assembly>
     <members>
+        <member name="T:Warcraft.GameRenderer.HUDRenderer">
+            <summary>
+            Renders the HUD.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameRenderer.HUDRenderer.#ctor(Warcraft.Model.GameModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameRenderer.HUDRenderer"/> class.
+            </summary>
+            <param name="model">Game model to operate on.</param>
+        </member>
+        <member name="M:Warcraft.GameRenderer.HUDRenderer.BuildDrawing">
+            <summary>
+            Adds necessary icons to HUD.
+            </summary>
+            <returns>Drawing containing the needed icon images.</returns>
+        </member>
+        <member name="M:Warcraft.GameRenderer.HUDRenderer.AddText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draws all hud information to the given context.
+            </summary>
+            <param name="ctx">Context to operate on.</param>
+        </member>
         <member name="T:Warcraft.Renderer.TestRenderer">
             <summary>
             Game scene renderer.

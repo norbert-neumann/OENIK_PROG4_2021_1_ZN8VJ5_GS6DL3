@@ -4,16 +4,6 @@
         <name>Warcraft.Model</name>
     </assembly>
     <members>
-        <member name="T:Warcraft.Model.ActiveMine">
-            <summary>
-            Represents an active mine. The difference between this and it's parent, is that this mine can tell if it's currently being used.
-            </summary>
-        </member>
-        <member name="P:Warcraft.Model.ActiveMine.IsUsed">
-            <summary>
-            Returns true if the mine is being used.
-            </summary>
-        </member>
         <member name="T:Warcraft.Model.Building">
             <summary>
             Represents a building. Some unit can repair buildings nad heal them. This class extends CombatObject with this functionality.
@@ -29,7 +19,7 @@
             Building type.
             </summary>
         </member>
-        <member name="M:Warcraft.Model.Building.#ctor(Warcraft.Model.OwnerEnum,Warcraft.Model.BuildingEnum,Warcraft.Model.RaceEnum,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Warcraft.Model.Building.#ctor(Warcraft.Model.OwnerEnum,Warcraft.Model.BuildingEnum,Warcraft.Model.RaceEnum,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.Model.Building"/> class.
             </summary>
@@ -40,6 +30,7 @@
             <param name="y">Y position of building.</param>
             <param name="width">Width of the building's hitbox.</param>
             <param name="height">Height of the building's hitbox.</param>
+            <param name="health">Initial health.</param>
         </member>
         <member name="M:Warcraft.Model.Building.AcceptHeal(System.Int32)">
             <summary>
@@ -52,6 +43,12 @@
             Returns the state string that is used for getting the proper sprite.
             </summary>
             <returns>The building's state string.</returns>
+        </member>
+        <member name="M:Warcraft.Model.Building.ToString">
+            <summary>
+            This will be shown on the hud.
+            </summary>
+            <returns>The building's base stats.</returns>
         </member>
         <member name="T:Warcraft.Model.BuildingEnum">
             <summary>
@@ -83,14 +80,14 @@
             Race of the unit.
             </summary>
         </member>
+        <member name="F:Warcraft.Model.CombatObject.Health">
+            <summary>
+            Unit's current health.
+            </summary>
+        </member>
         <member name="F:Warcraft.Model.CombatObject.shield">
             <summary>
             Unit's shield.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.CombatObject.health">
-            <summary>
-            Unit's current health.
             </summary>
         </member>
         <member name="F:Warcraft.Model.CombatObject.maxHealth">
@@ -107,6 +104,16 @@
             <param name="w">Width of the hitbox.</param>
             <param name="h">Height of the hitbox.</param>
         </member>
+        <member name="M:Warcraft.Model.CombatObject.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.CombatObject"/> class.
+            </summary>
+            <param name="x">X position of the hitbox.</param>
+            <param name="y">Y positon of the hitbox.</param>
+            <param name="w">Width of the hitbox.</param>
+            <param name="h">Height of the hitbox.</param>
+            <param name="healt">Initial health.</param>
+        </member>
         <member name="P:Warcraft.Model.CombatObject.Owner">
             <summary>
             Enum indicating this game object's owner.
@@ -119,11 +126,68 @@
             <param name="amount">Amount of damage taken.</param>
             <returns>True if the damage taken was fatal.</returns>
         </member>
+        <member name="M:Warcraft.Model.CombatObject.ToString">
+            <summary>
+            This will be only used when the player clicks on a tree.
+            In that case we need to show it's current and max capacity.
+            </summary>
+            <returns>String showing the tree's current and max capacity.</returns>
+        </member>
         <member name="T:Warcraft.Model.Config">
             <summary>
             Static class containg configurable constants.
             Most fileds will be moved to a specific logic class so I wont document these yet.
             </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.Speed">
+            <summary>
+            Amount of pixels a unit should move in one time step.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.BorderWidth">
+            <summary>
+            When navigating around a gameobject we need to specify how close we can get to it.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.DefaultThreshold">
+            <summary>
+            This threshold decides when to move in both X and Y directions.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.AggroRange">
+            <summary>
+            Enemy units "see" eachother within this distance.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.DistanceThreshold">
+            <summary>
+            Idk what is this.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.Zoom">
+            <summary>
+            All images are zoomed by this rate (except trees, they are a little bigger then the other images for some reason).
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.Config.HitboxExtension">
+            <summary>
+            For pathfinding to operate we need to have a minimum space betweeen builings.
+            During building placement the building's hitbox is extended by this much to guarantee that.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.Config.AsString(Warcraft.Model.UnitStateEnum)">
+            <summary>
+            Converts a unit state enum to it's "AnimationString" version used by the renderer.
+            </summary>
+            <param name="state">Unit state to convert.</param>
+            <returns>"AnimationString" version of the given enum.</returns>
+        </member>
+        <member name="M:Warcraft.Model.Config.GetAnimationLength(Warcraft.Model.UnitStateEnum)">
+            <summary>
+            Returns a unit state's animation length.
+            </summary>
+            <param name="state">State.</param>
+            <returns>Given state's animation length.</returns>
         </member>
         <member name="T:Warcraft.Model.DirectionEnum">
             <summary>
@@ -175,12 +239,38 @@
             Storing a game state.
             </summary>
         </member>
+        <member name="F:Warcraft.Model.GameModel.Icons">
+            <summary>
+            List of icons that are present in the hud.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.GameTime">
+            <summary>
+            Game time.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.BestGameTime">
+            <summary>
+            Best game time. Possibly wont be used.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.GameModel.CommandResult">
+            <summary>
+            Result of the last executed command.
+            </summary>
+        </member>
         <member name="M:Warcraft.Model.GameModel.#ctor(System.Double,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.Model.GameModel"/> class.
             </summary>
             <param name="width">Width of hte game.</param>
             <param name="height">Height of the game.</param>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.PlayerRace">
+            <inheritdoc/>
+        </member>
+        <member name="P:Warcraft.Model.GameModel.EnemyRace">
+            <inheritdoc/>
         </member>
         <member name="P:Warcraft.Model.GameModel.NewBuilding">
             <inheritdoc/>
@@ -310,6 +400,21 @@
             <param name="unit">Closest lumber mine to this unit.</param>
             <returns>Closeset lumber mine.</returns>
         </member>
+        <member name="M:Warcraft.Model.GameModel.GetClosestPlayerUnit(Warcraft.Model.GameObject)">
+            <summary>
+            Returns the closeset player owned unit to the given parameter.
+            </summary>
+            <param name="gameObject">Closest to this object.</param>
+            <returns>Closeset player owned unit.</returns>
+        </member>
+        <member name="M:Warcraft.Model.GameModel.FindMineWithMinDistance(Warcraft.Model.Unit,System.Collections.Generic.List{Warcraft.Model.GameObject})">
+            <summary>
+            Returns the closeset gold or lumber mine.
+            </summary>
+            <param name="unit">Closeset to this unit.</param>
+            <param name="mines">Mine type.</param>
+            <returns>Just read the text above.</returns>
+        </member>
         <member name="T:Warcraft.Model.GameObject">
             <summary>
             Abstract game object class: each object that is rendered has to have a position and a way to detect collisons and
@@ -413,9 +518,50 @@
             <param name="amount">Amount of resources taken.</param>
             <returns>The amount of resources acutally taken.</returns>
         </member>
+        <member name="M:Warcraft.Model.GoldMine.ToString">
+            <summary>
+            This will be shown on the HUD.
+            </summary>
+            <returns>The mine's current and max capacity.</returns>
+        </member>
+        <member name="T:Warcraft.Model.Icon">
+            <summary>
+            Simple class that encapsulates a hitbox and a string icon type.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Model.Icon.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.Model.Icon"/> class.
+            </summary>
+            <param name="type">Icon type.</param>
+            <param name="x">Hitbox x pos.</param>
+            <param name="y">Hitbox y pos.</param>
+            <param name="w">Hitbox's width.</param>
+            <param name="h">Hitbox's height.</param>
+        </member>
+        <member name="P:Warcraft.Model.Icon.Hitbox">
+            <summary>
+            Icon's hitbox.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.Icon.IconType">
+            <summary>
+            Icon's type.
+            </summary>
+        </member>
         <member name="T:Warcraft.Model.IGameModel">
             <summary>
             This have the necessary props to store a game state.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.PlayerRace">
+            <summary>
+            Player's race.
+            </summary>
+        </member>
+        <member name="P:Warcraft.Model.IGameModel.EnemyRace">
+            <summary>
+            Enemy's race.
             </summary>
         </member>
         <member name="P:Warcraft.Model.IGameModel.SelectedObject">
@@ -534,40 +680,6 @@
             <param name="to">Add lumber to this entity.</param>
             <param name="amount">Amount of lumbner added.</param>
         </member>
-        <member name="M:Warcraft.Model.IGameModel.GetClosestLumberMine(Warcraft.Model.Unit)">
-            <summary>
-            Returns the closest lumber mine. Used by routines.
-            </summary>
-            <param name="unit">Closest lumber mine to this unit.</param>
-            <returns>Closeset lumber mine.</returns>
-        </member>
-        <member name="T:Warcraft.Model.Mine">
-            <summary>
-            This class represents a mine, which stores basic amount of resources.
-            Units can take from the mine.
-            </summary>
-        </member>
-        <member name="F:Warcraft.Model.Mine.BaseCapacity">
-            <summary>
-            Starting capacity of the mine.
-            </summary>
-        </member>
-        <member name="P:Warcraft.Model.Mine.CurrentCapacity">
-            <summary>
-            Current capacity of the mine.
-            </summary>
-        </member>
-        <member name="P:Warcraft.Model.Mine.IsEmpty">
-            <summary>
-            Determines if the mine is empty.
-            </summary>
-        </member>
-        <member name="M:Warcraft.Model.Mine.Take(System.Int32)">
-            <summary>
-            Takes a certain amount of resorces out of the mine.
-            </summary>
-            <param name="amount">Amount of resources taken.</param>
-        </member>
         <member name="T:Warcraft.Model.OwnerEnum">
             <summary>
             Enum indicating the unit's owner.
@@ -581,6 +693,11 @@
         <member name="F:Warcraft.Model.OwnerEnum.ENEMY">
             <summary>
             Enemy.
+            </summary>
+        </member>
+        <member name="F:Warcraft.Model.OwnerEnum.EMPTY">
+            <summary>
+            Empty owner.
             </summary>
         </member>
         <member name="T:Warcraft.Model.RaceEnum">
@@ -674,7 +791,7 @@
             This saves the point before the unit enters an other object's hitbox.
             </summary>
         </member>
-        <member name="M:Warcraft.Model.Unit.#ctor(Warcraft.Model.OwnerEnum,Warcraft.Model.RaceEnum,Warcraft.Model.UnitTypeEnum,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Warcraft.Model.Unit.#ctor(Warcraft.Model.OwnerEnum,Warcraft.Model.RaceEnum,Warcraft.Model.UnitTypeEnum,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.Model.Unit"/> class.
             </summary>
@@ -685,12 +802,26 @@
             <param name="y">Y pos.</param>
             <param name="width">Hitbox width.</param>
             <param name="height">Hitbox height.</param>
+            <param name="health">Unit's initial health.</param>
+            <param name="shield">Unit's shield.</param>
+            <param name="attack">Unit's attack damage.</param>
+        </member>
+        <member name="P:Warcraft.Model.Unit.TargetLocked">
+            <summary>
+            When true the CombatLogic can't modify this unit's target.
+            </summary>
         </member>
         <member name="M:Warcraft.Model.Unit.ResetTarget">
             <summary>
             Puts the current target at the end of the Q, and sets the target to the next point.
             This is called after Pathfinding logic creates a new path for this unit.
             </summary>
+        </member>
+        <member name="M:Warcraft.Model.Unit.ToString">
+            <summary>
+            This will be shown on the hud.
+            </summary>
+            <returns>The unit's stats.</returns>
         </member>
         <member name="T:Warcraft.Model.UnitStateEnum">
             <summary>

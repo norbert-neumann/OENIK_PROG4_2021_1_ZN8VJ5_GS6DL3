@@ -86,20 +86,18 @@
             The Controller also calls this logic's methods.
             </summary>
         </member>
-        <member name="M:Warcraft.GameLogic.CoreLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.CombatLogic,Warcraft.GameLogic.MovementLogic,Warcraft.GameLogic.AnimationLogic,Warcraft.GameLogic.PathfindingLogic)">
+        <member name="M:Warcraft.GameLogic.CoreLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.MovementLogic)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.GameLogic.CoreLogic"/> class.
             </summary>
             <param name="model">Game model to operate on.</param>
-            <param name="combatLogic">Combat logic instance.</param>
-            <param name="movementLogic">Movement logic instance.</param>
-            <param name="animationLogic">Animatin logic instance.</param>
-            <param name="pathfindingLogic">Pathfinding logic instance.</param>
+            <param name="movementLogic">Movement logic that is shared with EnemyLogic.</param>
         </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.Step">
             <summary>
             One step of the game.
             </summary>
+            <returns>The winner of the game. EMPTY if the game is still on.</returns>
         </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.UpdateAnimation">
             <summary>
@@ -127,6 +125,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Warcraft.GameLogic.CoreLogic.CreateUnit(System.String)">
+            POTENTIAL BUG HERE: chech selected object is null
             <summary>
             Creates a new unit.
             </summary>
@@ -148,6 +147,23 @@
             </summary>
             <returns>Bool indicating collision.</returns>
         </member>
+        <member name="T:Warcraft.GameLogic.EnemyLogic">
+            <summary>
+            Enemy controller.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.EnemyLogic.#ctor(Warcraft.Model.GameModel,Warcraft.GameLogic.MovementLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameLogic.EnemyLogic"/> class.
+            </summary>
+            <param name="model">Model to operate on.</param>
+            <param name="movementLogic">Shared movementlogic with the CoreLogic.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.EnemyLogic.Step">
+            <summary>
+            Updates all enemy units.
+            </summary>
+        </member>
         <member name="T:Warcraft.GameLogic.GoldMiningRoutine">
             <summary>
             Moves to gold mine, mines, then returns home.
@@ -168,7 +184,7 @@
             Gold mine to mine in.
             </summary>
         </member>
-        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.GoldMine)">
+        <member name="M:Warcraft.GameLogic.GoldMiningRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.GoldMine,Warcraft.Model.GameModel,Warcraft.Model.OwnerEnum)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.GameLogic.GoldMiningRoutine"/> class.
             </summary>
@@ -176,6 +192,8 @@
             <param name="waitTime">Number of seconds to mine.</param>
             <param name="hall">Hall.</param>
             <param name="mine">Gold mine.</param>
+            <param name="model">Game model to operate on.</param>
+            <param name="owner">Reciever of the mined gold.</param>
         </member>
         <member name="M:Warcraft.GameLogic.GoldMiningRoutine.Update">
             <summary>
@@ -195,6 +213,18 @@
             Else kepps minig.
             </summary>
             <returns>True if the unit is minig.</returns>
+        </member>
+        <member name="T:Warcraft.GameLogic.HUDBuilder">
+            <summary>
+            Builds the HUD.
+            </summary>
+        </member>
+        <member name="M:Warcraft.GameLogic.HUDBuilder.BuildHUD(Warcraft.Model.GameModel)">
+            <summary>
+            Add icons to the game model.
+            </summary>
+            <param name="model">Model to operate on.</param>
+            <returns>A list of icons that will be on he hud.</returns>
         </member>
         <member name="T:Warcraft.GameLogic.IAnimationLogic">
             <summary>
@@ -237,6 +267,7 @@
             <summary>
             One step of the game.
             </summary>
+            <returns> Winner type.</returns>
         </member>
         <member name="M:Warcraft.GameLogic.ICoreLogic.UpdateAnimation">
             <summary>
@@ -381,11 +412,22 @@
             Creates a specific unit.
             </summary>
         </member>
-        <member name="M:Warcraft.GameLogic.UnitFactory.#ctor(Warcraft.Model.GameModel)">
+        <member name="M:Warcraft.GameLogic.UnitFactory.#ctor(Warcraft.Model.GameModel,System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.GameLogic.UnitFactory"/> class.
             </summary>
             <param name="model">Game model to operate on.</param>
+            <param name="baseHealth">Initial base health.</param>
+            <param name="baseShield">Initial base shield.</param>
+            <param name="baseAttack">Initial base attack.</param>
+        </member>
+        <member name="M:Warcraft.GameLogic.UnitFactory.IncreaseBaseStats(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Increases the base stats.
+            </summary>
+            <param name="dHealth">Base health delta.</param>
+            <param name="dShield">Base shield delta.</param>
+            <param name="dAttack">Base attack delta.</param>
         </member>
         <member name="M:Warcraft.GameLogic.UnitFactory.Create(System.String,System.Int32,System.Int32)">
             <summary>
@@ -416,7 +458,7 @@
             Tree to harvest.
             </summary>
         </member>
-        <member name="M:Warcraft.Model.HarvestLumberRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.CombatObject)">
+        <member name="M:Warcraft.Model.HarvestLumberRoutine.#ctor(Warcraft.Model.Unit,System.TimeSpan,Warcraft.Model.Building,Warcraft.Model.CombatObject,Warcraft.Model.GameModel,Warcraft.Model.OwnerEnum)">
             <summary>
             Initializes a new instance of the <see cref="T:Warcraft.Model.HarvestLumberRoutine"/> class.
             </summary>
@@ -424,6 +466,8 @@
             <param name="waitTime">Number of seconds to mine.</param>
             <param name="hall">Hall.</param>
             <param name="tree">Treee.</param>
+            <param name="model">Game model to operate on.</param>
+            <param name="owner">Reciever of the lumber.</param>
         </member>
         <member name="M:Warcraft.Model.HarvestLumberRoutine.Update">
             <summary>
