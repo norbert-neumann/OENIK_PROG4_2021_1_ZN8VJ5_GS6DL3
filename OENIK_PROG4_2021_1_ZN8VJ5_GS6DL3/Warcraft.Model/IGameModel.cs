@@ -127,12 +127,5 @@
         /// <param name="to">Add lumber to this entity.</param>
         /// <param name="amount">Amount of lumbner added.</param>
         void AddLumber(OwnerEnum to, int amount);
-
-        /// <summary>
-        /// Returns the closest lumber mine. Used by routines.
-        /// </summary>
-        /// <param name="unit">Closest lumber mine to this unit.</param>
-        /// <returns>Closeset lumber mine.</returns>
-        public Mine GetClosestLumberMine(Unit unit);
     }
 }
