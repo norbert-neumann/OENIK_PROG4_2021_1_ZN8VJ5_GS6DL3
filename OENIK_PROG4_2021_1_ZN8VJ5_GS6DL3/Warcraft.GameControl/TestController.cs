@@ -98,14 +98,31 @@
 
         private void TimerTick(object sender, EventArgs e)
         {
-            this.logic.Step();
+            OwnerEnum winner = this.logic.Step();
             if (this.model.NewBuilding != null)
             {
                 System.Windows.Point mousePos = this.PointToScreen(Mouse.GetPosition(this));
-                this.model.NewBuilding.SetCenterPositon(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
+                this.model.NewBuilding.Position = new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y);
             }
 
             this.InvalidateVisual();
+
+            if (winner != OwnerEnum.EMPTY)
+            {
+                this.model.GameTime.Stop();
+                this.timer.Stop();
+                this.animationTimer.Stop();
+                this.enemyTimer.Stop();
+
+                if (winner == OwnerEnum.PLAYER)
+                {
+                    MessageBox.Show("You won! Game time: " + this.model.GameTime.Elapsed);
+                }
+                else
+                {
+                    MessageBox.Show("You lost! Game time: " + this.model.GameTime.Elapsed);
+                }
+            }
         }
 
         private void Win_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
