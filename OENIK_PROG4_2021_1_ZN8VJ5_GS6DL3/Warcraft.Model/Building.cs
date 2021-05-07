@@ -31,12 +31,15 @@
         /// <param name="y">Y position of building.</param>
         /// <param name="width">Width of the building's hitbox.</param>
         /// <param name="height">Height of the building's hitbox.</param>
-        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height)
+        /// <param name="health">Initial health.</param>
+        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height, int health)
             : base(x, y, width, height)
         {
             this.Owner = owner;
             this.Type = type;
             this.Race = race;
+            this.Health = health;
+            this.maxHealth = health;
 
             switch (race)
             {
