@@ -13,6 +13,16 @@
     public interface IGameModel
     {
         /// <summary>
+        /// Player's race.
+        /// </summary>
+        RaceEnum PlayerRace { get; set; }
+
+        /// <summary>
+        /// Enemy's race.
+        /// </summary>
+        RaceEnum EnemyRace { get; set; }
+
+        /// <summary>
         /// A user action will be executed in this object.
         /// This can be an enemy, a tree, a building, anything.
         /// </summary>
