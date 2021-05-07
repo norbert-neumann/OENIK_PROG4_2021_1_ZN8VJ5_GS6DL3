@@ -69,9 +69,10 @@
         }
 
         private void LeftMouseClicled(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void EnemyTimer_Tick(object sender, EventArgs e)
         {
-            System.Windows.Point mousePos = e.GetPosition(this);
-            this.logic.Select(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
+            this.enemyLogic.Step();
+            this.InvalidateVisual();
         }
 
         /// <inheritdoc/>
