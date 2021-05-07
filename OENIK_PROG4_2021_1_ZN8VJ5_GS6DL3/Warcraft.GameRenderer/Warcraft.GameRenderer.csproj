@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <None Remove="Images\AM.png" />
+    <None Remove="Images\attack_icon.png" />
+    <None Remove="Images\build_icon.png" />
+    <None Remove="Images\harvestLumber_icon.png" />
     <None Remove="Images\HB.png" />
     <None Remove="Images\HF.png" />
     <None Remove="Images\HH.png" />
@@ -167,7 +170,12 @@
     <None Remove="Images\HPWW2.png" />
     <None Remove="Images\HPWW3.png" />
     <None Remove="Images\HPWW4.png" />
+    <None Remove="Images\human_barrack_icon.png" />
+    <None Remove="Images\human_farm_icon.png" />
+    <None Remove="Images\human_peasant_icon.png" />
     <None Remove="Images\IM.png" />
+    <None Remove="Images\mine_icon.png" />
+    <None Remove="Images\move_icon.png" />
     <None Remove="Images\OB.png" />
     <None Remove="Images\OF.png" />
     <None Remove="Images\OH.png" />
@@ -331,11 +339,19 @@
     <None Remove="Images\OPWW2.png" />
     <None Remove="Images\OPWW3.png" />
     <None Remove="Images\OPWW4.png" />
+    <None Remove="Images\orc_barrack_icon.png" />
+    <None Remove="Images\orc_farm_icon.png" />
+    <None Remove="Images\orc_peasant_icon.png" />
+    <None Remove="Images\patroll_icon.png" />
+    <None Remove="Images\stop_icon.png" />
     <None Remove="Images\Trees.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\AM.png" />
+    <EmbeddedResource Include="Images\attack_icon.png" />
+    <EmbeddedResource Include="Images\build_icon.png" />
+    <EmbeddedResource Include="Images\harvestLumber_icon.png" />
     <EmbeddedResource Include="Images\HB.png" />
     <EmbeddedResource Include="Images\HF.png" />
     <EmbeddedResource Include="Images\HH.png" />
@@ -491,7 +507,12 @@
     <EmbeddedResource Include="Images\HPWW2.png" />
     <EmbeddedResource Include="Images\HPWW3.png" />
     <EmbeddedResource Include="Images\HPWW4.png" />
+    <EmbeddedResource Include="Images\human_barrack_icon.png" />
+    <EmbeddedResource Include="Images\human_farm_icon.png" />
+    <EmbeddedResource Include="Images\human_peasant_icon.png" />
     <EmbeddedResource Include="Images\IM.png" />
+    <EmbeddedResource Include="Images\mine_icon.png" />
+    <EmbeddedResource Include="Images\move_icon.png" />
     <EmbeddedResource Include="Images\OB.png" />
     <EmbeddedResource Include="Images\OF.png" />
     <EmbeddedResource Include="Images\OH.png" />
@@ -655,6 +676,11 @@
     <EmbeddedResource Include="Images\OPWW2.png" />
     <EmbeddedResource Include="Images\OPWW3.png" />
     <EmbeddedResource Include="Images\OPWW4.png" />
+    <EmbeddedResource Include="Images\orc_barrack_icon.png" />
+    <EmbeddedResource Include="Images\orc_farm_icon.png" />
+    <EmbeddedResource Include="Images\orc_peasant_icon.png" />
+    <EmbeddedResource Include="Images\patroll_icon.png" />
+    <EmbeddedResource Include="Images\stop_icon.png" />
     <EmbeddedResource Include="Images\Trees.png" />
   </ItemGroup>
 
