@@ -21,6 +21,8 @@
         private DateTime startTime;
         private TimeSpan waitTime;
         private bool mining = false;
+        private GameModel model;
+        private OwnerEnum owner;
 
         /// <summary>
         /// Return gold to this object.
@@ -39,7 +41,9 @@
         /// <param name="waitTime">Number of seconds to mine.</param>
         /// <param name="hall">Hall.</param>
         /// <param name="mine">Gold mine.</param>
-        public GoldMiningRoutine(Unit unit, TimeSpan waitTime, Building hall, GoldMine mine)
+        /// <param name="model">Game model to operate on.</param>
+        /// <param name="owner">Reciever of the mined gold.</param>
+        public GoldMiningRoutine(Unit unit, TimeSpan waitTime, Building hall, GoldMine mine, GameModel model, OwnerEnum owner)
             : base(unit, hall.Position, mine.Position)
         {
             this.unit = unit;
@@ -47,6 +51,8 @@
             this.hall = hall;
             this.mine = mine;
             this.TargetObject = mine;
+            this.model = model;
+            this.owner = owner;
         }
 
         /// <summary>
@@ -77,9 +83,12 @@
         /// <returns>False always.</returns>
         protected override bool ReachedTargetA()
         {
+            this.model.AddGold(this.owner, 21);
+
             this.unit.UnitState = UnitStateEnum.Walking;
             this.TargetObject = this.mine;
             this.unit.Target = this.targetB;
+
             return false;
         }
 
@@ -90,6 +99,13 @@
         /// <returns>True if the unit is minig.</returns>
         protected override bool ReachedTargetB()
         {
+            if (this.mine.CurrentCapacity <= 0)
+            {
+                this.unit.UnitState = UnitStateEnum.Walking;
+                this.unit.InIdle = true;
+                return false;
+            }
+
             if (this.mining)
             {
                 if (DateTime.Now - this.startTime >= this.waitTime)
@@ -97,11 +113,17 @@
                     this.unit.UnitState = UnitStateEnum.WalkingWithGold;
                     this.unit.Target = this.targetA;
                     this.mining = false;
-                    this.unit.Position = new Point(this.unit.EntryPoint.X - (this.unit.Hitbox.Width / 1), this.unit.EntryPoint.Y - (this.unit.Hitbox.Height / 1));
+                    this.unit.Position = this.unit.EntryPoint;
                     this.unit.Hiding = false;
                     this.TargetObject = this.hall;
                     this.mine.NumberOfUsers--;
                     this.unit.AnimationIndex = 0;
+
+                    if (!this.mine.Take(21))
+                    {
+                        this.model.GoldMinesToRemove.Add(this.mine);
+                    }
+
                     return false;
                 }
 
