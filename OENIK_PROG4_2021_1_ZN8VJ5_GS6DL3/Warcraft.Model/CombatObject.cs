@@ -72,7 +72,7 @@
         {
             if (this.shield == 0)
             {
-                this.health -= amount;
+                this.Health -= amount;
             }
             else
             {
@@ -82,12 +82,12 @@
                 }
                 else
                 {
-                    this.health -= amount - this.shield;
+                    this.Health -= amount - this.shield;
                     this.shield = 0;
                 }
             }
 
-            return this.health <= 0;
+            return this.Health <= 0;
         }
 
         /// <summary>
