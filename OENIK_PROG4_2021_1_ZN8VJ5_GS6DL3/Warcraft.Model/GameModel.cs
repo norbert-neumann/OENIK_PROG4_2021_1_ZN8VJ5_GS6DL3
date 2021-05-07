@@ -166,6 +166,24 @@
         /// <returns>Closeset gold mine.</returns>
         public GoldMine GetClosestGoldMine(Unit unit)
         {
+            double minDistance = double.MaxValue;
+            int minIdx = -1;
+
+            for (int i = 0; i < this.GoldMines.Count; i++)
+            {
+                double dist = this.GoldMines[i].Distance(unit);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    minIdx = i;
+                }
+            }
+
+            if (minIdx != -1)
+            {
+                return this.GoldMines[minIdx];
+            }
+
             return null;
         }
 
@@ -174,12 +192,67 @@
         /// </summary>
         /// <param name="unit">Closest lumber mine to this unit.</param>
         /// <returns>Closeset lumber mine.</returns>
-        public Mine GetClosestLumberMine(Unit unit)
+        public CombatObject GetClosestLumberMine(Unit unit)
         {
+            double minDistance = double.MaxValue;
+            int minIdx = -1;
+
+            for (int i = 0; i < this.LumberMines.Count; i++)
+            {
+                double dist = this.LumberMines[i].Distance(unit);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    minIdx = i;
+                }
+            }
+
+            if (minIdx != -1)
+            {
+                return this.LumberMines[minIdx];
+            }
+
             return null;
         }
 
-        private Mine FindMineWithMinDistance(Unit unit, List<Mine> mines)
+        /// <summary>
+        /// Returns the closeset player owned unit to the given parameter.
+        /// </summary>
+        /// <param name="gameObject">Closest to this object.</param>
+        /// <returns>Closeset player owned unit.</returns>
+        public CombatObject GetClosestPlayerUnit(GameObject gameObject)
+        {
+            double minDistance = double.MaxValue;
+            int minIdx = -1;
+
+            for (int i = 0; i < this.Units.Count; i++)
+            {
+                if (this.Units[i].Owner == OwnerEnum.PLAYER)
+                {
+                    double dist = this.Units[i].Distance(gameObject);
+                    if (dist < minDistance)
+                    {
+                        minDistance = dist;
+                        minIdx = i;
+                    }
+                }
+            }
+
+            if (minIdx != -1)
+            {
+                return this.Units[minIdx];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the closeset gold or lumber mine.
+        /// </summary>
+        /// <param name="unit">Closeset to this unit.</param>
+        /// <param name="mines">Mine type.</param>
+        /// <returns>Just read the text above.</returns>
+        public GameObject FindMineWithMinDistance(Unit unit, List<GameObject> mines)
         {
             double minDistance = double.MaxValue;
             int minIdx = -1;
