@@ -89,5 +89,15 @@
 
             return this.health <= 0;
         }
+
+        /// <summary>
+        /// This will be only used when the player clicks on a tree.
+        /// In that case we need to show it's current and max capacity.
+        /// </summary>
+        /// <returns>String showing the tree's current and max capacity.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Capacity : {this.Health}/{this.maxHealth}");
+        }
     }
 }
