@@ -81,6 +81,8 @@
         private void AttackEnemyUnit(Unit unit)
         {
             unit.UnitState = UnitStateEnum.Fighting;
+            (unit.Enemy as Unit).Enemy = unit;
+            (unit.Enemy as Unit).InIdle = false;
             if (unit.Enemy.AcceptDamage(unit.Attack))
             {
                 this.model.UnitsToRemove.Add(unit.Enemy as Unit);
