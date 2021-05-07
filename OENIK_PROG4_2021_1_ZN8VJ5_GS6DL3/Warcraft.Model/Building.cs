@@ -71,11 +71,11 @@
         /// <param name="amount">Heal quantity.</param>
         public void AcceptHeal(int amount)
         {
-            this.health += amount;
+            this.Health += amount;
 
-            if (this.health >= this.maxHealth)
+            if (this.Health >= this.maxHealth)
             {
-                this.health = this.maxHealth;
+                this.Health = this.maxHealth;
             }
         }
 
