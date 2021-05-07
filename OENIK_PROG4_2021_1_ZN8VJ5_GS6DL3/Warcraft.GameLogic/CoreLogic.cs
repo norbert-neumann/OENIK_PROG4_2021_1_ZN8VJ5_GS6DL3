@@ -338,6 +338,7 @@
             this.model.SelectedSubject = null;
             this.model.SelectedObject = null;
             this.model.SelectedPoint = new Point(-1, -1);
+            this.model.CommandResult = string.Empty;
         }
 
         private bool ValidateCommand()
