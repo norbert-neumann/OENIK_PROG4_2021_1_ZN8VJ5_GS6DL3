@@ -169,7 +169,9 @@
                         this.model.SelectedSubject,
                         TimeSpan.FromSeconds(3),
                         this.model.PlayerHall,
-                        this.model.SelectedObject as GoldMine));
+                        this.model.SelectedObject as GoldMine,
+                        this.model,
+                        OwnerEnum.PLAYER));
 
                 this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
@@ -189,7 +191,9 @@
                         this.model.SelectedSubject,
                         TimeSpan.FromSeconds(3),
                         this.model.PlayerHall,
-                        this.model.SelectedObject as CombatObject));
+                        this.model.SelectedObject as CombatObject,
+                        this.model,
+                        OwnerEnum.PLAYER));
                 this.model.SelectedSubject.InIdle = false;
                 this.ClearSelections();
             }
