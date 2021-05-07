@@ -128,7 +128,7 @@
         /// <returns>The building's base stats.</returns>
         public override string ToString()
         {
-            return string.Format($"Health: {this.Health}/{this.maxHealth} Shield: {this.shield}");
+            return string.Format($"Health: {this.Health}/{this.maxHealth}");
         }
     }
 }
