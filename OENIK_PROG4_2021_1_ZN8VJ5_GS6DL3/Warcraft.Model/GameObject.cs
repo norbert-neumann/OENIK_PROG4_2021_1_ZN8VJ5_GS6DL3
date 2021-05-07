@@ -33,7 +33,9 @@
             set
             {
                 Point newPos = (Point)value;
-                this.Hitbox = new Rectangle(newPos.X + (this.Hitbox.Width / 2), newPos.Y + (this.Hitbox.Height / 2), this.Hitbox.Width, this.Hitbox.Height);
+                this.Hitbox.X = newPos.X;
+                this.Hitbox.Y = newPos.Y;
+                this.Hitbox = new Rectangle(newPos.X - (this.Hitbox.Width / 2), newPos.Y - (this.Hitbox.Height / 2), this.Hitbox.Width, this.Hitbox.Height);
             }
         }
 
