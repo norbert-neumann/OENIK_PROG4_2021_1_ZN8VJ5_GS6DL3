@@ -65,18 +65,23 @@
                 case UnitStateEnum.Fighting:
                     return "F";
                 default:
-                    return "";
+                    return string.Empty;
             }
         }
 
-        // Move this to logic
+        /// <summary>
+        /// Returns a unit state's animation length.
+        /// </summary>
+        /// <param name="state">State.</param>
+        /// <returns>Given state's animation length.</returns>
         public static int GetAnimationLength(UnitStateEnum state)
         {
             if (state == UnitStateEnum.WalkingWithGold)
             {
                 return 4;
             }
+
             return 5;
-        } 
+        }
     }
 }
