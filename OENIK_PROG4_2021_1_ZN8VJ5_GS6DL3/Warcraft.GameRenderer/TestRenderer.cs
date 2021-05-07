@@ -112,11 +112,11 @@
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+              /*  GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(mine.Hitbox.X, mine.Hitbox.Y, mine.Hitbox.Width, mine.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Trees
@@ -127,11 +127,11 @@
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+               /* GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(tree.Hitbox.X, tree.Hitbox.Y, tree.Hitbox.Width, tree.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Buildings
@@ -142,11 +142,11 @@
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+               /*GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(building.Hitbox.X, building.Hitbox.Y, building.Hitbox.Width, building.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Units
@@ -184,7 +184,7 @@
             {
                 GeometryDrawing hitboxGeometry = new GeometryDrawing(
                 Brushes.Transparent,
-                new Pen(Brushes.Green, 3),
+                new Pen(Brushes.Green, 2),
                 new RectangleGeometry(new Rect(
                     this.model.SelectedObject.Hitbox.X,
                     this.model.SelectedObject.Hitbox.Y,
