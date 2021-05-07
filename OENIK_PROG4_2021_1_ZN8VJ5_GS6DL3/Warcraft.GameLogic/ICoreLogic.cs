@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Warcraft.Model;
 
     /// <summary>
     /// Contaions all funcitonalities that the CoreLogic should have.
@@ -15,7 +16,8 @@
         /// <summary>
         /// One step of the game.
         /// </summary>
-        void Step();
+        /// <returns> Winner type.</returns>
+        OwnerEnum Step();
 
         /// <summary>
         /// Updates each unit's sprite.
