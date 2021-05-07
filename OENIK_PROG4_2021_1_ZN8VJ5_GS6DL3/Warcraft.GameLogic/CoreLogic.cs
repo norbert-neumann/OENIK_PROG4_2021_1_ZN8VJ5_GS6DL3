@@ -350,6 +350,19 @@
             return this.model.SelectedSubject != null && this.model.SelectedPoint != new Point(-1, -1);
         }
 
+        private Icon FindIcon(Point cursorPos)
+        {
+            foreach (Icon icon in this.model.Icons)
+            {
+                if (this.PositionInHitbox(cursorPos, icon.Hitbox))
+                {
+                    return icon;
+                }
+            }
+
+            return null;
+        }
+
         private GameObject FindGameObject(Point cursorPos)
         {
             foreach (Unit unit in this.model.Units)
