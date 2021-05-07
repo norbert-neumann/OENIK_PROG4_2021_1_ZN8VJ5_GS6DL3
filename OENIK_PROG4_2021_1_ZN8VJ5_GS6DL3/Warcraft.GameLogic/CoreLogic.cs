@@ -24,19 +24,17 @@
         /// Initializes a new instance of the <see cref="CoreLogic"/> class.
         /// </summary>
         /// <param name="model">Game model to operate on.</param>
-        /// <param name="combatLogic">Combat logic instance.</param>
-        /// <param name="movementLogic">Movement logic instance.</param>
-        /// <param name="animationLogic">Animatin logic instance.</param>
-        /// <param name="pathfindingLogic">Pathfinding logic instance.</param>
-        public CoreLogic(GameModel model, CombatLogic combatLogic, MovementLogic movementLogic, AnimationLogic animationLogic, PathfindingLogic pathfindingLogic)
+        /// <param name="movementLogic">Movement logic that is shared with EnemyLogic.</param>
+        public CoreLogic(GameModel model, MovementLogic movementLogic)
         {
             this.model = model;
-            this.combatLogic = combatLogic;
+            this.pathfindingLogic = new PathfindingLogic();
+            this.combatLogic = new CombatLogic(this.model);
             this.movementLogic = movementLogic;
-            this.animationLogic = animationLogic;
-            this.pathfindingLogic = pathfindingLogic;
+            this.animationLogic = new AnimationLogic(this.model);
+
             this.buildingFactory = new BuildingFactory(this.model);
-            this.unitFactory = new UnitFactory(this.model);
+            this.unitFactory = new UnitFactory(this.model, 100, 0, 1);
         }
 
         // Run before rendering
