@@ -77,6 +77,16 @@
             }
 
             return amount;
+            return this.CurrentCapacity > 0;
+        }
+
+        /// <summary>
+        /// This will be shown on the HUD.
+        /// </summary>
+        /// <returns>The mine's current and max capacity.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Capacity : {this.CurrentCapacity}/{this.baseCapacity}");
         }
     }
 }
