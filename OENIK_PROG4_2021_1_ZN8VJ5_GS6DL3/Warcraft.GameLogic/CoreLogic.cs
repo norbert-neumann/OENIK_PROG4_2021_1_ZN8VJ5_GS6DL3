@@ -42,11 +42,24 @@
         /// <summary>
         /// One step of the game.
         /// </summary>
-        public void Step()
+        /// <returns>The winner of the game. EMPTY if the game is still on.</returns>
+        public OwnerEnum Step()
         {
             this.combatLogic.SetTarget();
             this.movementLogic.UpdatePositions();
             this.Remove();
+
+            if (this.model.PlayerHall.Health <= 0)
+            {
+                return OwnerEnum.ENEMY;
+            }
+
+            if (this.model.EnemyHall.Health <= 0)
+            {
+                return OwnerEnum.PLAYER;
+            }
+
+            return OwnerEnum.EMPTY;
         }
 
         /// <summary>
