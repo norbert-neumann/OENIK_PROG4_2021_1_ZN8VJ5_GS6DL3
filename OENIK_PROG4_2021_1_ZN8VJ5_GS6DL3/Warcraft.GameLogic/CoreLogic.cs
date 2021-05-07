@@ -301,6 +301,14 @@
             return false;
         }
 
+        private void PutInIdle()
+        {
+            if (this.model.SelectedSubject != null)
+            {
+                this.model.SelectedSubject.Facing = DirectionEnum.South;
+                this.model.SelectedSubject.InIdle = true;
+            }
+        }
         private void TryPlaceBuilding()
         {
             if (!this.NewBuildingCollides())
