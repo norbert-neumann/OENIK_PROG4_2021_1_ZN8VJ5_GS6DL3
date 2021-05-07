@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Text;
 
@@ -11,9 +12,25 @@
     public class GameModel : IGameModel
     {
         /// <summary>
+        /// List of icons that are present in the hud.
+        /// </summary>
+        public List<Icon> Icons;
+
+        /// <summary>
         /// Game time.
         /// </summary>
         public Stopwatch GameTime;
+
+        /// <summary>
+        /// Best game time. Possibly wont be used.
+        /// </summary>
+        public TimeSpan BestGameTime;
+
+        /// <summary>
+        /// Result of the last executed command.
+        /// </summary>
+        public string CommandResult = string.Empty;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameModel"/> class.
         /// </summary>
@@ -35,7 +52,16 @@
 
             this.GameTime.Start();
             this.BestGameTime = TimeSpan.FromMinutes(10);
+
+            this.PlayerGold = 500;
+            this.PlayerLumber = 500;
         }
+
+        /// <inheritdoc/>
+        public RaceEnum PlayerRace { get; set; }
+
+        /// <inheritdoc/>
+        public RaceEnum EnemyRace { get; set; }
 
         /// <inheritdoc/>
         public Building NewBuilding { get; set; }
