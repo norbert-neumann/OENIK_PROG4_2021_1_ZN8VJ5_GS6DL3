@@ -133,7 +133,7 @@
             ctx.DrawText(formattedText, this.gameTimeTextLocation);
 
             formattedText = new FormattedText(
-                    string.Format($"Best game time: {this.model.BestGameTime.Minutes}:{this.model.BestGameTime.Seconds}"),
+                    this.model.CommandResult,
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     this.font,
