@@ -313,6 +313,23 @@
                 this.model.SelectedSubject.InIdle = true;
             }
         }
+
+        private void ExecuteCommand(Icon icon)
+        {
+            switch (icon.IconType)
+            {
+                case "mine_icon": this.MineGold(); break;
+                case "harvestLumber_icon": this.HarvestLumber(); break;
+                case "attack_icon": this.SetUnitsEnemy(); break;
+                case "stop_icon": this.PutInIdle(); break;
+                case "patroll_icon": this.PatrollUnit(); break;
+                case "human_farm_icon": this.InitNewBuilding("player human farm", new Point(0, 0)); break;
+                case "human_barrack_icon": this.InitNewBuilding("player human barrack", new Point(0, 0)); break;
+                case "human_peasant_icon": this.CreateUnit("player human peasant"); break;
+                case "move_icon": this.GoTo(); break;
+            }
+        }
+
         private void TryPlaceBuilding()
         {
             if (!this.NewBuildingCollides())
