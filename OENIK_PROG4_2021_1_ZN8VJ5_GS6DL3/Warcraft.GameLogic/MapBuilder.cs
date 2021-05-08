@@ -55,9 +55,11 @@
             mineFactory.Create("gold 1000", screenWidth - 50 + delta - 300, screenHeight - 50 + delta + 10);
 
             model.PlayerHall = buildingFactory.Create("player human hall", screenWidth - 50 + delta, screenHeight - 50 + delta, true);
-            unitFactory.Create("player human peasant", 700, 700);
-            unitFactory.Create("player human peasant", 700, 750);
-            unitFactory.Create("player human peasant", 700, 800);
+            unitFactory.Create("player human peasant", 1450, 725);
+            unitFactory.Create("player human peasant", 1500, 725);
+            unitFactory.Create("player human peasant", 1550, 725);
+            unitFactory.Create("player human peasant", 1600, 725);
+            unitFactory.Create("player human peasant", 1650, 725);
 
             return true;
         }
