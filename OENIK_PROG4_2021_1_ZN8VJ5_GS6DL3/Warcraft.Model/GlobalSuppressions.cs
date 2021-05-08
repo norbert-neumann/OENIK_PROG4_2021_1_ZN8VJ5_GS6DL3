@@ -89,3 +89,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "<Pending>", Scope = "member", Target = "~F:Warcraft.Model.GameModel.GameTime")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.Icon.Hitbox")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation should match accessors", Justification = "<Pending>", Scope = "member", Target = "~P:Warcraft.Model.Icon.IconType")]
+[assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "<Pending>", Scope = "member", Target = "~F:Warcraft.Model.GameModel.CommandResult")]
