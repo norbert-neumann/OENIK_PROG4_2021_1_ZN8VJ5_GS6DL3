@@ -376,14 +376,14 @@
             <summary>
             Adds some amount of gold to some1.
             </summary>
-            <param name="to">Add gold to this entity.</param>
+            <param name="receiver">Add gold to this entity.</param>
             <param name="amount">Amount of gold added.</param>
         </member>
         <member name="M:Warcraft.Model.GameModel.AddLumber(Warcraft.Model.OwnerEnum,System.Int32)">
             <summary>
             Adds some amount of lumber to some1.
             </summary>
-            <param name="to">Add lumber to this entity.</param>
+            <param name="receiver">Add lumber to this entity.</param>
             <param name="amount">Amount of lumbner added.</param>
         </member>
         <member name="M:Warcraft.Model.GameModel.GetClosestGoldMine(Warcraft.Model.Unit)">
@@ -670,14 +670,14 @@
             <summary>
             Adds some amount of gold to some1.
             </summary>
-            <param name="to">Add gold to this entity.</param>
+            <param name="receiver">Add gold to this entity.</param>
             <param name="amount">Amount of gold added.</param>
         </member>
         <member name="M:Warcraft.Model.IGameModel.AddLumber(Warcraft.Model.OwnerEnum,System.Int32)">
             <summary>
             Adds some amount of lumber to some1.
             </summary>
-            <param name="to">Add lumber to this entity.</param>
+            <param name="receiver">Add lumber to this entity.</param>
             <param name="amount">Amount of lumbner added.</param>
         </member>
         <member name="T:Warcraft.Model.OwnerEnum">
