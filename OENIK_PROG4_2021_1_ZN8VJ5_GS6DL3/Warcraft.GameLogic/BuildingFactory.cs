@@ -63,19 +63,20 @@
 
             int width = 0;
             int height = 0;
+            int baseHealth = 0;
 
             // Widths and heights are harcoded here.
             switch (buildingType)
             {
-                case BuildingEnum.Hall: width = 120; height = 120; break;
-                case BuildingEnum.Farm: width = 90; height = 80; break;
-                case BuildingEnum.Barracks: width = 110; height = 110; break;
+                case BuildingEnum.Hall: width = 120; height = 120; baseHealth = 1000; break;
+                case BuildingEnum.Farm: width = 75; height = 70; baseHealth = 70; break;
+                case BuildingEnum.Barracks: width = 105; height = 105; baseHealth = 100; break;
             }
 
             width = (int)(width * Config.Zoom);
             height = (int)(height * Config.Zoom);
 
-            Building building = new Building(owner, buildingType, race, x, y, width, height);
+            Building building = new Building(owner, buildingType, race, x, y, width, height, baseHealth);
 
             if (add)
             {
