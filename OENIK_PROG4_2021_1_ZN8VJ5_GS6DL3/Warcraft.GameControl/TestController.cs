@@ -105,7 +105,7 @@
         private void LeftMouseClicled(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             System.Windows.Point mousePos = e.GetPosition(this);
-            this.logic.Select(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
+            this.logic.SelectGameObject(new System.Drawing.Point((int)mousePos.X, (int)mousePos.Y));
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
@@ -116,7 +116,7 @@
 
         private void TimerTick(object sender, EventArgs e)
         {
-            OwnerEnum winner = this.logic.Step();
+            OwnerEnum winner = this.logic.GameStep();
             if (this.model.NewBuilding != null)
             {
                 System.Windows.Point mousePos = this.PointToScreen(Mouse.GetPosition(this));

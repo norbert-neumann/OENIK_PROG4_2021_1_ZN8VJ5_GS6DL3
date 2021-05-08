@@ -127,15 +127,15 @@
         /// <summary>
         /// Adds some amount of gold to some1.
         /// </summary>
-        /// <param name="to">Add gold to this entity.</param>
+        /// <param name="receiver">Add gold to this entity.</param>
         /// <param name="amount">Amount of gold added.</param>
-        void AddGold(OwnerEnum to, int amount);
+        void AddGold(OwnerEnum receiver, int amount);
 
         /// <summary>
         /// Adds some amount of lumber to some1.
         /// </summary>
-        /// <param name="to">Add lumber to this entity.</param>
+        /// <param name="receiver">Add lumber to this entity.</param>
         /// <param name="amount">Amount of lumbner added.</param>
-        void AddLumber(OwnerEnum to, int amount);
+        void AddLumber(OwnerEnum receiver, int amount);
     }
 }

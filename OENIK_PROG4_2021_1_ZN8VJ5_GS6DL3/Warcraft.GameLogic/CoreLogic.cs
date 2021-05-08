@@ -45,7 +45,7 @@ namespace Warcraft.GameLogic
         /// One step of the game.
         /// </summary>
         /// <returns>The winner of the game. EMPTY if the game is still on.</returns>
-        public OwnerEnum Step()
+        public OwnerEnum GameStep()
         {
             this.combatLogic.SetTarget();
             this.movementLogic.UpdatePositions();
@@ -112,7 +112,7 @@ namespace Warcraft.GameLogic
         /// Selects an Object, Subject, or a Point depoending on the cursorPos.
         /// </summary>
         /// <param name="cursorPos">User's cursor position.</param>
-        public void Select(Point cursorPos)
+        public void SelectGameObject(Point cursorPos)
         {
             Icon clickedIcon = this.FindIcon(cursorPos);
 
@@ -252,7 +252,7 @@ namespace Warcraft.GameLogic
         }
 
         /// <inheritdoc/>
-        public void GoTo()
+        public void Move()
         {
             if (this.ValidateDestintaion())
             {
@@ -326,7 +326,7 @@ namespace Warcraft.GameLogic
                 case "human_farm_icon": this.InitNewBuilding("player human farm", new Point(0, 0)); break;
                 case "human_barrack_icon": this.InitNewBuilding("player human barrack", new Point(0, 0)); break;
                 case "human_peasant_icon": this.CreateUnit("player human peasant"); break;
-                case "move_icon": this.GoTo(); break;
+                case "move_icon": this.Move(); break;
             }
         }
 

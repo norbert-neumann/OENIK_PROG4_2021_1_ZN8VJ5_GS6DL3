@@ -17,7 +17,7 @@
         /// One step of the game.
         /// </summary>
         /// <returns> Winner type.</returns>
-        OwnerEnum Step();
+        OwnerEnum GameStep();
 
         /// <summary>
         /// Updates each unit's sprite.
@@ -28,7 +28,7 @@
         /// Selects an Object, Subject, or a Point depoending on the cursorPos.
         /// </summary>
         /// <param name="cursorPos">User's cursor position.</param>
-        void Select(Point cursorPos);
+        void SelectGameObject(Point cursorPos);
 
         /// <summary>
         /// Commands the SelectedSubject to mine gold at the SelectedObject.
@@ -53,6 +53,6 @@
         /// <summary>
         /// Commands the SelectedSubject to move to the SelectedPoint.
         /// </summary>
-        void GoTo();
+        void Move();
     }
 }
