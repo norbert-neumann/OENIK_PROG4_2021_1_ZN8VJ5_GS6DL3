@@ -70,7 +70,7 @@ namespace Warcraft.Renderer
 
             foreach (string line in sr.ReadToEnd().Split('\n'))
             {
-                if (line == string.Empty)
+                if (string.IsNullOrEmpty(line))
                 {
                     continue;
                 }
