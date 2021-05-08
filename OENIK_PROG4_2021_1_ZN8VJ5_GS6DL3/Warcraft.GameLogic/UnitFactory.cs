@@ -63,14 +63,14 @@
             {
                 case "PLAYER": owner = OwnerEnum.PLAYER; break;
                 case "ENEMY": owner = OwnerEnum.ENEMY; break;
-                default: throw new ArgumentException();
+                default: throw new ArgumentException("Wrong description!");
             }
 
             switch (components[1])
             {
                 case "HUMAN": race = RaceEnum.Human; break;
                 case "ORC": race = RaceEnum.Orc; break;
-                default: throw new ArgumentException();
+                default: throw new ArgumentException("Wrong description!");
             }
 
             switch (components[2])
@@ -78,7 +78,7 @@
                 case "PEASANT": unitType = UnitTypeEnum.Peasant; break;
                 case "FOOTMAN": unitType = UnitTypeEnum.Footman; break;
                 case "KNIGHT": unitType = UnitTypeEnum.Knight; break;
-                default: throw new ArgumentException();
+                default: throw new ArgumentException("Wrong description!");
             }
 
             int width = 0;
