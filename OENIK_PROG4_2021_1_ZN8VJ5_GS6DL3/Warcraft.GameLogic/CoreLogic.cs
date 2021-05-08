@@ -1,4 +1,6 @@
-﻿namespace Warcraft.GameLogic
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.GameLogic
 {
     using System;
     using System.Collections.Generic;

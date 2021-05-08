@@ -1,4 +1,6 @@
-﻿namespace Warcraft.Model
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.Model
 {
     using System;
     using System.Collections.Generic;

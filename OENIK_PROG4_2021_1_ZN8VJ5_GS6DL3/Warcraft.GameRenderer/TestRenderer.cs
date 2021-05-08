@@ -1,4 +1,6 @@
-﻿namespace Warcraft.Renderer
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.Renderer
 {
     using System;
     using System.Collections.Generic;
