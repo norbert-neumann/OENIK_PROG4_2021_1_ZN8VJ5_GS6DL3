@@ -18,7 +18,6 @@ namespace Warcraft.Renderer
     public class TestRenderer
     {
         private GameModel model;
-        private Dictionary<string, Brush> stateToBrush = new Dictionary<string, Brush>();
 
         private GeometryDrawing treeGeometry;
 
