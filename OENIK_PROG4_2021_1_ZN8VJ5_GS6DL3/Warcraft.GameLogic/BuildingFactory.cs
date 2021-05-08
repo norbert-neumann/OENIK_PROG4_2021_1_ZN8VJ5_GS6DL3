@@ -30,8 +30,9 @@
         /// <param name="description">Type and over of the building.</param>
         /// <param name="x">X pos.</param>
         /// <param name="y">Y pos.</param>
+        /// <param name="add">Indicaties wheter the building shoud be added to the model right away.</param>
         /// <returns>The newly created buolding.</returns>
-        public Building Create(string description, int x, int y)
+        public Building Create(string description, int x, int y, bool add)
         {
             string[] components = description.ToUpper().Split(' ');
             OwnerEnum owner;
@@ -62,21 +63,25 @@
 
             int width = 0;
             int height = 0;
+            int baseHealth = 0;
 
             // Widths and heights are harcoded here.
             switch (buildingType)
             {
-                case BuildingEnum.Hall: width = 120; height = 120; break;
-                case BuildingEnum.Farm: width = 90; height = 80; break;
-                case BuildingEnum.Barracks: width = 110; height = 110; break;
+                case BuildingEnum.Hall: width = 120; height = 120; baseHealth = 1000; break;
+                case BuildingEnum.Farm: width = 75; height = 70; baseHealth = 70; break;
+                case BuildingEnum.Barracks: width = 105; height = 105; baseHealth = 100; break;
             }
 
             width = (int)(width * Config.Zoom);
             height = (int)(height * Config.Zoom);
 
-            Building building = new Building(owner, buildingType, race, x, y, width, height);
+            Building building = new Building(owner, buildingType, race, x, y, width, height, baseHealth);
 
-            this.model.Buildings.Add(building);
+            if (add)
+            {
+                this.model.Buildings.Add(building);
+            }
 
             return building;
         }

@@ -91,10 +91,19 @@
         /// <param name="y">Y pos.</param>
         /// <param name="width">Hitbox width.</param>
         /// <param name="height">Hitbox height.</param>
-        public Unit(OwnerEnum owner, RaceEnum race, UnitTypeEnum unitType, int x, int y, int width, int height)
+        /// <param name="health">Unit's initial health.</param>
+        /// <param name="shield">Unit's shield.</param>
+        /// <param name="attack">Unit's attack damage.</param>
+        public Unit(OwnerEnum owner, RaceEnum race, UnitTypeEnum unitType, int x, int y, int width, int height, int health, int shield, int attack)
             : base(x, y, width, height)
         {
             this.Owner = owner;
+            this.TargetLocked = false;
+
+            this.maxHealth = health;
+            this.Health = health;
+            this.shield = shield;
+            this.Attack = attack;
 
             switch (race)
             {
@@ -133,6 +142,11 @@
         }
 
         /// <summary>
+        /// When true the CombatLogic can't modify this unit's target.
+        /// </summary>
+        public bool TargetLocked { get; set; }
+
+        /// <summary>
         /// Puts the current target at the end of the Q, and sets the target to the next point.
         /// This is called after Pathfinding logic creates a new path for this unit.
         /// </summary>
@@ -140,6 +154,15 @@
         {
             this.Path.Enqueue(this.Target);
             this.Target = this.Path.Dequeue();
+        }
+
+        /// <summary>
+        /// This will be shown on the hud.
+        /// </summary>
+        /// <returns>The unit's stats.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Health: {this.Health}/{this.maxHealth} Shield: {this.shield}\nAttack: {this.Attack}");
         }
     }
 }

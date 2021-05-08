@@ -20,6 +20,8 @@
         private DateTime startTime;
         private TimeSpan waitTime;
         private bool mining = false;
+        private GameModel model;
+        private OwnerEnum owner;
 
         /// <summary>
         /// Return gold to this object.
@@ -38,13 +40,17 @@
         /// <param name="waitTime">Number of seconds to mine.</param>
         /// <param name="hall">Hall.</param>
         /// <param name="tree">Treee.</param>
-        public HarvestLumberRoutine(Unit unit, TimeSpan waitTime, Building hall, CombatObject tree)
+        /// <param name="model">Game model to operate on.</param>
+        /// <param name="owner">Reciever of the lumber.</param>
+        public HarvestLumberRoutine(Unit unit, TimeSpan waitTime, Building hall, CombatObject tree, GameModel model, OwnerEnum owner)
             : base(unit, hall.Position, tree.Position)
         {
             this.waitTime = waitTime;
             this.hall = hall;
             this.tree = tree;
             this.TargetObject = tree;
+            this.model = model;
+            this.owner = owner;
         }
 
         /// <summary>
@@ -75,9 +81,12 @@
         /// <returns>False always.</returns>
         protected override bool ReachedTargetA()
         {
+            this.model.AddLumber(this.owner, 17);
+
             this.unit.UnitState = UnitStateEnum.Walking;
             this.unit.Target = this.targetB;
             this.TargetObject = this.tree;
+
             return false;
         }
 
@@ -88,6 +97,13 @@
         /// <returns>True if the unit is minig.</returns>
         protected override bool ReachedTargetB()
         {
+            if (this.tree.Health <= 0)
+            {
+                this.unit.UnitState = UnitStateEnum.Walking;
+                this.unit.InIdle = true;
+                return false;
+            }
+
             if (this.mining)
             {
                 if (DateTime.Now - this.startTime >= this.waitTime)
@@ -95,8 +111,21 @@
                     this.unit.UnitState = UnitStateEnum.WalkingWithLumber;
                     this.unit.Target = this.targetA;
                     this.mining = false;
-                    this.unit.Position = new Point(this.unit.EntryPoint.X - (this.unit.Hitbox.Width / 1), this.unit.EntryPoint.Y - (this.unit.Hitbox.Height / 1));
+                    this.unit.Position = this.unit.EntryPoint;
                     this.TargetObject = this.hall;
+
+                    if (this.tree.AcceptDamage(17))
+                    {
+                        if (this.tree is Building)
+                        {
+                            this.model.BuildingsToRemove.Add(this.tree as Building);
+                        }
+                        else
+                        {
+                            this.model.TreesToRemove.Add(this.tree);
+                        }
+                    }
+
                     return false;
                 }
 

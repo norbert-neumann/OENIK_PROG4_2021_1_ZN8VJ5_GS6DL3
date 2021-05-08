@@ -10,7 +10,7 @@
     /// <summary>
     /// Deals with everything realted to movement.
     /// </summary>
-    public class MovementLogic
+    public class MovementLogic : IMovementLogic
     {
         /// <summary>
         /// Dictionary associating the units wtih their potetntial routines.
@@ -80,6 +80,7 @@
                 if (unit.Path.TryDequeue(out newTarget))
                 {
                     unit.Target = newTarget;
+                    unit.TargetLocked = false;
                 }
                 else if (routines.ContainsKey(unit))
                 {
@@ -119,6 +120,8 @@
 
                 // Reset target
                 unit.ResetTarget();
+
+                unit.TargetLocked = true;
 
                 // Movetorawrds with 0 threshhold
                 this.MoveTowardTarget(unit, Config.Speed, 0);
@@ -195,15 +198,42 @@
 
         private void UpdateFacing(Unit unit, Point delta)
         {
-            if (delta == new Point(0, 0)) unit.Facing = DirectionEnum.South;
-            else if (delta == new Point(0, -1)) unit.Facing = DirectionEnum.North;
-            else if (delta == new Point(0, 1)) unit.Facing = DirectionEnum.South;
-            else if (delta == new Point(1, 0)) unit.Facing = DirectionEnum.East;
-            else if (delta == new Point(-1, 0)) unit.Facing = DirectionEnum.West;
-            else if (delta == new Point(1, -1)) unit.Facing = DirectionEnum.NorthEast;
-            else if (delta == new Point(1, 1)) unit.Facing = DirectionEnum.SouthEast;
-            else if (delta == new Point(-1, 1)) unit.Facing = DirectionEnum.SouthWest;
-            else if (delta == new Point(-1, -1)) unit.Facing = DirectionEnum.NorthWest;
+            if (delta == new Point(0, 0))
+            {
+                unit.Facing = DirectionEnum.South;
+            }
+            else if (delta == new Point(0, -1))
+            {
+                unit.Facing = DirectionEnum.North;
+            }
+            else if (delta == new Point(0, 1))
+            {
+                unit.Facing = DirectionEnum.South;
+            }
+            else if (delta == new Point(1, 0))
+            {
+                unit.Facing = DirectionEnum.East;
+            }
+            else if (delta == new Point(-1, 0))
+            {
+                unit.Facing = DirectionEnum.West;
+            }
+            else if (delta == new Point(1, -1))
+            {
+                unit.Facing = DirectionEnum.NorthEast;
+            }
+            else if (delta == new Point(1, 1))
+            {
+                unit.Facing = DirectionEnum.SouthEast;
+            }
+            else if (delta == new Point(-1, 1))
+            {
+                unit.Facing = DirectionEnum.SouthWest;
+            }
+            else if (delta == new Point(-1, -1))
+            {
+                unit.Facing = DirectionEnum.NorthWest;
+            }
         }
 
         private GameObject FindCollision(Unit unit)

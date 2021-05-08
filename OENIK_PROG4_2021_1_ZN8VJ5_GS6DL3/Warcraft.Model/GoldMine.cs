@@ -57,14 +57,14 @@
         /// <summary>
         /// Current capacity of the mine.
         /// </summary>
-        private int CurrentCapacity { get; set; }
+        public int CurrentCapacity { get; set; }
 
         /// <summary>
         /// Takes a certain amount of resorces out of the mine.
         /// </summary>
         /// <param name="amount">Amount of resources taken.</param>
         /// <returns>The amount of resources acutally taken.</returns>
-        public int Take(int amount)
+        public bool Take(int amount)
         {
             if (this.CurrentCapacity >= amount)
             {
@@ -72,11 +72,19 @@
             }
             else
             {
-                amount = this.CurrentCapacity;
                 this.CurrentCapacity = 0;
             }
 
-            return amount;
+            return this.CurrentCapacity > 0;
+        }
+
+        /// <summary>
+        /// This will be shown on the HUD.
+        /// </summary>
+        /// <returns>The mine's current and max capacity.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Capacity : {this.CurrentCapacity}/{this.baseCapacity}");
         }
     }
 }

@@ -107,45 +107,46 @@
             // Gold Mines
             foreach (GoldMine mine in this.model.GoldMines)
             {
-                GeometryDrawing geometry = this.mineToGeometry[mine.AnimationString];
+                GeometryDrawing geometry = this.mineToGeometry[mine.AnimationString].Clone();
                 geometry.Geometry.Transform = new TranslateTransform(mine.Hitbox.X, mine.Hitbox.Y);
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+              /*  GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(mine.Hitbox.X, mine.Hitbox.Y, mine.Hitbox.Width, mine.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Trees
             foreach (CombatObject tree in this.model.LumberMines)
             {
-                this.treeGeometry.Geometry.Transform = new TranslateTransform(tree.Hitbox.X, tree.Hitbox.Y);
-                dg.Children.Add(this.treeGeometry);
+                GeometryDrawing geometry = this.treeGeometry.Clone();
+                geometry.Geometry.Transform = new TranslateTransform(tree.Hitbox.X, tree.Hitbox.Y);
+                dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+               /* GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(tree.Hitbox.X, tree.Hitbox.Y, tree.Hitbox.Width, tree.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Buildings
             foreach (Building building in this.model.Buildings)
             {
-                GeometryDrawing geometry = this.buildingToGeometry[building.AnimationString];
+                GeometryDrawing geometry = this.buildingToGeometry[building.AnimationString].Clone();
                 geometry.Geometry.Transform = new TranslateTransform(building.Hitbox.X, building.Hitbox.Y);
                 dg.Children.Add(geometry);
 
                 // Draw hitboxes
-                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+               /*GeometryDrawing hitboxGeometry = new GeometryDrawing(
                     Brushes.Transparent,
                     new Pen(Brushes.Black, 2),
                     new RectangleGeometry(new Rect(building.Hitbox.X, building.Hitbox.Y, building.Hitbox.Width, building.Hitbox.Height)));
-                dg.Children.Add(hitboxGeometry);
+                dg.Children.Add(hitboxGeometry);*/
             }
 
             // Units
@@ -153,7 +154,7 @@
             {
                 if (!unit.Hiding)
                 {
-                    GeometryDrawing geometry = this.stateToGeometry[unit.AnimationString];
+                    GeometryDrawing geometry = this.stateToGeometry[unit.AnimationString].Clone();
                     Point offset = new Point(unit.Hitbox.Width / 3, unit.Hitbox.Height);
                     if (this.positionOffset.ContainsKey(unit.AnimationString))
                     {
@@ -164,6 +165,57 @@
                     dg.Children.Add(geometry);
                 }
             }
+
+            // Selected subject
+            if (this.model.SelectedSubject != null && !this.model.SelectedSubject.Hiding)
+            {
+                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(Brushes.Green, 2),
+                new RectangleGeometry(new Rect(
+                    this.model.SelectedSubject.Hitbox.X,
+                    this.model.SelectedSubject.Hitbox.Y,
+                    this.model.SelectedSubject.Hitbox.Width,
+                    this.model.SelectedSubject.Hitbox.Height)));
+                dg.Children.Add(hitboxGeometry);
+            }
+
+            if (this.model.SelectedObject != null)
+            {
+                GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(Brushes.Green, 2),
+                new RectangleGeometry(new Rect(
+                    this.model.SelectedObject.Hitbox.X,
+                    this.model.SelectedObject.Hitbox.Y,
+                    this.model.SelectedObject.Hitbox.Width,
+                    this.model.SelectedObject.Hitbox.Height)));
+                dg.Children.Add(hitboxGeometry);
+            }
+
+            return dg;
+        }
+
+        /// <summary>
+        /// Displays the new building with hitbox.
+        /// Hitbox is red when the new building collides with somehing.
+        /// </summary>
+        /// <param name="collision">Bool indicating collison.</param>
+        /// <returns>Drawing group containing the new building and it's hitbox.</returns>
+        public Drawing DisplayNewBuilding(bool collision)
+        {
+            DrawingGroup dg = new DrawingGroup();
+
+            GeometryDrawing geometry = this.buildingToGeometry[this.model.NewBuilding.AnimationString];
+            geometry.Geometry.Transform = new TranslateTransform(this.model.NewBuilding.Hitbox.X + Config.HitboxExtension, this.model.NewBuilding.Hitbox.Y + Config.HitboxExtension);
+            dg.Children.Add(geometry);
+
+            // Hitbox
+            GeometryDrawing hitboxGeometry = new GeometryDrawing(
+                Brushes.Transparent,
+                new Pen(collision ? Brushes.Red : Brushes.Black, 2),
+                new RectangleGeometry(new Rect(this.model.NewBuilding.Hitbox.X, this.model.NewBuilding.Hitbox.Y, this.model.NewBuilding.Hitbox.Width, this.model.NewBuilding.Hitbox.Height)));
+            dg.Children.Add(hitboxGeometry);
 
             return dg;
         }

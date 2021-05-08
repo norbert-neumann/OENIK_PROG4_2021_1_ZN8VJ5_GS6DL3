@@ -18,5 +18,10 @@
         /// Enemy.
         /// </summary>
         ENEMY,
+
+        /// <summary>
+        /// Empty owner.
+        /// </summary>
+        EMPTY,
     }
 }

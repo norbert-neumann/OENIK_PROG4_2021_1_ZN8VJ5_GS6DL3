@@ -10,18 +10,39 @@
             Can save games, and reload them.
             </summary>
         </member>
-        <member name="M:Warcraft.IStorageRepo.Save(System.String)">
+        <member name="M:Warcraft.IStorageRepo.Save(Warcraft.Model.GameModel,System.String)">
             <summary>
             Saves a game state to a file.
             </summary>
-            <param name="game">Game state to save.</param>
+            <param name="model">Game state to save.</param>
             <param name="name">File name to save to.</param>
+        </member>
+        <member name="M:Warcraft.IStorageRepo.Load(System.String)">
+            <summary>
+            Loads a given game state.
+            </summary>
+            <param name="name">File name where the game is saved.</param>
+            <returns>The reloaded game state.</returns>
         </member>
         <member name="M:Warcraft.IStorageRepo.GetHighScores">
             <summary>
             Gives the high scores in a descending order.
             </summary>
             <returns>High scores :).</returns>
+        </member>
+        <member name="T:Warcraft.Repository.StorageRepo">
+            <summary>
+            Does repo things.
+            </summary>
+        </member>
+        <member name="M:Warcraft.Repository.StorageRepo.GetHighScores">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.Repository.StorageRepo.Load(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Warcraft.Repository.StorageRepo.Save(Warcraft.Model.GameModel,System.String)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

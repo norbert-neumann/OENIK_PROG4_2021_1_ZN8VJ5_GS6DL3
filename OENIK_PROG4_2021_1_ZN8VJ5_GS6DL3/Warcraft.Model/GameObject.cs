@@ -33,7 +33,9 @@
             set
             {
                 Point newPos = (Point)value;
-                this.Hitbox = new Rectangle(newPos.X + (this.Hitbox.Width / 2), newPos.Y + (this.Hitbox.Height / 2), this.Hitbox.Width, this.Hitbox.Height);
+                this.Hitbox.X = newPos.X;
+                this.Hitbox.Y = newPos.Y;
+                this.Hitbox = new Rectangle(newPos.X - (this.Hitbox.Width / 2), newPos.Y - (this.Hitbox.Height / 2), this.Hitbox.Width, this.Hitbox.Height);
             }
         }
 
@@ -44,6 +46,15 @@
         public void SetPosition(Point newPosition)
         {
             this.Position = newPosition;
+        }
+
+        /// <summary>
+        /// Sets the object's position.
+        /// </summary>
+        /// <param name="point">New position.</param>
+        public void SetCenterPositon(Point point)
+        {
+            this.Position = new Point(point.X - (this.Hitbox.Width / 1), point.Y - (this.Hitbox.Height / 1));
         }
 
         /// <summary>

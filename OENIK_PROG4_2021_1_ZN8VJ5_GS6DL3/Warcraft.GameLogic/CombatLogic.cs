@@ -9,7 +9,7 @@
     /// <summary>
     /// Deals with everything realted to combat.
     /// </summary>
-    public class CombatLogic
+    public class CombatLogic : ICombatLogic
     {
         /// <summary>
         /// Game model to operate on.
@@ -43,7 +43,10 @@
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.Target = unit.Enemy.Position;
+                            if (!unit.TargetLocked)
+                            {
+                                unit.Target = unit.Enemy.Position;
+                            }
                         }
                     }
                     else
@@ -55,7 +58,10 @@
                         else
                         {
                             unit.UnitState = UnitStateEnum.Walking;
-                            unit.Target = unit.Enemy.Position;
+                            if (!unit.TargetLocked)
+                            {
+                                unit.Target = unit.Enemy.Position;
+                            }
                         }
                     }
                 }
@@ -75,6 +81,8 @@
         private void AttackEnemyUnit(Unit unit)
         {
             unit.UnitState = UnitStateEnum.Fighting;
+            (unit.Enemy as Unit).Enemy = unit;
+            (unit.Enemy as Unit).InIdle = false;
             if (unit.Enemy.AcceptDamage(unit.Attack))
             {
                 this.model.UnitsToRemove.Add(unit.Enemy as Unit);
@@ -119,7 +127,7 @@
 
             foreach (Building buildng in this.model.Buildings)
             {
-                if (self.Owner != buildng.Owner && self.Distance(buildng) <= Config.AggroRange)
+                if (self.Owner != buildng.Owner && self.Distance(buildng) <= Config.AggroRange * 2)
                 {
                     return buildng;
                 }

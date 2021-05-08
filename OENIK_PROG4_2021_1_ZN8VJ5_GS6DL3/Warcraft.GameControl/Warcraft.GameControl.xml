@@ -32,6 +32,11 @@
             Game controller.
             </summary>
         </member>
+        <member name="M:Warcraft.GameControl.TestController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Warcraft.GameControl.TestController"/> class.
+            </summary>
+        </member>
         <member name="M:Warcraft.GameControl.TestController.OnRender(System.Windows.Media.DrawingContext)">
             <inheritdoc/>
         </member>

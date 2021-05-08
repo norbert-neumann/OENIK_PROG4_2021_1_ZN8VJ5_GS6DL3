@@ -19,7 +19,7 @@
         /// <summary>
         /// Building type.
         /// </summary>
-        private BuildingEnum type;
+        public BuildingEnum Type;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Building"/> class.
@@ -31,12 +31,15 @@
         /// <param name="y">Y position of building.</param>
         /// <param name="width">Width of the building's hitbox.</param>
         /// <param name="height">Height of the building's hitbox.</param>
-        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height)
+        /// <param name="health">Initial health.</param>
+        public Building(OwnerEnum owner, BuildingEnum type, RaceEnum race, int x, int y, int width, int height, int health)
             : base(x, y, width, height)
         {
             this.Owner = owner;
-            this.type = type;
+            this.Type = type;
             this.Race = race;
+            this.Health = health;
+            this.maxHealth = health;
 
             switch (race)
             {
@@ -71,11 +74,11 @@
         /// <param name="amount">Heal quantity.</param>
         public void AcceptHeal(int amount)
         {
-            this.health += amount;
+            this.Health += amount;
 
-            if (this.health >= this.maxHealth)
+            if (this.Health >= this.maxHealth)
             {
-                this.health = this.maxHealth;
+                this.Health = this.maxHealth;
             }
         }
 
@@ -101,7 +104,7 @@
                     break;
             }
 
-            switch (this.type)
+            switch (this.Type)
             {
                 case BuildingEnum.Hall:
                     sb.Append("H");
@@ -117,6 +120,15 @@
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// This will be shown on the hud.
+        /// </summary>
+        /// <returns>The building's base stats.</returns>
+        public override string ToString()
+        {
+            return string.Format($"Health: {this.Health}/{this.maxHealth}");
         }
     }
 }
