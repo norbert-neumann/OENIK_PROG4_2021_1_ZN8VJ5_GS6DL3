@@ -14,38 +14,38 @@
         /// <summary>
         /// Amount of pixels a unit should move in one time step.
         /// </summary>
-        public static int Speed = 2;
+        public const int Speed = 2;
 
         /// <summary>
         /// When navigating around a gameobject we need to specify how close we can get to it.
         /// </summary>
-        public static int BorderWidth = 10;
+        public const int BorderWidth = 10;
 
         /// <summary>
         /// This threshold decides when to move in both X and Y directions.
         /// </summary>
-        public static double DefaultThreshold = 0.8;
+        public const double DefaultThreshold = 0.8;
 
         /// <summary>
         /// Enemy units "see" eachother within this distance.
         /// </summary>
-        public static double AggroRange = 40;
+        public const double AggroRange = 40;
 
         /// <summary>
         /// Idk what is this.
         /// </summary>
-        public static double DistanceThreshold = 5;
+        public const double DistanceThreshold = 5;
 
         /// <summary>
         /// All images are zoomed by this rate (except trees, they are a little bigger then the other images for some reason).
         /// </summary>
-        public static double Zoom = 1.3;
+        public const double Zoom = 1.3;
 
         /// <summary>
         /// For pathfinding to operate we need to have a minimum space betweeen builings.
         /// During building placement the building's hitbox is extended by this much to guarantee that.
         /// </summary>
-        public static int HitboxExtension = 20;
+        public const int HitboxExtension = 20;
 
         /// <summary>
         /// Converts a unit state enum to it's "AnimationString" version used by the renderer.
