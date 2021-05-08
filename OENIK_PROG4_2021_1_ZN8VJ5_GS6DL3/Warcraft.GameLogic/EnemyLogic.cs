@@ -94,6 +94,39 @@
                     }
                 }
             }
+            else
+            {
+                foreach (Unit unit in this.model.Units)
+                {
+                    if (unit.Owner == OwnerEnum.ENEMY && unit.InIdle)
+                    {
+                        // Assign random task
+                        switch (this.rnd.Next(0, 3))
+                        {
+                            case 0: this.MineClosestGoldMine(unit); break;
+                            case 1: this.MineClosestLumberMine(unit); break;
+                            case 2: this.PatrollAroundHall(unit); break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void PatrollAroundHall(Unit unit)
+        {
+            if (this.movementLogic.Routines.ContainsKey(unit))
+            {
+                this.movementLogic.Routines.Remove(unit);
+            }
+
+            Point bottomLeft = new Point(this.model.EnemyHall.Hitbox.X, this.model.EnemyHall.Hitbox.Y);
+            bottomLeft.Offset(0, this.model.EnemyHall.Hitbox.Height + Config.BorderWidth);
+
+            Point topRight = new Point(this.model.EnemyHall.Hitbox.X, this.model.EnemyHall.Hitbox.Y);
+            topRight.Offset(this.model.EnemyHall.Hitbox.Width + Config.BorderWidth, 0);
+
+            unit.InIdle = false;
+            this.movementLogic.Routines.Add(unit, new PatrolRoutine(unit, bottomLeft, topRight));
         }
 
         private void MineClosestGoldMine(Unit unit)
