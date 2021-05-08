@@ -55,7 +55,7 @@
             switch (unit.UnitState)
             {
                 case UnitStateEnum.Walking:
-                    sb.Append("W");
+                    sb.Append('W');
                     break;
                 case UnitStateEnum.WalkingWithLumber:
                     sb.Append("WT");
@@ -64,7 +64,7 @@
                     sb.Append("WG");
                     break;
                 case UnitStateEnum.Fighting:
-                    sb.Append("F");
+                    sb.Append('F');
                     break;
                 default:
                     break;
@@ -73,25 +73,25 @@
             switch (unit.Facing)
             {
                 case DirectionEnum.North:
-                    sb.Append("N");
+                    sb.Append('N');
                     break;
                 case DirectionEnum.NorthEast:
                     sb.Append("NE");
                     break;
                 case DirectionEnum.East:
-                    sb.Append("E");
+                    sb.Append('E');
                     break;
                 case DirectionEnum.SouthEast:
                     sb.Append("SE");
                     break;
                 case DirectionEnum.South:
-                    sb.Append("S");
+                    sb.Append('S');
                     break;
                 case DirectionEnum.SouthWest:
                     sb.Append("SW");
                     break;
                 case DirectionEnum.West:
-                    sb.Append("W");
+                    sb.Append('W');
                     break;
                 case DirectionEnum.NorthWest:
                     sb.Append("NW");
@@ -100,7 +100,7 @@
                     break;
             }
 
-            sb.Append(unit.AnimationIndex.ToString());
+            sb.Append(unit.AnimationIndex);
 
             unit.AnimationString = sb.ToString();
         }
