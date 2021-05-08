@@ -10,7 +10,7 @@
     /// <summary>
     /// Inits GameModel based on the screen resolution.
     /// </summary>
-    public class MapBuilder
+    public static class MapBuilder
     {
         /// <summary>
         /// Fills the given gamemodel with harcoded buildings, units, and mines.

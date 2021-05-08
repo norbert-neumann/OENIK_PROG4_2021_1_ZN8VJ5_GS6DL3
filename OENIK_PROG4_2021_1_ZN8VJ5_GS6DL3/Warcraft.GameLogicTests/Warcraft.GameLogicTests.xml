@@ -4,5 +4,10 @@
         <name>Warcraft.GameLogicTests</name>
     </assembly>
     <members>
+        <member name="T:Warcraft.GameLogicTests.LogicTests">
+            <summary>
+            Just a placeholder so I can add CLS Compliant to this namespace.
+            </summary>
+        </member>
     </members>
 </doc>

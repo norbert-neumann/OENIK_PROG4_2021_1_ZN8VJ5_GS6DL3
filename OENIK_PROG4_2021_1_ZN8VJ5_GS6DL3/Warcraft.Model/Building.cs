@@ -95,10 +95,10 @@
             switch (this.Race)
             {
                 case RaceEnum.Human:
-                    sb.Append("H");
+                    sb.Append('H');
                     break;
                 case RaceEnum.Orc:
-                    sb.Append("O");
+                    sb.Append('O');
                     break;
                 default:
                     break;
@@ -107,13 +107,13 @@
             switch (this.Type)
             {
                 case BuildingEnum.Hall:
-                    sb.Append("H");
+                    sb.Append('H');
                     break;
                 case BuildingEnum.Farm:
-                    sb.Append("F");
+                    sb.Append('F');
                     break;
                 case BuildingEnum.Barracks:
-                    sb.Append("B");
+                    sb.Append('B');
                     break;
                 default:
                     break;

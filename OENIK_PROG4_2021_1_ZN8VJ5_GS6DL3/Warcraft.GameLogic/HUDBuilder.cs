@@ -10,7 +10,7 @@
     /// <summary>
     /// Builds the HUD.
     /// </summary>
-    public class HUDBuilder
+    public static class HUDBuilder
     {
         /// <summary>
         /// Add icons to the game model.

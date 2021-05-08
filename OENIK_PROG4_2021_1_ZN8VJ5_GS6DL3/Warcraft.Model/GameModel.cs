@@ -1,4 +1,6 @@
-﻿namespace Warcraft.Model
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.Model
 {
     using System;
     using System.Collections.Generic;
@@ -166,11 +168,11 @@
         /// <summary>
         /// Adds some amount of gold to some1.
         /// </summary>
-        /// <param name="to">Add gold to this entity.</param>
+        /// <param name="receiver">Add gold to this entity.</param>
         /// <param name="amount">Amount of gold added.</param>
-        public void AddGold(OwnerEnum to, int amount)
+        public void AddGold(OwnerEnum receiver, int amount)
         {
-            switch (to)
+            switch (receiver)
             {
                 case OwnerEnum.PLAYER: this.PlayerGold += amount; break;
                 case OwnerEnum.ENEMY: this.EnemyGold += amount; break;
@@ -181,11 +183,11 @@
         /// <summary>
         /// Adds some amount of lumber to some1.
         /// </summary>
-        /// <param name="to">Add lumber to this entity.</param>
+        /// <param name="receiver">Add lumber to this entity.</param>
         /// <param name="amount">Amount of lumbner added.</param>
-        public void AddLumber(OwnerEnum to, int amount)
+        public void AddLumber(OwnerEnum receiver, int amount)
         {
-            switch (to)
+            switch (receiver)
             {
                 case OwnerEnum.PLAYER: this.PlayerLumber += amount; break;
                 case OwnerEnum.ENEMY: this.EnemyLumber += amount; break;

@@ -1,4 +1,6 @@
-﻿namespace Warcraft.Repository
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.Repository
 {
     using System;
     using System.Collections.Generic;

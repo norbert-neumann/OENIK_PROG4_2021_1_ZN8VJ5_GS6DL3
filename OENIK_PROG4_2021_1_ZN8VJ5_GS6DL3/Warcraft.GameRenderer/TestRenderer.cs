@@ -1,4 +1,6 @@
-﻿namespace Warcraft.Renderer
+﻿[assembly: System.CLSCompliant(false)]
+
+namespace Warcraft.Renderer
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +18,6 @@
     public class TestRenderer
     {
         private GameModel model;
-        private Dictionary<string, Brush> stateToBrush = new Dictionary<string, Brush>();
 
         private GeometryDrawing treeGeometry;
 
@@ -69,7 +70,7 @@
 
             foreach (string line in sr.ReadToEnd().Split('\n'))
             {
-                if (line == string.Empty)
+                if (string.IsNullOrEmpty(line))
                 {
                     continue;
                 }

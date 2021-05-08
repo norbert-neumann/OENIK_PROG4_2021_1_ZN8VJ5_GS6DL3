@@ -1,6 +1,6 @@
 ﻿using System;
 
-[assembly: CLSCompliant(true)]
+[assembly: System.CLSCompliant(false)]
 
 namespace Warcraft
 {
