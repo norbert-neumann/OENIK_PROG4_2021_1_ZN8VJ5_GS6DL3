@@ -90,7 +90,6 @@
                 {
                     this.model.CommandResult = "Cost: 50g 100l";
                 }
-
             }
             else if (description.Contains("barrack"))
             {
@@ -104,7 +103,6 @@
                 {
                     this.model.CommandResult = "Cost: 100g 200l";
                 }
-
             }
         }
 
