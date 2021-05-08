@@ -53,8 +53,8 @@
             this.GameTime.Start();
             this.BestGameTime = TimeSpan.FromMinutes(10);
 
-            this.PlayerGold = 500;
-            this.PlayerLumber = 500;
+            this.PlayerGold = 100;
+            this.PlayerLumber = 50;
         }
 
         /// <inheritdoc/>
