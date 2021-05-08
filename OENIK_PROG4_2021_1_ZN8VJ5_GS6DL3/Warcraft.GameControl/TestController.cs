@@ -75,7 +75,6 @@
             Window win = Window.GetWindow(this);
             if (win != null)
             {
-                win.KeyDown += this.Win_KeyDown;
                 this.timer = new DispatcherTimer();
                 this.timer.Interval = TimeSpan.FromMilliseconds(30);
                 this.timer.Tick += this.TimerTick;
@@ -141,38 +140,6 @@
                 {
                     MessageBox.Show("You lost! Game time: " + this.model.GameTime.Elapsed);
                 }
-            }
-        }
-
-        private void Win_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.G)
-            {
-                this.logic.MineGold();
-            }
-            else if (e.Key == System.Windows.Input.Key.B)
-            {
-                this.logic.InitNewBuilding("player human farm", new System.Drawing.Point(100, 100));
-            }
-            else if (e.Key == System.Windows.Input.Key.H)
-            {
-                this.logic.HarvestLumber();
-            }
-            else if (e.Key == System.Windows.Input.Key.P)
-            {
-                this.logic.PatrollUnit();
-            }
-            else if (e.Key == System.Windows.Input.Key.M)
-            {
-                this.logic.GoTo();
-            }
-            else if (e.Key == System.Windows.Input.Key.A)
-            {
-                this.logic.SetUnitsEnemy();
-            }
-            else if (e.Key == System.Windows.Input.Key.U)
-            {
-                this.logic.CreateUnit("player human peasant");
             }
         }
     }
