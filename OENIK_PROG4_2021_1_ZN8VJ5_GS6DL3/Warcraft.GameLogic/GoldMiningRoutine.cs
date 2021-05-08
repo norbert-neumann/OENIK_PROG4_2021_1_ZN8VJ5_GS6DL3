@@ -83,7 +83,7 @@
         /// <returns>False always.</returns>
         protected override bool ReachedTargetA()
         {
-            this.model.AddGold(this.owner, 21);
+            this.model.AddGold(this.owner, 10);
 
             this.unit.UnitState = UnitStateEnum.Walking;
             this.TargetObject = this.mine;
@@ -119,7 +119,7 @@
                     this.mine.NumberOfUsers--;
                     this.unit.AnimationIndex = 0;
 
-                    if (!this.mine.Take(21))
+                    if (!this.mine.Take(10))
                     {
                         this.model.GoldMinesToRemove.Add(this.mine);
                     }
