@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -25,10 +26,14 @@
         public EnemyLogic(GameModel model, MovementLogic movementLogic)
         {
             this.model = model;
-            this.model.EnemyGold = 150;
-            this.model.EnemyLumber = 50;
-            this.factory = new UnitFactory(this.model, 100, 5, 1);
+            this.model.EnemyGold = 0;
+            this.model.EnemyLumber = 0;
+            this.factory = new UnitFactory(this.model, 130, 5, 5);
             this.movementLogic = movementLogic;
+
+            this.PatrollAroundHall(this.factory.Create("enemy orc peasant", 0, 0));
+            this.MineClosestGoldMine(this.factory.Create("enemy orc peasant", 0, 0));
+            this.MineClosestLumberMine(this.factory.Create("enemy orc peasant", 0, 0));
         }
 
         /// <summary>
@@ -36,8 +41,9 @@
         /// </summary>
         public void Step()
         {
+            // Units cost a bit more lumber for the enemy
             int unitGoldCost = 50;
-            int unitLumberCost = 20;
+            int unitLumberCost = 15;
 
             if (this.model.EnemyGold >= unitGoldCost && this.model.EnemyLumber >= unitLumberCost)
             {
@@ -79,7 +85,7 @@
                     }
                 }
             }
-            else
+            else if (this.model.GameTime.Elapsed.Minutes >= 1)
             {
                 foreach (Unit unit in this.model.Units)
                 {
