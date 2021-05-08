@@ -26,9 +26,9 @@
         public EnemyLogic(GameModel model, MovementLogic movementLogic)
         {
             this.model = model;
-            this.model.EnemyGold = 0;
-            this.model.EnemyLumber = 0;
-            this.factory = new UnitFactory(this.model, 130, 5, 5);
+            this.model.EnemyGold = 200;
+            this.model.EnemyLumber = 300;
+            this.factory = new UnitFactory(this.model, 130, 5, 2);
             this.movementLogic = movementLogic;
 
             this.PatrollAroundHall(this.factory.Create("enemy orc peasant", 0, 0));
@@ -76,11 +76,12 @@
                     if (unit.Owner == OwnerEnum.ENEMY && unit.InIdle)
                     {
                         // Assign random task
-                        switch (this.rnd.Next(0, 3))
+                        switch (this.rnd.Next(0, 4))
                         {
                             case 0: this.MineClosestGoldMine(unit); break;
                             case 1: this.MineClosestLumberMine(unit); break;
                             case 2: this.AttackClosestPlayer(unit); break;
+                            case 3: this.PatrollAroundHall(unit); break;
                         }
                     }
                 }

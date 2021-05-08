@@ -343,12 +343,12 @@ namespace Warcraft.GameLogic
                 switch (this.model.NewBuilding.Type)
                 {
                     case BuildingEnum.Farm:
-                        this.unitFactory.IncreaseBaseStats(10, 0, 0);
+                        this.unitFactory.IncreaseBaseStats(25, 0, 0);
                         this.model.AddGold(OwnerEnum.PLAYER, -50);
                         this.model.AddLumber(OwnerEnum.PLAYER, -100);
                         break;
                     case BuildingEnum.Barracks:
-                        this.unitFactory.IncreaseBaseStats(0, 5, 1);
+                        this.unitFactory.IncreaseBaseStats(0, 10, 3);
                         this.model.AddGold(OwnerEnum.PLAYER, -100);
                         this.model.AddLumber(OwnerEnum.PLAYER, -200);
                         break;
