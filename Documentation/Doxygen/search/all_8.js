@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['ianimationlogic_83',['IAnimationLogic',['../interface_warcraft_1_1_game_logic_1_1_i_animation_logic.html',1,'Warcraft::GameLogic']]],
+  ['icombatlogic_84',['ICombatLogic',['../interface_warcraft_1_1_game_logic_1_1_i_combat_logic.html',1,'Warcraft::GameLogic']]],
+  ['icon_85',['Icon',['../class_warcraft_1_1_model_1_1_icon.html',1,'Warcraft.Model.Icon'],['../class_warcraft_1_1_model_1_1_icon.html#a3f8e715aa52d48940490548f79d921fd',1,'Warcraft.Model.Icon.Icon()']]],
+  ['icons_86',['Icons',['../class_warcraft_1_1_model_1_1_game_model.html#aa4965c7b10333a62c4d7b7ab1493e927',1,'Warcraft::Model::GameModel']]],
+  ['icontype_87',['IconType',['../class_warcraft_1_1_model_1_1_icon.html#af5057515fbeea3a8f6890a06d519a633',1,'Warcraft::Model::Icon']]],
+  ['icorelogic_88',['ICoreLogic',['../interface_warcraft_1_1_game_logic_1_1_i_core_logic.html',1,'Warcraft::GameLogic']]],
+  ['igamemodel_89',['IGameModel',['../interface_warcraft_1_1_model_1_1_i_game_model.html',1,'Warcraft::Model']]],
+  ['imovementlogic_90',['IMovementLogic',['../interface_warcraft_1_1_game_logic_1_1_i_movement_logic.html',1,'Warcraft::GameLogic']]],
+  ['increasebasestats_91',['IncreaseBaseStats',['../class_warcraft_1_1_game_logic_1_1_unit_factory.html#adf52c12c19bf9deadf99afd6d47de343',1,'Warcraft::GameLogic::UnitFactory']]],
+  ['incrementanimationindex_92',['IncrementAnimationIndex',['../class_warcraft_1_1_game_logic_1_1_animation_logic.html#abee6ca8714d9febc638851611249fbb4',1,'Warcraft.GameLogic.AnimationLogic.IncrementAnimationIndex()'],['../interface_warcraft_1_1_game_logic_1_1_i_animation_logic.html#ad35c3b6a3b8044f0f7a61c9f0f7654d3',1,'Warcraft.GameLogic.IAnimationLogic.IncrementAnimationIndex()']]],
+  ['inidle_93',['InIdle',['../class_warcraft_1_1_model_1_1_unit.html#a315d24a1b12682515e3eb7f85a2f4712',1,'Warcraft::Model::Unit']]],
+  ['initializecomponent_94',['InitializeComponent',['../class_warcraft_1_1_game_control_1_1_app.html#a133e1d70181aa3bd3a8b74bbce457462',1,'Warcraft.GameControl.App.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_app.html#a133e1d70181aa3bd3a8b74bbce457462',1,'Warcraft.GameControl.App.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_main_window.html#ae575e36f68848e67f6de102402b86439',1,'Warcraft.GameControl.MainWindow.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_main_window.html#ae575e36f68848e67f6de102402b86439',1,'Warcraft.GameControl.MainWindow.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_app.html#a133e1d70181aa3bd3a8b74bbce457462',1,'Warcraft.GameControl.App.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_app.html#a133e1d70181aa3bd3a8b74bbce457462',1,'Warcraft.GameControl.App.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_main_window.html#ae575e36f68848e67f6de102402b86439',1,'Warcraft.GameControl.MainWindow.InitializeComponent()'],['../class_warcraft_1_1_game_control_1_1_main_window.html#ae575e36f68848e67f6de102402b86439',1,'Warcraft.GameControl.MainWindow.InitializeComponent()']]],
+  ['initnewbuilding_95',['InitNewBuilding',['../class_warcraft_1_1_game_logic_1_1_core_logic.html#a7547b5ce45eb3c9a341cb61f52412c5e',1,'Warcraft::GameLogic::CoreLogic']]],
+  ['ipathfindinglogic_96',['IPathfindingLogic',['../interface_warcraft_1_1_game_logic_1_1_i_pathfinding_logic.html',1,'Warcraft::GameLogic']]],
+  ['isempty_97',['IsEmpty',['../class_warcraft_1_1_model_1_1_gold_mine.html#a17f796d6c48b7a8c070e7a5ea31eb8f4',1,'Warcraft::Model::GoldMine']]],
+  ['ispositioninhitbox_98',['IsPositionInHitbox',['../class_warcraft_1_1_model_1_1_game_object.html#a76a5766ebdee167bdf05955f0e82ac9d',1,'Warcraft::Model::GameObject']]],
+  ['istoragerepo_99',['IStorageRepo',['../interface_warcraft_1_1_i_storage_repo.html',1,'Warcraft']]]
+];
